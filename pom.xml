@@ -1,0 +1,222 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>boss</groupId>
+	<artifactId>nocommons</artifactId>
+	<packaging>jar</packaging>
+	<version>0.2-SNAPSHOT</version>
+	<name>NoCommons</name>
+	<url>http://boss.bekk.no/nocommons</url>
+	<description>
+		The NoCommons library is a collection of helper classes for manipulation and validation of data specific to
+		Norway and Norwegian citizens.
+	</description>
+
+	<!-- scm : connection, url -->
+	<scm>
+		<connection>scm:svn:https://boss.bekk.no/repos/projects/nocommons/trunk</connection>
+		<developerConnection>scm:svn:https://boss.bekk.no/repos/projects/nocommons/trunk</developerConnection>
+		<url>https://boss.bekk.no/repos/projects/nocommons/</url>
+	</scm>
+
+	<organization>
+		<name>BOSS</name>
+		<url>http://boss.bekk.no/</url>
+	</organization>
+
+	<ciManagement>
+		<system>Bamboo</system>
+		<url>http://boss.bekk.no/bamboo/browse/NOC</url>
+	</ciManagement>
+
+	<!-- DEVELOPERS -->
+	<developers>
+		<developer>
+			<id>per.kristian.mengshoel</id>
+			<name>Per Mengshoel</name>
+			<email>per.kristian.mengshoel (AT) bekk.no</email>
+			<roles>
+				<role>Project manager</role>
+				<role>Architect</role>
+			</roles>
+			<organization>BEKK</organization>
+			<timezone>+1</timezone>
+		</developer>
+		<developer>
+			<id>hn</id>
+			<name>Håvard Nesvold</name>
+			<email>haavard.nesvold (AT) bekk.no</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<organization>BEKK</organization>
+			<timezone>+1</timezone>
+		</developer>
+		<developer>
+			<id>eivind.waaler</id>
+			<name>Eivind Waaler</name>
+			<email>eivind.waaler (AT) bekk.no</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<organization>BEKK</organization>
+			<timezone>+1</timezone>
+		</developer>
+		<developer>
+			<id>stefan.landro</id>
+			<name>Stefan Magnus Landrø</name>
+			<email>stefan.landro (AT) bekk.no</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<organization>BEKK</organization>
+			<timezone>+1</timezone>
+		</developer>
+		<developer>
+			<id>ole.langfjaran</id>
+			<name>Ole Christian Langfjæran</name>
+			<email>ole.langfjaran (AT) bekk.no</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<organization>BEKK</organization>
+			<timezone>+1</timezone>
+		</developer>
+		<developer>
+			<id>stein.inge.morisbak</id>
+			<name>Stein Inge Morisbak</name>
+			<email>stein.inge.morisbak (AT) bekk.no</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<organization>BEKK</organization>
+			<timezone>+1</timezone>
+		</developer>
+	</developers>
+
+	<!-- BUILD -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<childDelegation>true</childDelegation>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>${basedir}</directory>
+							<includes>
+								<include>cobertura.ser</include>
+							</includes>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<tagBase>https://boss.bekk.no/repos/projects/nocommons/tags</tagBase>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<!-- REPORTING -->
+	<reporting>
+		<plugins>
+			<!-- Cobertura versions over 2.0 always shows 100%  -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-changelog-plugin</artifactId>
+				<configuration>
+					<type>range</type>
+					<range>1095</range>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<minmemory>128m</minmemory>
+					<maxmemory>512</maxmemory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jxr-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<configuration>
+					<targetjdk>1.5</targetjdk>
+					<rulesets>
+						<ruleset>/rulesets/basic.xml</ruleset>
+						<ruleset>/rulesets/controversial.xml</ruleset>
+					</rulesets>
+					<format>xml</format>
+					<linkXref>true</linkXref>
+					<sourceEncoding>utf-8</sourceEncoding>
+					<minimumTokens>100</minimumTokens>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>taglist-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jdepend-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>2.4.2</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.4.2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>1.0.0</version>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<!-- DISTRIBUTION -->
+	<distributionManagement>
+		<site>
+			<id>boss</id>
+			<url>file:/srv/www/htdocs/nocommons</url>
+		</site>
+		<repository>
+			<id>boss</id>
+			<url>file:/usr/local/jboss-4.0.4.GA/proximity/inhouse/storage</url>
+		</repository>
+		<snapshotRepository>
+			<id>boss</id>
+			<url>file:/usr/local/jboss-4.0.4.GA/proximity/inhouse.snapshot/storage</url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>
