@@ -3,16 +3,16 @@ package boss.nocommons.person;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
 import boss.nocommons.common.StringNumberValidator;
 
 /**
- * Provides methods that validates if a Fodselsnummer is valid with respect to syntax, Individnummer, Date and checksum
- * digits.
+ * Provides methods that validates if a Fodselsnummer is valid with respect to
+ * syntax, Individnummer, Date and checksum digits.
  * 
  * @author Per K. Mengshoel
  */
-public class FodselsnummerValidator extends StringNumberValidator
-{
+public class FodselsnummerValidator extends StringNumberValidator {
 
 	private static final int LENGTH = 11;
 
@@ -20,9 +20,9 @@ public class FodselsnummerValidator extends StringNumberValidator
 
 	private static final int[] K1_WEIGHTS = new int[] { 2, 5, 4, 9, 8, 1, 6, 7, 3 };
 
-	protected static final String ERROR_INVALID_DATE = "Invalid date in fødselsnummer : ";
+	protected static final String ERROR_INVALID_DATE = "Invalid date in fÃ¸dselsnummer : ";
 
-	protected static final String ERROR_INVALID_INDIVIDNUMMER = "Invalid individnummer in fødselsnummer : ";
+	protected static final String ERROR_INVALID_INDIVIDNUMMER = "Invalid individnummer in fÃ¸dselsnummer : ";
 
 	/**
 	 * Returns an object that represents a Fodselsnummer.
@@ -33,8 +33,7 @@ public class FodselsnummerValidator extends StringNumberValidator
 	 * @throws IllegalArgumentException
 	 *             thrown if String contains an invalid Fodselsnummer
 	 */
-	public static Fodselsnummer getFodselsnummer(String fodselsnummer) throws IllegalArgumentException
-	{
+	public static Fodselsnummer getFodselsnummer(String fodselsnummer) throws IllegalArgumentException {
 		validateSyntax(fodselsnummer);
 		validateIndividnummer(fodselsnummer);
 		validateDate(fodselsnummer);
@@ -49,8 +48,7 @@ public class FodselsnummerValidator extends StringNumberValidator
 	 *            A String containing a Fodselsnummer
 	 * @return true or false
 	 */
-	public static boolean isValid(String fodselsnummer)
-	{
+	public static boolean isValid(String fodselsnummer) {
 		boolean result = false;
 		try {
 			FodselsnummerValidator.getFodselsnummer(fodselsnummer);
@@ -61,21 +59,18 @@ public class FodselsnummerValidator extends StringNumberValidator
 		return result;
 	}
 
-	static void validateSyntax(String fodselsnummer)
-	{
+	static void validateSyntax(String fodselsnummer) {
 		validateLengthAndAllDigits(fodselsnummer, LENGTH);
 	}
 
-	static void validateIndividnummer(String fodselsnummer)
-	{
+	static void validateIndividnummer(String fodselsnummer) {
 		Fodselsnummer fnr = new Fodselsnummer(fodselsnummer);
 		if (fnr.getCentury() == null) {
 			throw new IllegalArgumentException(ERROR_INVALID_INDIVIDNUMMER + fodselsnummer);
 		}
 	}
 
-	static void validateDate(String fodselsnummer)
-	{
+	static void validateDate(String fodselsnummer) {
 		Fodselsnummer fnr = new Fodselsnummer(fodselsnummer);
 		try {
 			String dateString = fnr.getDateAndMonth() + fnr.getCentury() + fnr.get2DigitBirthYear();
@@ -87,8 +82,7 @@ public class FodselsnummerValidator extends StringNumberValidator
 		}
 	}
 
-	static void validateChecksums(String fodselsnummer)
-	{
+	static void validateChecksums(String fodselsnummer) {
 		Fodselsnummer fnr = new Fodselsnummer(fodselsnummer);
 		int k1 = calculateFirstChecksumDigit(fnr);
 		int k2 = calculateSecondChecksumDigit(fnr);
@@ -97,13 +91,11 @@ public class FodselsnummerValidator extends StringNumberValidator
 		}
 	}
 
-	static int calculateFirstChecksumDigit(Fodselsnummer fodselsnummer)
-	{
+	static int calculateFirstChecksumDigit(Fodselsnummer fodselsnummer) {
 		return calculateMod11CheckSum(K1_WEIGHTS, fodselsnummer);
 	}
 
-	static int calculateSecondChecksumDigit(Fodselsnummer fodselsnummer)
-	{
+	static int calculateSecondChecksumDigit(Fodselsnummer fodselsnummer) {
 		return calculateMod11CheckSum(getMod11Weights(fodselsnummer), fodselsnummer);
 	}
 }
