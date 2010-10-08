@@ -32,7 +32,7 @@
 	<!-- DEVELOPERS -->
 	<developers>
 		<developer>
-			<id>per.kristian.mengshoel</id>
+			<id>pekrimen</id>
 			<name>Per Mengshoel</name>
 			<email>per.kristian.mengshoel (AT) BEKK.no</email>
 			<roles>
@@ -43,7 +43,7 @@
 			<timezone>+1</timezone>
 		</developer>
 		<developer>
-			<id>hn</id>
+			<id>nesvold</id>
 			<name>Håvard Nesvold</name>
 			<email>haavard.nesvold (AT) BEKK.no</email>
 			<roles>
@@ -53,7 +53,7 @@
 			<timezone>+1</timezone>
 		</developer>
 		<developer>
-			<id>eivind.waaler</id>
+			<id>eivindw</id>
 			<name>Eivind Waaler</name>
 			<email>eivind.waaler (AT) BEKK.no</email>
 			<roles>
@@ -63,7 +63,7 @@
 			<timezone>+1</timezone>
 		</developer>
 		<developer>
-			<id>stefan.landro</id>
+			<id>landro</id>
 			<name>Stefan Magnus Landrø</name>
 			<email>stefan.landro (AT) BEKK.no</email>
 			<roles>
@@ -73,7 +73,7 @@
 			<timezone>+1</timezone>
 		</developer>
 		<developer>
-			<id>ole.langfjaran</id>
+			<id>judoole</id>
 			<name>Ole Christian Langfjæran</name>
 			<email>ole.langfjaran (AT) BEKK.no</email>
 			<roles>
