@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: boss.nocommons.person.FodselsnummerValidatorTest
--------------------------------------------------------------------------------
-Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 sec
