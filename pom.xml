@@ -6,17 +6,16 @@
 	<packaging>jar</packaging>
 	<version>0.2-SNAPSHOT</version>
 	<name>NoCommons</name>
-	<url>http://github.com/bekkopen/NoCommons</url>
+	<url>http://bekkopen.github.com/NoCommons/</url>
 	<description>
 		The NoCommons library is a collection of helper classes for manipulation and validation of data specific to
 		Norway and Norwegian citizens.
 	</description>
 
-	<!-- scm : connection, url -->
 	<scm>
-		<connection>scm:git:git@github.com:bekkopen/NoCommons.git</connection>
-		<developerConnection>scm:git:git@github.com:bekkopen/NoCommons.git</developerConnection>
-		<url>scm:git:git@github.com:bekkopen/NoCommons.git</url>
+		<connection>scm:git:git://github.com/bekkopen/NoCommons.git</connection>
+		<developerConnection>scm:git:https://bekkopen@github.com/bekkopen/NoCommons.git</developerConnection>
+		<url>http://github.com/bekkopen/NoCommons</url>
 	</scm>
 
 	<organization>
@@ -24,12 +23,6 @@
 		<url>http://github.com/bekkopen</url>
 	</organization>
 
-	<ciManagement>
-		<system>Bamboo</system>
-		<url>http://boss.bekk.no/bamboo/browse/NOC</url>
-	</ciManagement>
-
-	<!-- DEVELOPERS -->
 	<developers>
 		<developer>
 			<id>pekrimen</id>
@@ -94,7 +87,6 @@
 		</developer>
 	</developers>
 
-	<!-- BUILD -->
 	<build>
 		<plugins>
 			<plugin>
@@ -102,7 +94,7 @@
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
-					<encoding>UTF-8</encoding>
+					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -131,6 +123,35 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>release-sign-artifacts</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 	<dependencies>
 		<!-- Apache Commons -->
@@ -187,7 +208,7 @@
 					</rulesets>
 					<format>xml</format>
 					<linkXref>true</linkXref>
-					<sourceEncoding>utf-8</sourceEncoding>
+					<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
 					<minimumTokens>100</minimumTokens>
 				</configuration>
 			</plugin>
@@ -218,8 +239,8 @@
 	<!-- DISTRIBUTION -->
 	<distributionManagement>
 		<site>
-			<id>boss</id>
-			<url>file:/srv/www/htdocs/nocommons</url>
+			<id>NoCommons</id>
+			<url>http://bekkopen.github.com/NoCommons/</url>
 		</site>
 		<repository>
 			<id>boss</id>
@@ -230,4 +251,8 @@
 			<url>file:/usr/local/jboss-4.0.4.GA/proximity/inhouse.snapshot/storage</url>
 		</snapshotRepository>
 	</distributionManagement>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 </project>
