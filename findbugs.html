@@ -1,0 +1,377 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>NoCommons - FindBugs Bug Detector Report</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                    <span id="bannerLeft">
+    
+            NoCommons
+    
+            </span>
+                    <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+    
+            <div class="xleft">
+        Last Published: 2010-10-09
+                      </div>
+            <div class="xright">            <a href="">NoCommons</a>
+            
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+    
+                             <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+            
+      
+            
+            
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+            <li class="expanded">
+                    <a href="project-reports.html">Project Reports</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="cobertura/index.html">Cobertura Test Coverage</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="cpd.html">CPD Report</a>
+          </li>
+                  
+    <li class="none">
+              <strong>FindBugs Report</strong>
+        </li>
+                  
+    <li class="none">
+                    <a href="apidocs/index.html">JavaDocs</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="jdepend-report.html">JDepend</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="pmd.html">PMD Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="jxr.html">Source Xref</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="surefire-report.html">Surefire Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="taglist.html">Tag List</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="testapidocs/index.html">Test JavaDocs</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="./images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+  
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2>FindBugs Bug Detector Report</h2>
+<p>The following document contains the results of <a href="http://findbugs.sourceforge.net" class="externalLink">FindBugs Report</a></p>
+<p>FindBugs Version is <i>1.3.9</i></p>
+<p>Threshold is <i>medium</i></p>
+<p>Effort is <i>min</i></p>
+</div>
+<div class="section"><h2>Summary</h2>
+<table class="bodyTable"><tr class="a"><th>Classes</th>
+<th>Bugs</th>
+<th>Errors</th>
+<th>Missing Classes</th>
+</tr>
+<tr class="b"><td>29</td>
+<td>10</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</table>
+</div>
+<div class="section"><h2>Files</h2>
+<table class="bodyTable"><tr class="a"><th>Class</th>
+<th>Bugs</th>
+</tr>
+<tr class="b"><td><a href="#boss.nocommons.banking.KontonummerCalculator$1AccountTypeKontonrDigitGenerator">boss.nocommons.banking.KontonummerCalculator$1AccountTypeKontonrDigitGenerator</a></td>
+<td>1</td>
+</tr>
+<tr class="a"><td><a href="#boss.nocommons.banking.KontonummerCalculator$1NormalKontonrDigitGenerator">boss.nocommons.banking.KontonummerCalculator$1NormalKontonrDigitGenerator</a></td>
+<td>1</td>
+</tr>
+<tr class="b"><td><a href="#boss.nocommons.banking.KontonummerCalculator$1RegisternummerKontonrDigitGenerator">boss.nocommons.banking.KontonummerCalculator$1RegisternummerKontonrDigitGenerator</a></td>
+<td>1</td>
+</tr>
+<tr class="a"><td><a href="#boss.nocommons.date.NorwegianDateUtil">boss.nocommons.date.NorwegianDateUtil</a></td>
+<td>1</td>
+</tr>
+<tr class="b"><td><a href="#boss.nocommons.org.OrganisasjonsnummerCalculator">boss.nocommons.org.OrganisasjonsnummerCalculator</a></td>
+<td>1</td>
+</tr>
+<tr class="a"><td><a href="#boss.nocommons.person.Fodselsnummer">boss.nocommons.person.Fodselsnummer</a></td>
+<td>2</td>
+</tr>
+<tr class="b"><td><a href="#boss.nocommons.person.NavnGenerator">boss.nocommons.person.NavnGenerator</a></td>
+<td>3</td>
+</tr>
+</table>
+</div>
+<a name="boss.nocommons.banking.KontonummerCalculator1AccountTypeKontonrDigitGenerator"></a><div class="section"><h3>boss.nocommons.banking.KontonummerCalculator$1AccountTypeKontonrDigitGenerator</h3>
+<table class="bodyTable"><tr class="a"><th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th>
+</tr>
+<tr class="b"><td>Method boss.nocommons.banking.KontonummerCalculator$1AccountTypeKontonrDigitGenerator.generateKontonummer() uses the nextDouble method of Random to generate a random integer; using nextInt is more efficient</td>
+<td>PERFORMANCE</td>
+<td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_NEXTINT_VIA_NEXTDOUBLE" class="externalLink">DM_NEXTINT_VIA_NEXTDOUBLE</a></td>
+<td><a href="./xref/boss/nocommons/banking/KontonummerCalculator.html#73">73</a></td>
+<td>Medium</td>
+</tr>
+</table>
+</div>
+<a name="boss.nocommons.banking.KontonummerCalculator1NormalKontonrDigitGenerator"></a><div class="section"><h3>boss.nocommons.banking.KontonummerCalculator$1NormalKontonrDigitGenerator</h3>
+<table class="bodyTable"><tr class="a"><th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th>
+</tr>
+<tr class="b"><td>Method boss.nocommons.banking.KontonummerCalculator$1NormalKontonrDigitGenerator.generateKontonummer() uses the nextDouble method of Random to generate a random integer; using nextInt is more efficient</td>
+<td>PERFORMANCE</td>
+<td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_NEXTINT_VIA_NEXTDOUBLE" class="externalLink">DM_NEXTINT_VIA_NEXTDOUBLE</a></td>
+<td><a href="./xref/boss/nocommons/banking/KontonummerCalculator.html#138">138</a></td>
+<td>Medium</td>
+</tr>
+</table>
+</div>
+<a name="boss.nocommons.banking.KontonummerCalculator1RegisternummerKontonrDigitGenerator"></a><div class="section"><h3>boss.nocommons.banking.KontonummerCalculator$1RegisternummerKontonrDigitGenerator</h3>
+<table class="bodyTable"><tr class="a"><th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th>
+</tr>
+<tr class="b"><td>Method boss.nocommons.banking.KontonummerCalculator$1RegisternummerKontonrDigitGenerator.generateKontonummer() uses the nextDouble method of Random to generate a random integer; using nextInt is more efficient</td>
+<td>PERFORMANCE</td>
+<td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_NEXTINT_VIA_NEXTDOUBLE" class="externalLink">DM_NEXTINT_VIA_NEXTDOUBLE</a></td>
+<td><a href="./xref/boss/nocommons/banking/KontonummerCalculator.html#112">112</a></td>
+<td>Medium</td>
+</tr>
+</table>
+</div>
+<a name="boss.nocommons.date.NorwegianDateUtil"></a><div class="section"><h3>boss.nocommons.date.NorwegianDateUtil</h3>
+<table class="bodyTable"><tr class="a"><th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th>
+</tr>
+<tr class="b"><td>Method boss.nocommons.date.NorwegianDateUtil.getHolidaySet(int) invokes inefficient new Integer(int) constructor; use Integer.valueOf(int) instead</td>
+<td>PERFORMANCE</td>
+<td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_NUMBER_CTOR" class="externalLink">DM_NUMBER_CTOR</a></td>
+<td><a href="./xref/boss/nocommons/date/NorwegianDateUtil.html#100">100</a></td>
+<td>Medium</td>
+</tr>
+</table>
+</div>
+<a name="boss.nocommons.org.OrganisasjonsnummerCalculator"></a><div class="section"><h3>boss.nocommons.org.OrganisasjonsnummerCalculator</h3>
+<table class="bodyTable"><tr class="a"><th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th>
+</tr>
+<tr class="b"><td>Method boss.nocommons.org.OrganisasjonsnummerCalculator.getOrganisasjonsnummerList(int) uses the nextDouble method of Random to generate a random integer; using nextInt is more efficient</td>
+<td>PERFORMANCE</td>
+<td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_NEXTINT_VIA_NEXTDOUBLE" class="externalLink">DM_NEXTINT_VIA_NEXTDOUBLE</a></td>
+<td><a href="./xref/boss/nocommons/org/OrganisasjonsnummerCalculator.html#35">35</a></td>
+<td>Medium</td>
+</tr>
+</table>
+</div>
+<a name="boss.nocommons.person.Fodselsnummer"></a><div class="section"><h3>boss.nocommons.person.Fodselsnummer</h3>
+<table class="bodyTable"><tr class="a"><th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th>
+</tr>
+<tr class="b"><td>boss.nocommons.person.Fodselsnummer.parseDNumber(String) invokes inefficient new String(String) constructor</td>
+<td>PERFORMANCE</td>
+<td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_STRING_CTOR" class="externalLink">DM_STRING_CTOR</a></td>
+<td><a href="./xref/boss/nocommons/person/Fodselsnummer.html#186">186</a></td>
+<td>Medium</td>
+</tr>
+<tr class="a"><td>Check for oddness that won't work for negative numbers in boss.nocommons.person.Fodselsnummer.isMale()</td>
+<td>STYLE</td>
+<td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#IM_BAD_CHECK_FOR_ODD" class="externalLink">IM_BAD_CHECK_FOR_ODD</a></td>
+<td><a href="./xref/boss/nocommons/person/Fodselsnummer.html#155">155</a></td>
+<td>Medium</td>
+</tr>
+</table>
+</div>
+<a name="boss.nocommons.person.NavnGenerator"></a><div class="section"><h3>boss.nocommons.person.NavnGenerator</h3>
+<table class="bodyTable"><tr class="b"><th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th>
+</tr>
+<tr class="a"><td>Write to static field boss.nocommons.person.NavnGenerator.ETTERNAVN from instance method new boss.nocommons.person.NavnGenerator()</td>
+<td>STYLE</td>
+<td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD" class="externalLink">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
+<td><a href="./xref/boss/nocommons/person/NavnGenerator.html#24">24</a></td>
+<td>Medium</td>
+</tr>
+<tr class="b"><td>Write to static field boss.nocommons.person.NavnGenerator.KVINNENAVN from instance method new boss.nocommons.person.NavnGenerator()</td>
+<td>STYLE</td>
+<td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD" class="externalLink">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
+<td><a href="./xref/boss/nocommons/person/NavnGenerator.html#22">22</a></td>
+<td>Medium</td>
+</tr>
+<tr class="a"><td>Write to static field boss.nocommons.person.NavnGenerator.MANNSNAVN from instance method new boss.nocommons.person.NavnGenerator()</td>
+<td>STYLE</td>
+<td><a href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD" class="externalLink">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
+<td><a href="./xref/boss/nocommons/person/NavnGenerator.html#23">23</a></td>
+<td>Medium</td>
+</tr>
+</table>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2010
+    
+          BEKK open source
+          
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>
