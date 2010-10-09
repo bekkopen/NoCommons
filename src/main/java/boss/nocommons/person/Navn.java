@@ -1,7 +1,9 @@
 package boss.nocommons.person;
 
 /**
- * This class represents a name according to Norwegian rules.
+ * This class represents a name according to Norwegian rules. A legal Norwegian
+ * name consist of at least a Fornavn and an Etternavn. Etternavn can also
+ * optionally be used as a Mellomnavn.
  */
 public class Navn {
 

@@ -96,8 +96,8 @@ public class NorwegianDateUtil {
 	 *            The year to get holidays for.
 	 * @return The set of dates.
 	 */
-	private static Set<?> getHolidaySet(int year) {
-		Integer yInt = new Integer(year);
+	private static Set<Date> getHolidaySet(int year) {
+		Integer yInt = Integer.valueOf(year);
 		if (holidays == null) {
 			holidays = new HashMap<Integer, Set<Date>>();
 		}

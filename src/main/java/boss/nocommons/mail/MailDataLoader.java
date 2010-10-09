@@ -30,7 +30,7 @@ public class MailDataLoader {
 		}
 		Map<Poststed, List<Postnummer>> poststedMap = new HashMap<Poststed, List<Postnummer>>();
 		Map<Postnummer, Poststed> postnummerMap = new HashMap<Postnummer, Poststed>();
-		InputStreamReader isr = new InputStreamReader(is, Charset.forName("ISO-8859-1"));
+		InputStreamReader isr = new InputStreamReader(is, Charset.forName("UTF-8"));
 		BufferedReader br = new BufferedReader(isr);
 		String line;
 		while ((line = br.readLine()) != null) {

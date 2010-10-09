@@ -14,9 +14,9 @@ public class NavnGenerator {
 	private final int CA_ANTALL_KVINNER_SOM_HAR_MELLOMNAVN_I_PROSENT = 22;
 	private final int CA_ANTALL_MENN_SOM_HAR_MELLOMNAVN_I_PROSENT = 14;
 
-	private static List<String> KVINNENAVN;
-	private static List<String> MANNSNAVN;
-	private static List<String> ETTERNAVN;
+	private final List<String> KVINNENAVN;
+	private final List<String> MANNSNAVN;
+	private final List<String> ETTERNAVN;
 
 	public NavnGenerator() {
 		KVINNENAVN = csv2List(NavnGenerator.class.getResourceAsStream("/fornavn_kvinner.csv"));

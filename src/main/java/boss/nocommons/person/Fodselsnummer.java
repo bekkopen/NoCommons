@@ -3,46 +3,46 @@ package boss.nocommons.person;
 import boss.nocommons.common.StringNumber;
 
 /**
- * This class represent a Norwegian social security number - a Fodselsnummer. A Fodselsnummer consists of 11 digits,
- * where the first 6 digits contains the date of birth and the last 5 consists of an Individnummer (3 digits) and two
+ * This class represent a Norwegian social security number - a Fodselsnummer. A
+ * Fodselsnummer consists of 11 digits, where the first 6 digits contains the
+ * date of birth and the last 5 consists of an Individnummer (3 digits) and two
  * checksum digits.
  * 
  * @author Per K. Mengshoel
  */
-public class Fodselsnummer extends StringNumber
-{
+public class Fodselsnummer extends StringNumber {
 
 	Fodselsnummer(String fodselsnummer) {
 		super(fodselsnummer);
 	}
 
 	/**
-	 * Returns the first 4 digits of the Fodselsnummer that contains the date (01-31) and month(01-12) of birth.
+	 * Returns the first 4 digits of the Fodselsnummer that contains the date
+	 * (01-31) and month(01-12) of birth.
 	 * 
 	 * @return A String containing the date and month of birth.
 	 */
-	public String getDateAndMonth()
-	{
+	public String getDateAndMonth() {
 		return parseDNumber(getValue()).substring(0, 4);
 	}
 
 	/**
-	 * Returns the first 2 digits of the Fodselsnummer that contains the date (01-31), stripped for eventual d-numbers.
+	 * Returns the first 2 digits of the Fodselsnummer that contains the date
+	 * (01-31), stripped for eventual d-numbers.
 	 * 
 	 * @return A String containing the date of birth
 	 */
-	public String getDayInMonth()
-	{
+	public String getDayInMonth() {
 		return parseDNumber(getValue()).substring(0, 2);
 	}
-	
+
 	/**
-	 * Returns the digits 3 and 4 of the Fodselsnummer that contains the month (01-12), stripped for eventual d-numbers.
+	 * Returns the digits 3 and 4 of the Fodselsnummer that contains the month
+	 * (01-12), stripped for eventual d-numbers.
 	 * 
 	 * @return A String containing the date of birth
 	 */
-	public String getMonth()
-	{
+	public String getMonth() {
 		return parseDNumber(getValue()).substring(2, 4);
 	}
 
@@ -51,13 +51,11 @@ public class Fodselsnummer extends StringNumber
 	 * 
 	 * @return A String containing the year of birth.
 	 */
-	public String getBirthYear()
-	{
+	public String getBirthYear() {
 		return getCentury() + get2DigitBirthYear();
 	}
 
-	String getCentury()
-	{
+	String getCentury() {
 		String result = null;
 		int individnummerInt = Integer.parseInt(getIndividnummer());
 		int birthYear = Integer.parseInt(get2DigitBirthYear());
@@ -74,44 +72,43 @@ public class Fodselsnummer extends StringNumber
 	}
 
 	/**
-	 * Returns the two digits of the Fodselsnummer that contains the year birth (00-99).
+	 * Returns the two digits of the Fodselsnummer that contains the year birth
+	 * (00-99).
 	 * 
 	 * @return A String containing the year of birth.
 	 */
-	public String get2DigitBirthYear()
-	{
+	public String get2DigitBirthYear() {
 		return getValue().substring(4, 6);
 	}
 
 	/**
-	 * Returns the first 6 digits of the Fodselsnummer that contains the date (01-31), month(01-12) and year(00-99) of
-	 * birth.
+	 * Returns the first 6 digits of the Fodselsnummer that contains the date
+	 * (01-31), month(01-12) and year(00-99) of birth.
 	 * 
 	 * @return A String containing the date and month of birth.
 	 */
-	public String getDateOfBirth()
-	{
+	public String getDateOfBirth() {
 		return parseDNumber(getValue()).substring(0, 6);
 	}
 
 	/**
-	 * Returns the last 5 digits of the Fodselsnummer, also referred to as the Personnummer. The Personnummer consists
-	 * of the Individnummer (3 digits) and two checksum digits.
+	 * Returns the last 5 digits of the Fodselsnummer, also referred to as the
+	 * Personnummer. The Personnummer consists of the Individnummer (3 digits)
+	 * and two checksum digits.
 	 * 
 	 * @return A String containing the Personnummer.
 	 */
-	public String getPersonnummer()
-	{
+	public String getPersonnummer() {
 		return getValue().substring(6);
 	}
 
 	/**
-	 * Returns the first three digits of the Personnummer, also known as the Individnummer.
+	 * Returns the first three digits of the Personnummer, also known as the
+	 * Individnummer.
 	 * 
 	 * @return A String containing the Individnummer.
 	 */
-	public String getIndividnummer()
-	{
+	public String getIndividnummer() {
 		return getValue().substring(6, 9);
 	}
 
@@ -120,8 +117,7 @@ public class Fodselsnummer extends StringNumber
 	 * 
 	 * @return The digit.
 	 */
-	public int getGenderDigit()
-	{
+	public int getGenderDigit() {
 		return getAt(8);
 	}
 
@@ -130,8 +126,7 @@ public class Fodselsnummer extends StringNumber
 	 * 
 	 * @return The digit.
 	 */
-	public int getChecksumDigit1()
-	{
+	public int getChecksumDigit1() {
 		return getAt(9);
 	}
 
@@ -140,8 +135,7 @@ public class Fodselsnummer extends StringNumber
 	 * 
 	 * @return The digit.
 	 */
-	public int getChecksumDigit2()
-	{
+	public int getChecksumDigit2() {
 		return getAt(10);
 	}
 
@@ -150,9 +144,8 @@ public class Fodselsnummer extends StringNumber
 	 * 
 	 * @return true or false.
 	 */
-	public boolean isMale()
-	{
-		return (getGenderDigit() % 2) == 1;
+	public boolean isMale() {
+		return getGenderDigit() % 2 != 0;
 	}
 
 	/**
@@ -160,13 +153,11 @@ public class Fodselsnummer extends StringNumber
 	 * 
 	 * @return true or false.
 	 */
-	public boolean isFemale()
-	{
+	public boolean isFemale() {
 		return !isMale();
 	}
 
-	static boolean isDNumber(String fodselsnummer)
-	{
+	static boolean isDNumber(String fodselsnummer) {
 		try {
 			int firstDigit = getFirstDigit(fodselsnummer);
 			if (firstDigit > 3 && firstDigit < 8) {
@@ -178,17 +169,15 @@ public class Fodselsnummer extends StringNumber
 		return false;
 	}
 
-	static String parseDNumber(String fodselsnummer)
-	{
+	static String parseDNumber(String fodselsnummer) {
 		if (!isDNumber(fodselsnummer)) {
 			return fodselsnummer;
 		} else {
-			return new String((getFirstDigit(fodselsnummer) - 4) + fodselsnummer.substring(1));
+			return (getFirstDigit(fodselsnummer) - 4) + fodselsnummer.substring(1);
 		}
 	}
 
-	private static int getFirstDigit(String fodselsnummer)
-	{
+	private static int getFirstDigit(String fodselsnummer) {
 		return Integer.parseInt(fodselsnummer.substring(0, 1));
 	}
 }
