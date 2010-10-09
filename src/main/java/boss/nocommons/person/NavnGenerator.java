@@ -14,10 +14,16 @@ public class NavnGenerator {
 	private final int CA_ANTALL_KVINNER_SOM_HAR_MELLOMNAVN_I_PROSENT = 22;
 	private final int CA_ANTALL_MENN_SOM_HAR_MELLOMNAVN_I_PROSENT = 14;
 
-	private static final List<String> KVINNENAVN = csv2List(NavnGenerator.class
-			.getResourceAsStream("/fornavn_kvinner.csv"));
-	private static final List<String> MANNSNAVN = csv2List(NavnGenerator.class.getResourceAsStream("/fornavn_menn.csv"));
-	private static final List<String> ETTERNAVN = csv2List(NavnGenerator.class.getResourceAsStream("/etternavn.csv"));
+	private static List<String> KVINNENAVN;
+	private static List<String> MANNSNAVN;
+	private static List<String> ETTERNAVN;
+
+	public NavnGenerator() {
+		KVINNENAVN = csv2List(NavnGenerator.class.getResourceAsStream("/fornavn_kvinner.csv"));
+		MANNSNAVN = csv2List(NavnGenerator.class.getResourceAsStream("/fornavn_menn.csv"));
+		ETTERNAVN = csv2List(NavnGenerator.class.getResourceAsStream("/etternavn.csv"));
+
+	}
 
 	public Navn genererMannsnavn() {
 		return genererNavn(1, KJONN.MANN).get(0);

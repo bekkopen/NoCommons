@@ -5,9 +5,9 @@ package boss.nocommons.person;
  */
 public class Navn {
 
-	private String fornavn;
+	private final String fornavn;
 	private String mellomnavn;
-	private String etternavn;
+	private final String etternavn;
 
 	Navn(final String fornavn, final String mellomnavn, final String etternavn) {
 		this(fornavn, etternavn);
@@ -18,12 +18,12 @@ public class Navn {
 	}
 
 	public Navn(final String fornavn, final String etternavn) {
-		if (null != fornavn || null != etternavn) {
-			this.fornavn = korrigerCasing(fornavn);
-			this.etternavn = korrigerCasing(etternavn);
-		} else {
-			throw new IllegalArgumentException("Parameters can not be null");
+		if (null == fornavn || null == etternavn) {
+			throw new IllegalArgumentException("fornavn or etternavn can not be null: " + "fornavn=" + fornavn
+					+ ",etternavn=" + etternavn);
 		}
+		this.fornavn = korrigerCasing(fornavn);
+		this.etternavn = korrigerCasing(etternavn);
 	}
 
 	public String getFornavn() {

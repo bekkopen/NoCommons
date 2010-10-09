@@ -55,7 +55,7 @@ public class NavnGeneratorTest {
 	}
 
 	@Test
-	public void skalGenerereTiKvinnenavn() {
+	public void skalGenerere10Kvinnenavn() {
 		List<Navn> kvinner = navnGenerator.genererKvinnenavn(10);
 		for (Navn kvinne : kvinner) {
 			assertTrue(kvinne.getFornavn() + " matcher ikke " + NAVN_PATTERN, kvinne.getFornavn().matches(NAVN_PATTERN));
@@ -66,5 +66,31 @@ public class NavnGeneratorTest {
 						kvinne.getEtternavn().matches(NAVN_PATTERN));
 			}
 		}
+	}
+
+	@Test
+	public void skalGenerereEnAndelKvinnerMedMellomnavn() {
+		List<Navn> kvinner = navnGenerator.genererKvinnenavn(100);
+		int antallMedMellomnavn = 0;
+		for (Navn kvinne : kvinner) {
+			if (null != kvinne.getMellomnavn()) {
+				antallMedMellomnavn++;
+			}
+		}
+		assertTrue("Forventet mindre enn 50 og fler en 5. Antall med mellomnavn: " + antallMedMellomnavn,
+				5 < antallMedMellomnavn && 50 > antallMedMellomnavn);
+	}
+
+	@Test
+	public void skalGenerereEnAndelMennMedMellomnavn() {
+		List<Navn> menn = navnGenerator.genererMannsnavn(100);
+		int antallMedMellomnavn = 0;
+		for (Navn mann : menn) {
+			if (null != mann.getMellomnavn()) {
+				antallMedMellomnavn++;
+			}
+		}
+		assertTrue("Forventet mindre enn 50 og fler en 5. Antall med mellomnavn: " + antallMedMellomnavn,
+				5 < antallMedMellomnavn && 50 > antallMedMellomnavn);
 	}
 }
