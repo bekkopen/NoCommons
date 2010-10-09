@@ -21,51 +21,32 @@ public class NavnGeneratorTest {
 	public void skalGenerereEtMannsnavn() {
 		Navn mann = navnGenerator.genererMannsnavn();
 
-		assertTrue(mann.getFornavn() + " matcher ikke " + NAVN_PATTERN, mann.getFornavn().matches(NAVN_PATTERN));
-		assertTrue(mann.getEtternavn() + " matcher ikke " + NAVN_PATTERN, mann.getEtternavn().matches(NAVN_PATTERN));
-		if (null != mann.getMellomnavn()) {
-			assertTrue(mann.getMellomnavn() + " matcher ikke " + NAVN_PATTERN, mann.getEtternavn()
-					.matches(NAVN_PATTERN));
-		}
+		assertGyldigNavn(mann);
 	}
 
 	@Test
 	public void skalGenerereEtKvinnenavn() {
 		Navn kvinne = navnGenerator.genererKvinnenavn();
 
-		assertTrue(kvinne.getFornavn() + " matcher ikke " + NAVN_PATTERN, kvinne.getFornavn().matches(NAVN_PATTERN));
-		assertTrue(kvinne.getEtternavn() + " matcher ikke " + NAVN_PATTERN, kvinne.getEtternavn().matches(NAVN_PATTERN));
-		if (null != kvinne.getMellomnavn()) {
-			assertTrue(kvinne.getMellomnavn() + " matcher ikke " + NAVN_PATTERN,
-					kvinne.getEtternavn().matches(NAVN_PATTERN));
-		}
+		assertGyldigNavn(kvinne);
 	}
 
 	@Test
 	public void skalGenerereTiMannsnavn() {
 		List<Navn> menn = navnGenerator.genererMannsnavn(10);
-		for (Navn mann : menn) {
-			assertTrue(mann.getFornavn() + " matcher ikke " + NAVN_PATTERN, mann.getFornavn().matches(NAVN_PATTERN));
-			assertTrue(mann.getEtternavn() + " matcher ikke " + NAVN_PATTERN, mann.getEtternavn().matches(NAVN_PATTERN));
-			if (null != mann.getMellomnavn()) {
-				assertTrue(mann.getMellomnavn() + " matcher ikke " + NAVN_PATTERN,
-						mann.getEtternavn().matches(NAVN_PATTERN));
-			}
-		}
+		assertGyldigeNavn(menn);
 	}
 
 	@Test
 	public void skalGenerere10Kvinnenavn() {
 		List<Navn> kvinner = navnGenerator.genererKvinnenavn(10);
-		for (Navn kvinne : kvinner) {
-			assertTrue(kvinne.getFornavn() + " matcher ikke " + NAVN_PATTERN, kvinne.getFornavn().matches(NAVN_PATTERN));
-			assertTrue(kvinne.getEtternavn() + " matcher ikke " + NAVN_PATTERN,
-					kvinne.getEtternavn().matches(NAVN_PATTERN));
-			if (null != kvinne.getMellomnavn()) {
-				assertTrue(kvinne.getMellomnavn() + " matcher ikke " + NAVN_PATTERN,
-						kvinne.getEtternavn().matches(NAVN_PATTERN));
-			}
-		}
+		assertGyldigeNavn(kvinner);
+	}
+
+	@Test
+	public void skalGenerere100NavnMedBlandingAvKjoenn() {
+		List<Navn> navneliste = navnGenerator.genererNavn(100);
+		assertGyldigeNavn(navneliste);
 	}
 
 	@Test
@@ -92,5 +73,20 @@ public class NavnGeneratorTest {
 		}
 		assertTrue("Forventet mindre enn 50 og fler en 5. Antall med mellomnavn: " + antallMedMellomnavn,
 				5 < antallMedMellomnavn && 50 > antallMedMellomnavn);
+	}
+
+	private void assertGyldigeNavn(List<Navn> navneliste) {
+		for (Navn navn : navneliste) {
+			assertGyldigNavn(navn);
+		}
+	}
+
+	private void assertGyldigNavn(Navn navn) {
+		assertTrue(navn.getFornavn() + " matcher ikke " + NAVN_PATTERN, navn.getFornavn().matches(NAVN_PATTERN));
+		assertTrue(navn.getEtternavn() + " matcher ikke " + NAVN_PATTERN, navn.getEtternavn().matches(NAVN_PATTERN));
+		if (null != navn.getMellomnavn()) {
+			assertTrue(navn.getMellomnavn() + " matcher ikke " + NAVN_PATTERN, navn.getEtternavn()
+					.matches(NAVN_PATTERN));
+		}
 	}
 }

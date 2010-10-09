@@ -9,6 +9,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Generator for Norwegian {@link Navn} (names).
+ * 
+ * Picks random names from the most common names in 2009.
+ * 
+ * <h2>Sources:</h2>
+ * <ul>
+ * <li><a href="http://www.ssb.no/navn/fornavn-kvinner-200.html">Statistisk
+ * Sentralbyrås liste over de 712 mest brukte kvinnenavn i 2009</a></li>
+ * <li><a href="http://www.ssb.no/navn/fornavn-menn-200.html">Statistisk
+ * Sentralbyrås liste over de 580 mest brukte mannsnavn i 2009</a></li>
+ * <li><a href="http://www.ssb.no/navn/etternavn-200.html">Statistisk
+ * Sentralbyrås liste over de 3229 mest brukte etternavn i 2009</a></li>
+ * </ul>
+ * 
+ */
+
 public class NavnGenerator {
 
 	private final int CA_ANTALL_KVINNER_SOM_HAR_MELLOMNAVN_I_PROSENT = 22;
@@ -22,7 +39,6 @@ public class NavnGenerator {
 		KVINNENAVN = csv2List(NavnGenerator.class.getResourceAsStream("/fornavn_kvinner.csv"));
 		MANNSNAVN = csv2List(NavnGenerator.class.getResourceAsStream("/fornavn_menn.csv"));
 		ETTERNAVN = csv2List(NavnGenerator.class.getResourceAsStream("/etternavn.csv"));
-
 	}
 
 	public Navn genererMannsnavn() {
@@ -41,6 +57,10 @@ public class NavnGenerator {
 		return genererNavn(antall, KJONN.KVINNE);
 	}
 
+	public List<Navn> genererNavn(int antall) {
+		return genererNavn(antall, KJONN.BEGGE);
+	}
+
 	private List<Navn> genererNavn(final int antall, final KJONN kjonn) {
 		List<Navn> navneliste = new ArrayList<Navn>(antall);
 		KJONN kjonnSwitch = kjonn;
@@ -48,9 +68,9 @@ public class NavnGenerator {
 			if (KJONN.erBegge(kjonn)) {
 				kjonnSwitch = KJONN.byttKjonn(kjonn);
 			}
-			Navn mottaker = genererNavn(kjonnSwitch);
-			if (!navneliste.contains(mottaker)) {
-				navneliste.add(mottaker);
+			Navn navn = genererNavn(kjonnSwitch);
+			if (!navneliste.contains(navn)) {
+				navneliste.add(navn);
 			}
 		}
 		return navneliste;
@@ -58,7 +78,6 @@ public class NavnGenerator {
 
 	private Navn genererNavn(final KJONN kjonn) {
 		String fornavn, mellomnavn = null, etternavn;
-
 		int indexF = 0;
 		if (KJONN.erKvinne(kjonn)) {
 			indexF = new Random().nextInt(KVINNENAVN.size() - 1);
@@ -77,13 +96,12 @@ public class NavnGenerator {
 	}
 
 	private boolean genererMellomnavn(KJONN kjonn) {
-		Random r = new Random();
-		if (KJONN.KVINNE.equals(kjonn)) {
-			if (r.nextInt(100) <= CA_ANTALL_KVINNER_SOM_HAR_MELLOMNAVN_I_PROSENT) {
+		if (KJONN.erKvinne(kjonn)) {
+			if (new Random().nextInt(100) <= CA_ANTALL_KVINNER_SOM_HAR_MELLOMNAVN_I_PROSENT) {
 				return true;
 			}
 		} else {
-			if (r.nextInt(100) <= CA_ANTALL_MENN_SOM_HAR_MELLOMNAVN_I_PROSENT) {
+			if (new Random().nextInt(100) <= CA_ANTALL_MENN_SOM_HAR_MELLOMNAVN_I_PROSENT) {
 				return true;
 			}
 		}
@@ -124,10 +142,6 @@ public class NavnGenerator {
 
 		static boolean erBegge(final KJONN kjonn) {
 			return kjonn.equals(BEGGE);
-		}
-
-		static boolean erMannEllerKvinne(final KJONN kjonn) {
-			return kjonn.equals(MANN) || kjonn.equals(KVINNE);
 		}
 
 		static KJONN byttKjonn(final KJONN kjonn) {
