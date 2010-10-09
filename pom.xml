@@ -200,6 +200,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
+				<version>2.5</version>
 				<configuration>
 					<targetjdk>1.6</targetjdk>
 					<rulesets>
