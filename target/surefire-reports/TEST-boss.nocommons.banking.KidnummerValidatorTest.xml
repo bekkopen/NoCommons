@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.005" errors="0" skipped="0" tests="8" name="boss.nocommons.banking.KidnummerValidatorTest">
+<testsuite failures="0" time="0.006" errors="0" skipped="0" tests="8" name="boss.nocommons.banking.KidnummerValidatorTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Libraries"/>
@@ -22,7 +22,7 @@
     <property name="basedir" value="/Users/stein inge morisbak/utvikling/NoCommons"/>
     <property name="java.endorsed.dirs" value="/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home/lib/endorsed"/>
     <property name="os.arch" value="x86_64"/>
-    <property name="surefire.real.class.path" value="/var/folders/QT/QTrpmBiCEMCUFAmXr8hRJb5xxQU/-Tmp-/surefirebooter1210796724649916247.jar"/>
+    <property name="surefire.real.class.path" value="/var/folders/QT/QTrpmBiCEMCUFAmXr8hRJb5xxQU/-Tmp-/surefirebooter464813653389992449.jar"/>
     <property name="java.io.tmpdir" value="/var/folders/QT/QTrpmBiCEMCUFAmXr8hRJb5xxQU/-Tmp-/"/>
     <property name="line.separator" value="
 "/>
@@ -66,10 +66,10 @@
   </properties>
   <testcase time="0.002" classname="boss.nocommons.banking.KidnummerValidatorTest" name="testInvalidKidnummer"/>
   <testcase time="0" classname="boss.nocommons.banking.KidnummerValidatorTest" name="testInvalidKidnummerNotDigits"/>
-  <testcase time="0.001" classname="boss.nocommons.banking.KidnummerValidatorTest" name="testInvalidKidnummerTooShort"/>
+  <testcase time="0" classname="boss.nocommons.banking.KidnummerValidatorTest" name="testInvalidKidnummerTooShort"/>
   <testcase time="0" classname="boss.nocommons.banking.KidnummerValidatorTest" name="testInvalidKidnummerTooLong"/>
   <testcase time="0" classname="boss.nocommons.banking.KidnummerValidatorTest" name="testInvalidKidnummerWrongChecksum"/>
   <testcase time="0" classname="boss.nocommons.banking.KidnummerValidatorTest" name="testIsValidMod10"/>
-  <testcase time="0" classname="boss.nocommons.banking.KidnummerValidatorTest" name="testIsValidMod11"/>
+  <testcase time="0.001" classname="boss.nocommons.banking.KidnummerValidatorTest" name="testIsValidMod11"/>
   <testcase time="0" classname="boss.nocommons.banking.KidnummerValidatorTest" name="testIsInvalid"/>
 </testsuite>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.009" errors="0" skipped="0" tests="13" name="boss.nocommons.person.FodselsnummerValidatorTest">
+<testsuite failures="0" time="0.007" errors="0" skipped="0" tests="13" name="boss.nocommons.person.FodselsnummerValidatorTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Libraries"/>
@@ -22,7 +22,7 @@
     <property name="basedir" value="/Users/stein inge morisbak/utvikling/NoCommons"/>
     <property name="java.endorsed.dirs" value="/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home/lib/endorsed"/>
     <property name="os.arch" value="x86_64"/>
-    <property name="surefire.real.class.path" value="/var/folders/QT/QTrpmBiCEMCUFAmXr8hRJb5xxQU/-Tmp-/surefirebooter1210796724649916247.jar"/>
+    <property name="surefire.real.class.path" value="/var/folders/QT/QTrpmBiCEMCUFAmXr8hRJb5xxQU/-Tmp-/surefirebooter464813653389992449.jar"/>
     <property name="java.io.tmpdir" value="/var/folders/QT/QTrpmBiCEMCUFAmXr8hRJb5xxQU/-Tmp-/"/>
     <property name="line.separator" value="
 "/>
@@ -66,15 +66,15 @@
   </properties>
   <testcase time="0" classname="boss.nocommons.person.FodselsnummerValidatorTest" name="testIsValid"/>
   <testcase time="0" classname="boss.nocommons.person.FodselsnummerValidatorTest" name="testInvalidFodselsnummerWrongLength"/>
-  <testcase time="0.001" classname="boss.nocommons.person.FodselsnummerValidatorTest" name="testInvalidFodselsnummerNotDigits"/>
+  <testcase time="0" classname="boss.nocommons.person.FodselsnummerValidatorTest" name="testInvalidFodselsnummerNotDigits"/>
   <testcase time="0" classname="boss.nocommons.person.FodselsnummerValidatorTest" name="testInvalidIndividnummer"/>
-  <testcase time="0.001" classname="boss.nocommons.person.FodselsnummerValidatorTest" name="testInvalidDateMonthMax"/>
-  <testcase time="0.001" classname="boss.nocommons.person.FodselsnummerValidatorTest" name="testInvalidDateMonthMin"/>
-  <testcase time="0.001" classname="boss.nocommons.person.FodselsnummerValidatorTest" name="testInvalidDateDayMin"/>
+  <testcase time="0" classname="boss.nocommons.person.FodselsnummerValidatorTest" name="testInvalidDateMonthMax"/>
+  <testcase time="0" classname="boss.nocommons.person.FodselsnummerValidatorTest" name="testInvalidDateMonthMin"/>
+  <testcase time="0" classname="boss.nocommons.person.FodselsnummerValidatorTest" name="testInvalidDateDayMin"/>
   <testcase time="0" classname="boss.nocommons.person.FodselsnummerValidatorTest" name="testInvalidDateDayMax"/>
   <testcase time="0" classname="boss.nocommons.person.FodselsnummerValidatorTest" name="testInvalidDateLeapDay"/>
-  <testcase time="0" classname="boss.nocommons.person.FodselsnummerValidatorTest" name="testInvalidFodselsnummerChecksum"/>
+  <testcase time="0.001" classname="boss.nocommons.person.FodselsnummerValidatorTest" name="testInvalidFodselsnummerChecksum"/>
   <testcase time="0" classname="boss.nocommons.person.FodselsnummerValidatorTest" name="testValidLeapDay"/>
-  <testcase time="0.001" classname="boss.nocommons.person.FodselsnummerValidatorTest" name="testDNumberIsValid"/>
+  <testcase time="0" classname="boss.nocommons.person.FodselsnummerValidatorTest" name="testDNumberIsValid"/>
   <testcase time="0" classname="boss.nocommons.person.FodselsnummerValidatorTest" name="testGetDNumber"/>
 </testsuite>

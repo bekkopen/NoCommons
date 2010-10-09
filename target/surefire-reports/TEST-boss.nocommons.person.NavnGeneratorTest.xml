@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.057" errors="0" skipped="0" tests="4" name="boss.nocommons.person.NavnGeneratorTest">
+<testsuite failures="0" time="0.067" errors="0" skipped="0" tests="4" name="boss.nocommons.person.NavnGeneratorTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Libraries"/>
@@ -22,7 +22,7 @@
     <property name="basedir" value="/Users/stein inge morisbak/utvikling/NoCommons"/>
     <property name="java.endorsed.dirs" value="/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home/lib/endorsed"/>
     <property name="os.arch" value="x86_64"/>
-    <property name="surefire.real.class.path" value="/var/folders/QT/QTrpmBiCEMCUFAmXr8hRJb5xxQU/-Tmp-/surefirebooter1210796724649916247.jar"/>
+    <property name="surefire.real.class.path" value="/var/folders/QT/QTrpmBiCEMCUFAmXr8hRJb5xxQU/-Tmp-/surefirebooter464813653389992449.jar"/>
     <property name="java.io.tmpdir" value="/var/folders/QT/QTrpmBiCEMCUFAmXr8hRJb5xxQU/-Tmp-/"/>
     <property name="line.separator" value="
 "/>
@@ -64,8 +64,8 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.029" classname="boss.nocommons.person.NavnGeneratorTest" name="skalGenerereEtMannsnavn"/>
+  <testcase time="0.027" classname="boss.nocommons.person.NavnGeneratorTest" name="skalGenerereEtMannsnavn"/>
   <testcase time="0.001" classname="boss.nocommons.person.NavnGeneratorTest" name="skalGenerereEtKvinnenavn"/>
-  <testcase time="0.006" classname="boss.nocommons.person.NavnGeneratorTest" name="skalGenerereTiMannsnavn"/>
+  <testcase time="0.002" classname="boss.nocommons.person.NavnGeneratorTest" name="skalGenerereTiMannsnavn"/>
   <testcase time="0.002" classname="boss.nocommons.person.NavnGeneratorTest" name="skalGenerereTiKvinnenavn"/>
 </testsuite>
