@@ -22,7 +22,7 @@
     <property name="basedir" value="/Users/stein inge morisbak/utvikling/NoCommons"/>
     <property name="java.endorsed.dirs" value="/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home/lib/endorsed"/>
     <property name="os.arch" value="x86_64"/>
-    <property name="surefire.real.class.path" value="/var/folders/QT/QTrpmBiCEMCUFAmXr8hRJb5xxQU/-Tmp-/surefirebooter2885472238469820810.jar"/>
+    <property name="surefire.real.class.path" value="/var/folders/QT/QTrpmBiCEMCUFAmXr8hRJb5xxQU/-Tmp-/surefirebooter1210796724649916247.jar"/>
     <property name="java.io.tmpdir" value="/var/folders/QT/QTrpmBiCEMCUFAmXr8hRJb5xxQU/-Tmp-/"/>
     <property name="line.separator" value="
 "/>

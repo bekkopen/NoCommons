@@ -29,7 +29,17 @@ public class NavnTest {
 		assertEquals("Ola", navn.getFornavn());
 		assertEquals("Hvermannsen", navn.getMellomnavn());
 		assertEquals("Nordmann", navn.getEtternavn());
+	}
 
+	@Test
+	public void skalSkriveFulltNavn() {
+		Navn navn = new Navn("oLA", "HVERMANNSEN", "nordmann");
+		assertEquals("Ola Hvermannsen Nordmann", navn.getNavn());
+		assertEquals("Ola Hvermannsen Nordmann", navn.toString());
+
+		navn = new Navn("oLA", "nordmann");
+		assertEquals("Ola Nordmann", navn.getNavn());
+		assertEquals("Ola Nordmann", navn.toString());
 	}
 
 }

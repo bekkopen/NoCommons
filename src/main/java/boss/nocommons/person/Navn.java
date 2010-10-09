@@ -5,20 +5,25 @@ package boss.nocommons.person;
  */
 public class Navn {
 
-	private final String fornavn;
+	private String fornavn;
 	private String mellomnavn;
-	private final String etternavn;
+	private String etternavn;
 
 	Navn(final String fornavn, final String mellomnavn, final String etternavn) {
-		this.fornavn = korrigerCasing(fornavn);
-		this.mellomnavn = korrigerCasing(mellomnavn);
-		this.etternavn = korrigerCasing(etternavn);
+		this(fornavn, etternavn);
+		if (null != mellomnavn) {
+			this.mellomnavn = korrigerCasing(mellomnavn);
+		}
 
 	}
 
 	public Navn(final String fornavn, final String etternavn) {
-		this.fornavn = fornavn;
-		this.etternavn = etternavn;
+		if (null != fornavn || null != etternavn) {
+			this.fornavn = korrigerCasing(fornavn);
+			this.etternavn = korrigerCasing(etternavn);
+		} else {
+			throw new IllegalArgumentException("Parameters can not be null");
+		}
 	}
 
 	public String getFornavn() {
@@ -31,6 +36,20 @@ public class Navn {
 
 	public String getEtternavn() {
 		return this.etternavn;
+	}
+
+	public String getNavn() {
+		StringBuilder navn = new StringBuilder(fornavn);
+		if (null != mellomnavn) {
+			navn.append(" ").append(mellomnavn);
+		}
+		navn.append(" ").append(etternavn);
+		return navn.toString();
+	}
+
+	@Override
+	public String toString() {
+		return getNavn();
 	}
 
 	private String korrigerCasing(final String navn) {

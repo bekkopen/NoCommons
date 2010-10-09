@@ -11,6 +11,9 @@ import java.util.Random;
 
 public class NavnGenerator {
 
+	private final int CA_ANTALL_KVINNER_SOM_HAR_MELLOMNAVN_I_PROSENT = 22;
+	private final int CA_ANTALL_MENN_SOM_HAR_MELLOMNAVN_I_PROSENT = 14;
+
 	private static final List<String> KVINNENAVN = csv2List(NavnGenerator.class
 			.getResourceAsStream("/fornavn_kvinner.csv"));
 	private static final List<String> MANNSNAVN = csv2List(NavnGenerator.class.getResourceAsStream("/fornavn_menn.csv"));
@@ -24,34 +27,61 @@ public class NavnGenerator {
 		return genererNavn(1, KJONN.KVINNE).get(0);
 	}
 
+	public List<Navn> genererMannsnavn(int antall) {
+		return genererNavn(antall, KJONN.MANN);
+	}
+
+	public List<Navn> genererKvinnenavn(int antall) {
+		return genererNavn(antall, KJONN.KVINNE);
+	}
+
 	private List<Navn> genererNavn(final int antall, final KJONN kjonn) {
-		List<Navn> mottakere = new ArrayList<Navn>(antall);
+		List<Navn> navneliste = new ArrayList<Navn>(antall);
 		KJONN kjonnSwitch = kjonn;
-		while (mottakere.size() < antall) {
+		while (navneliste.size() < antall) {
 			if (KJONN.erBegge(kjonn)) {
 				kjonnSwitch = KJONN.byttKjonn(kjonn);
 			}
 			Navn mottaker = genererNavn(kjonnSwitch);
-			if (!mottakere.contains(mottaker)) {
-				mottakere.add(mottaker);
+			if (!navneliste.contains(mottaker)) {
+				navneliste.add(mottaker);
 			}
 		}
-		return mottakere;
+		return navneliste;
 	}
 
 	private Navn genererNavn(final KJONN kjonn) {
-		Random r1 = new Random();
-		Random r2 = new Random();
+		String fornavn, mellomnavn = null, etternavn;
 
 		int indexF = 0;
-		int indexL = r2.nextInt(ETTERNAVN.size() - 1);
 		if (KJONN.erKvinne(kjonn)) {
-			indexF = r1.nextInt(KVINNENAVN.size() - 1);
-			return new Navn(KVINNENAVN.get(indexF), ETTERNAVN.get(indexL));
+			indexF = new Random().nextInt(KVINNENAVN.size() - 1);
+			fornavn = KVINNENAVN.get(indexF);
 		} else {
-			indexF = r1.nextInt(MANNSNAVN.size() - 1);
-			return new Navn(MANNSNAVN.get(indexF), ETTERNAVN.get(indexL));
+			indexF = new Random().nextInt(MANNSNAVN.size() - 1);
+			fornavn = MANNSNAVN.get(indexF);
 		}
+		if (genererMellomnavn(kjonn)) {
+			int indexM = new Random().nextInt(ETTERNAVN.size() - 1);
+			mellomnavn = ETTERNAVN.get(indexM);
+		}
+		int indexE = new Random().nextInt(ETTERNAVN.size() - 1);
+		etternavn = ETTERNAVN.get(indexE);
+		return new Navn(fornavn, mellomnavn, etternavn);
+	}
+
+	private boolean genererMellomnavn(KJONN kjonn) {
+		Random r = new Random();
+		if (KJONN.KVINNE.equals(kjonn)) {
+			if (r.nextInt(100) <= CA_ANTALL_KVINNER_SOM_HAR_MELLOMNAVN_I_PROSENT) {
+				return true;
+			}
+		} else {
+			if (r.nextInt(100) <= CA_ANTALL_MENN_SOM_HAR_MELLOMNAVN_I_PROSENT) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private static List<String> csv2List(InputStream is) {
