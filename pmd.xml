@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.2.5" timestamp="2010-10-09T20:00:00.739">
+<pmd version="4.2.5" timestamp="2010-10-09T21:03:26.409">
 <file name="/Users/stein inge morisbak/utvikling/tmp/NoCommons/src/main/java/boss/nocommons/banking/KidnummerValidator.java">
 <violation beginline="22" endline="25" begincolumn="13" endcolumn="25" rule="DataflowAnomalyAnalysis" ruleset="Controversial Rules" package="boss.nocommons.banking" class="KidnummerValidator" method="isValid" variable="result" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DataflowAnomalyAnalysis" priority="5">
 Found 'DD'-anomaly for variable 'result' (lines '22'-'25').
