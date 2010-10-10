@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Generator for Norwegian {@link Navn} (names).
+ * Generator for Norwegian names - a {@link Navn}.
  * 
  * Picks random names from the most common names in 2009.
  * 
@@ -28,17 +28,17 @@ import java.util.Random;
 
 public class NavnGenerator {
 
-	private final int CA_ANTALL_KVINNER_SOM_HAR_MELLOMNAVN_I_PROSENT = 22;
-	private final int CA_ANTALL_MENN_SOM_HAR_MELLOMNAVN_I_PROSENT = 14;
+	private final int caAntallKvinnerSomHarMellomnavnIProsent = 22;
+	private final int caAntallMennSomHarMellomnavnIProsent = 14;
 
-	private final List<String> KVINNENAVN;
-	private final List<String> MANNSNAVN;
-	private final List<String> ETTERNAVN;
+	private final List<String> kvinnenavn;
+	private final List<String> mannsnavn;
+	private final List<String> etternavn;
 
 	public NavnGenerator() {
-		KVINNENAVN = csv2List(NavnGenerator.class.getResourceAsStream("/fornavn_kvinner.csv"));
-		MANNSNAVN = csv2List(NavnGenerator.class.getResourceAsStream("/fornavn_menn.csv"));
-		ETTERNAVN = csv2List(NavnGenerator.class.getResourceAsStream("/etternavn.csv"));
+		kvinnenavn = csv2List(NavnGenerator.class.getResourceAsStream("/fornavn_kvinner.csv"));
+		mannsnavn = csv2List(NavnGenerator.class.getResourceAsStream("/fornavn_menn.csv"));
+		etternavn = csv2List(NavnGenerator.class.getResourceAsStream("/etternavn.csv"));
 	}
 
 	public Navn genererMannsnavn() {
@@ -77,31 +77,31 @@ public class NavnGenerator {
 	}
 
 	private Navn genererNavn(final KJONN kjonn) {
-		String fornavn, mellomnavn = null, etternavn;
+		String fnavn, mnavn = null, enavn;
 		int indexF = 0;
 		if (KJONN.erKvinne(kjonn)) {
-			indexF = new Random().nextInt(KVINNENAVN.size() - 1);
-			fornavn = KVINNENAVN.get(indexF);
+			indexF = new Random().nextInt(kvinnenavn.size() - 1);
+			fnavn = kvinnenavn.get(indexF);
 		} else {
-			indexF = new Random().nextInt(MANNSNAVN.size() - 1);
-			fornavn = MANNSNAVN.get(indexF);
+			indexF = new Random().nextInt(mannsnavn.size() - 1);
+			fnavn = mannsnavn.get(indexF);
 		}
 		if (genererMellomnavn(kjonn)) {
-			int indexM = new Random().nextInt(ETTERNAVN.size() - 1);
-			mellomnavn = ETTERNAVN.get(indexM);
+			int indexM = new Random().nextInt(etternavn.size() - 1);
+			mnavn = etternavn.get(indexM);
 		}
-		int indexE = new Random().nextInt(ETTERNAVN.size() - 1);
-		etternavn = ETTERNAVN.get(indexE);
-		return new Navn(fornavn, mellomnavn, etternavn);
+		int indexE = new Random().nextInt(etternavn.size() - 1);
+		enavn = etternavn.get(indexE);
+		return new Navn(fnavn, mnavn, enavn);
 	}
 
 	private boolean genererMellomnavn(KJONN kjonn) {
 		if (KJONN.erKvinne(kjonn)) {
-			if (new Random().nextInt(100) <= CA_ANTALL_KVINNER_SOM_HAR_MELLOMNAVN_I_PROSENT) {
+			if (new Random().nextInt(100) <= caAntallKvinnerSomHarMellomnavnIProsent) {
 				return true;
 			}
 		} else {
-			if (new Random().nextInt(100) <= CA_ANTALL_MENN_SOM_HAR_MELLOMNAVN_I_PROSENT) {
+			if (new Random().nextInt(100) <= caAntallMennSomHarMellomnavnIProsent) {
 				return true;
 			}
 		}
