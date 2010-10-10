@@ -28,40 +28,39 @@ import java.util.Random;
 
 public class NavnGenerator {
 
-	private final int caAntallKvinnerSomHarMellomnavnIProsent = 22;
-	private final int caAntallMennSomHarMellomnavnIProsent = 14;
+	private final static int caAntallKvinnerSomHarMellomnavnIProsent = 22;
+	private final static int caAntallMennSomHarMellomnavnIProsent = 14;
 
-	private final List<String> kvinnenavn;
-	private final List<String> mannsnavn;
-	private final List<String> etternavn;
+	private final static List<String> kvinnenavn = csv2List(NavnGenerator.class
+			.getResourceAsStream("/fornavn_kvinner.csv"));
+	private final static List<String> mannsnavn = csv2List(NavnGenerator.class.getResourceAsStream("/fornavn_menn.csv"));
+	private final static List<String> etternavn = csv2List(NavnGenerator.class.getResourceAsStream("/etternavn.csv"));
 
-	public NavnGenerator() {
-		kvinnenavn = csv2List(NavnGenerator.class.getResourceAsStream("/fornavn_kvinner.csv"));
-		mannsnavn = csv2List(NavnGenerator.class.getResourceAsStream("/fornavn_menn.csv"));
-		etternavn = csv2List(NavnGenerator.class.getResourceAsStream("/etternavn.csv"));
+	private NavnGenerator() {
+		super();
 	}
 
-	public Navn genererMannsnavn() {
+	public static Navn genererMannsnavn() {
 		return genererNavn(1, KJONN.MANN).get(0);
 	}
 
-	public Navn genererKvinnenavn() {
+	public static Navn genererKvinnenavn() {
 		return genererNavn(1, KJONN.KVINNE).get(0);
 	}
 
-	public List<Navn> genererMannsnavn(int antall) {
+	public static List<Navn> genererMannsnavn(int antall) {
 		return genererNavn(antall, KJONN.MANN);
 	}
 
-	public List<Navn> genererKvinnenavn(int antall) {
+	public static List<Navn> genererKvinnenavn(int antall) {
 		return genererNavn(antall, KJONN.KVINNE);
 	}
 
-	public List<Navn> genererNavn(int antall) {
+	public static List<Navn> genererNavn(int antall) {
 		return genererNavn(antall, KJONN.BEGGE);
 	}
 
-	private List<Navn> genererNavn(final int antall, final KJONN kjonn) {
+	private static List<Navn> genererNavn(final int antall, final KJONN kjonn) {
 		List<Navn> navneliste = new ArrayList<Navn>(antall);
 		KJONN kjonnSwitch = kjonn;
 		while (navneliste.size() < antall) {
@@ -76,7 +75,7 @@ public class NavnGenerator {
 		return navneliste;
 	}
 
-	private Navn genererNavn(final KJONN kjonn) {
+	private static Navn genererNavn(final KJONN kjonn) {
 		String fnavn, mnavn = null, enavn;
 		int indexF = 0;
 		if (KJONN.erKvinne(kjonn)) {
@@ -95,7 +94,7 @@ public class NavnGenerator {
 		return new Navn(fnavn, mnavn, enavn);
 	}
 
-	private boolean genererMellomnavn(KJONN kjonn) {
+	private static boolean genererMellomnavn(KJONN kjonn) {
 		if (KJONN.erKvinne(kjonn)) {
 			if (new Random().nextInt(100) <= caAntallKvinnerSomHarMellomnavnIProsent) {
 				return true;
@@ -128,29 +127,4 @@ public class NavnGenerator {
 		}
 		return vList;
 	}
-
-	protected enum KJONN {
-		MANN, KVINNE, BEGGE;
-
-		static boolean erMann(final KJONN kjonn) {
-			return kjonn.equals(MANN);
-		}
-
-		static boolean erKvinne(final KJONN kjonn) {
-			return kjonn.equals(KVINNE);
-		}
-
-		static boolean erBegge(final KJONN kjonn) {
-			return kjonn.equals(BEGGE);
-		}
-
-		static KJONN byttKjonn(final KJONN kjonn) {
-			if (erKvinne(kjonn)) {
-				return MANN;
-			}
-			return KVINNE;
-		}
-
-	}
-
 }

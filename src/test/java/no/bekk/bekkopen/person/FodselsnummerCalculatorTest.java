@@ -30,7 +30,7 @@ public class FodselsnummerCalculatorTest {
 
 	@Test
 	public void testGetFodselsnummerForDateAndGender() throws ParseException {
-		List<?> options = FodselsnummerCalculator.getFodselsnummerForDateAndGender(date, true);
+		List<?> options = FodselsnummerCalculator.getFodselsnummerForDateAndGender(date, KJONN.KVINNE);
 		assertTrue(options.size() > 200);
 	}
 

@@ -180,4 +180,12 @@ public class Fodselsnummer extends StringNumber {
 	private static int getFirstDigit(String fodselsnummer) {
 		return Integer.parseInt(fodselsnummer.substring(0, 1));
 	}
+
+	public KJONN getKjonn() {
+		if (isFemale()) {
+			return KJONN.KVINNE;
+		} else {
+			return KJONN.MANN;
+		}
+	}
 }

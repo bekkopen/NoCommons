@@ -22,24 +22,18 @@ public class FodselsnummerCalculator {
 	/**
 	 * Returns a List with valid Fodselsnummer instances for a given Date and
 	 * gender.
-	 * 
-	 * @param date
-	 *            The Date instance
-	 * @param female
-	 *            true for Fodelsenummer for women, false for men
-	 * @return A List with Fodelsnummer instances
 	 */
-	public static List<Fodselsnummer> getFodselsnummerForDateAndGender(Date date, boolean female) {
+	public static List<Fodselsnummer> getFodselsnummerForDateAndGender(Date date, KJONN kjonn) {
 		List<Fodselsnummer> result = getFodselsnummerForDate(date);
-		splitByGender(female, result);
+		splitByGender(kjonn, result);
 		return result;
 	}
 
-	private static void splitByGender(boolean female, List<Fodselsnummer> result) {
+	private static void splitByGender(KJONN kjonn, List<Fodselsnummer> result) {
 		Iterator<Fodselsnummer> iter = result.iterator();
 		while (iter.hasNext()) {
 			Fodselsnummer f = iter.next();
-			if (f.isFemale() != female) {
+			if (f.getKjonn() != kjonn) {
 				iter.remove();
 			}
 		}
