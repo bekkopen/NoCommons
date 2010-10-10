@@ -86,4 +86,14 @@ public class FodselsnummerCalculator {
 		return Integer.toString(year).substring(0, 2);
 	}
 
+	public static List<Fodselsnummer> getValidFodselsnummere(List<Fodselsnummer> fodselsnumre) {
+		List<Fodselsnummer> validFodselsnumre = new ArrayList<Fodselsnummer>();
+		for (Fodselsnummer fodselsnummer : fodselsnumre) {
+			if (FodselsnummerValidator.isValid(fodselsnummer.getValue())) {
+				validFodselsnumre.add(fodselsnummer);
+			}
+		}
+		return validFodselsnumre;
+	}
+
 }

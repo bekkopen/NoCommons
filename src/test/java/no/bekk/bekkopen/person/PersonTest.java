@@ -8,6 +8,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.junit.Before;
@@ -26,8 +27,9 @@ public class PersonTest {
 	public void lagMann() throws ParseException {
 		kalender.set(1973, Calendar.DECEMBER, 10);
 		Date fodselsdato = kalender.getTime();
-		Fodselsnummer fodselsnummer = FodselsnummerCalculator.getFodselsnummerForDateAndGender(fodselsdato, KJONN.MANN)
-				.get(0);
+		List<Fodselsnummer> fodselsnumre = FodselsnummerCalculator.getFodselsnummerForDateAndGender(fodselsdato,
+				KJONN.MANN);
+		Fodselsnummer fodselsnummer = FodselsnummerCalculator.getValidFodselsnummere(fodselsnumre).get(0);
 		Navn navn = NavnGenerator.genererMannsnavn();
 		Person person = new Person(navn, fodselsnummer);
 
@@ -60,7 +62,8 @@ public class PersonTest {
 
 		Fodselsnummer pFodselsnummer = person.getFodselsnummer();
 		String pFodselsnummerString = pFodselsnummer.getValue();
-		// assertTrue(FodselsnummerValidator.isValid(pFodselsnummerString));
+		assertTrue(pFodselsnummerString + " er ikke et gyldig fødselsnummer",
+				FodselsnummerValidator.isValid(pFodselsnummerString));
 
 		String pPersonnummer = person.getPersonnummer();
 		assertEquals(pFodselsnummer.getPersonnummer(), pPersonnummer);

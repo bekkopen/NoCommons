@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 
 import no.bekk.bekkopen.common.StringNumberValidator;
 
-
 /**
  * Provides methods that validates if a Fodselsnummer is valid with respect to
  * syntax, Individnummer, Date and checksum digits.
@@ -55,7 +54,7 @@ public class FodselsnummerValidator extends StringNumberValidator {
 			FodselsnummerValidator.getFodselsnummer(fodselsnummer);
 			result = true;
 		} catch (IllegalArgumentException e) {
-			// ignore
+			result = false;
 		}
 		return result;
 	}

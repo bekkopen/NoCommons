@@ -30,27 +30,27 @@ public class FodselsnummerCalculatorTest {
 
 	@Test
 	public void testGetFodselsnummerForDateAndGender() throws ParseException {
-		List<?> options = FodselsnummerCalculator.getFodselsnummerForDateAndGender(date, KJONN.KVINNE);
-		assertTrue(options.size() > 200);
+		List<Fodselsnummer> options = FodselsnummerCalculator.getFodselsnummerForDateAndGender(date, KJONN.KVINNE);
+		assertTrue("Forventet minst 200 fødselsnumre, men fikk " + options.size(), options.size() > 200);
 	}
 
 	@Test
 	public void testGetFodselsnummerForDate() {
-		List<?> options = FodselsnummerCalculator.getFodselsnummerForDate(date);
-		assertTrue(options.size() > 400);
+		List<Fodselsnummer> options = FodselsnummerCalculator.getFodselsnummerForDate(date);
+		assertTrue("Forventet minst 400 fødselsnumre, men fikk " + options.size(), options.size() > 400);
 	}
 
 	@Test
 	public void testInvalidDateTooEarly() throws ParseException {
 		date = df.parse("09091854");
-		List<?> options = FodselsnummerCalculator.getFodselsnummerForDate(date);
+		List<Fodselsnummer> options = FodselsnummerCalculator.getFodselsnummerForDate(date);
 		assertEquals(0, options.size());
 	}
 
 	@Test
 	public void testInvalidDateTooLate() throws ParseException {
 		date = df.parse("09092040");
-		List<?> options = FodselsnummerCalculator.getFodselsnummerForDate(date);
+		List<Fodselsnummer> options = FodselsnummerCalculator.getFodselsnummerForDate(date);
 		assertEquals(0, options.size());
 	}
 }
