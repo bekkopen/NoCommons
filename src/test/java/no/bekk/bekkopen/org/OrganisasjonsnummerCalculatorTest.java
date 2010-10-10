@@ -1,23 +1,23 @@
 package no.bekk.bekkopen.org;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Iterator;
 import java.util.List;
 
-import no.bekk.bekkopen.org.Organisasjonsnummer;
-import no.bekk.bekkopen.org.OrganisasjonsnummerCalculator;
-import no.bekk.bekkopen.org.OrganisasjonsnummerValidator;
-
-import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  * Test for the OrganisasjonsnummerCalculator.
  * 
  * @author Håvard Nesvold
  */
-public class OrganisasjonsnummerCalculatorTest extends TestCase {
+public class OrganisasjonsnummerCalculatorTest {
 
 	private static final int LIST_LENGTH = 100;
 
+	@Test
 	public void testGetOrganisasjonsnummerList() {
 		List<?> options = OrganisasjonsnummerCalculator.getOrganisasjonsnummerList(LIST_LENGTH);
 		assertEquals(LIST_LENGTH, options.size());

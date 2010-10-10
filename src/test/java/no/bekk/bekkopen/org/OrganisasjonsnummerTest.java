@@ -1,24 +1,30 @@
 package no.bekk.bekkopen.org;
 
-import no.bekk.bekkopen.org.Organisasjonsnummer;
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-public class OrganisasjonsnummerTest extends TestCase {
+import org.junit.Before;
+import org.junit.Test;
 
-    private static final String ORGANISASJONSNUMMER = "123456789";
-    private Organisasjonsnummer o = null;
+public class OrganisasjonsnummerTest {
 
-    protected void setUp() throws Exception {
-        o = new Organisasjonsnummer(ORGANISASJONSNUMMER);
-    }
+	private static final String ORGANISASJONSNUMMER = "123456789";
+	private Organisasjonsnummer o = null;
 
-    public void testOrganisasjonsnummer() {
-        assertNotNull(o);
-        assertEquals(ORGANISASJONSNUMMER, o.getValue());
-    }
+	@Before
+	public void setUpOrganisasjonsnummer() throws Exception {
+		o = new Organisasjonsnummer(ORGANISASJONSNUMMER);
+	}
 
-    public void testGetChecksumDigit() {
-        assertEquals(9, o.getChecksumDigit());
-    }
+	@Test
+	public void testOrganisasjonsnummer() {
+		assertNotNull(o);
+		assertEquals(ORGANISASJONSNUMMER, o.getValue());
+	}
+
+	@Test
+	public void testGetChecksumDigit() {
+		assertEquals(9, o.getChecksumDigit());
+	}
 
 }

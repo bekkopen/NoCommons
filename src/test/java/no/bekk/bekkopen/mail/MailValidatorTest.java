@@ -1,15 +1,18 @@
 package no.bekk.bekkopen.mail;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import no.bekk.bekkopen.NoCommonsTestCase;
-import no.bekk.bekkopen.mail.MailValidator;
-import no.bekk.bekkopen.mail.Postnummer;
-import no.bekk.bekkopen.mail.Poststed;
 
+import org.junit.Before;
+import org.junit.Test;
 
 public class MailValidatorTest extends NoCommonsTestCase {
 
@@ -21,8 +24,8 @@ public class MailValidatorTest extends NoCommonsTestCase {
 	private static final Postnummer PN2316 = MailValidator.getPostnummer("2316");
 	private static final Postnummer PN2315 = MailValidator.getPostnummer("2315");
 
-	@Override
-	protected void setUp() throws Exception {
+	@Before
+	public void setUpMailValidator() throws Exception {
 		Map<Poststed, List<Postnummer>> poststedMap = new HashMap<Poststed, List<Postnummer>>();
 		List<Postnummer> hamarList = new ArrayList<Postnummer>();
 		hamarList.add(PN2315);
@@ -44,6 +47,7 @@ public class MailValidatorTest extends NoCommonsTestCase {
 		MailValidator.setPostnummerMap(postnummerMap);
 	}
 
+	@Test
 	public void testGetPostnummerForPoststed() {
 		List<?> options = MailValidator.getPostnummerForPoststed("Hamar");
 		assertEquals(2, options.size());
@@ -51,29 +55,35 @@ public class MailValidatorTest extends NoCommonsTestCase {
 		assertEquals(3, options.size());
 	}
 
+	@Test
 	public void testGetPostnummerForPoststedWithDifferentCase() {
 		List<?> options = MailValidator.getPostnummerForPoststed("HAMAR");
 		assertEquals(2, options.size());
 	}
 
+	@Test
 	public void testGetPostnummerForPoststedThatDoesNotExist() {
 		List<?> options = MailValidator.getPostnummerForPoststed("StedSomIkkeFinnes");
 		assertEquals(0, options.size());
 	}
 
+	@Test
 	public void testGetPoststedForPostnummer() {
 		assertEquals(HAMAR, MailValidator.getPoststedForPostnummer("2315"));
 	}
 
+	@Test
 	public void testValidPostnummer() {
 		assertTrue(MailValidator.isValidPostnummer("0102"));
 		assertTrue(MailValidator.isValidPostnummer("2315"));
 	}
 
+	@Test
 	public void testInvalidPostnummerNotDigits() {
 		assertFalse(MailValidator.isValidPostnummer("ABCD"));
 	}
 
+	@Test
 	public void testInvalidPostnummerLength() {
 		assertFalse(MailValidator.isValidPostnummer("012"));
 	}
