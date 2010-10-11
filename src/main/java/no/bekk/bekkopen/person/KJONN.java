@@ -1,6 +1,5 @@
 package no.bekk.bekkopen.person;
 
-
 public enum KJONN {
 
 	MANN, KVINNE, BEGGE;

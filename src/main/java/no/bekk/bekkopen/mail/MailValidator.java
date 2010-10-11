@@ -7,7 +7,6 @@ import java.util.Map;
 
 import no.bekk.bekkopen.common.StringNumberValidator;
 
-
 /**
  * Validates Postnummer and Poststed objects.
  * 
@@ -38,14 +37,12 @@ public class MailValidator extends StringNumberValidator {
 	}
 
 	public static boolean isValidPostnummer(String postnummer) {
-		boolean result = false;
 		try {
 			MailValidator.getPostnummer(postnummer);
-			result = true;
+			return true;
 		} catch (IllegalArgumentException e) {
-			// ignore
+			return false;
 		}
-		return result;
 	}
 
 	public static Postnummer getPostnummer(String postnummer) {

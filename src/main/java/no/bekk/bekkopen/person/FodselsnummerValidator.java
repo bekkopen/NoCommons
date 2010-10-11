@@ -49,14 +49,12 @@ public class FodselsnummerValidator extends StringNumberValidator {
 	 * @return true or false
 	 */
 	public static boolean isValid(String fodselsnummer) {
-		boolean result = false;
 		try {
 			FodselsnummerValidator.getFodselsnummer(fodselsnummer);
-			result = true;
+			return true;
 		} catch (IllegalArgumentException e) {
-			result = false;
+			return false;
 		}
-		return result;
 	}
 
 	static void validateSyntax(String fodselsnummer) {
