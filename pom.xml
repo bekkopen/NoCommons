@@ -12,6 +12,12 @@
 		Norway and Norwegian citizens.
 	</description>
 
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>5</version>
+	</parent>
+
 	<scm>
 		<connection>scm:git:git://github.com/bekkopen/NoCommons.git</connection>
 		<developerConnection>scm:git:https://bekkopen@github.com/bekkopen/NoCommons.git</developerConnection>
@@ -244,12 +250,12 @@
 			<url>http://bekkopen.github.com/NoCommons/</url>
 		</site>
 		<repository>
-			<id>boss</id>
-			<url>file:/usr/local/jboss-4.0.4.GA/proximity/inhouse/storage</url>
+			<id>sonatype-nexus-staging</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 		</repository>
 		<snapshotRepository>
-			<id>boss</id>
-			<url>file:/usr/local/jboss-4.0.4.GA/proximity/inhouse.snapshot/storage</url>
+			<id>sonatype-nexus-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
 
