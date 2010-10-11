@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import no.bekk.bekkopen.common.StringNumberValidator;
+
 /**
  * This class calulates valid Fodselsnummer instances for a given date.
  * 
@@ -23,7 +25,8 @@ public class FodselsnummerCalculator {
 	 * Returns a List with valid Fodselsnummer instances for a given Date and
 	 * gender.
 	 */
-	public static List<Fodselsnummer> getFodselsnummerForDateAndGender(Date date, KJONN kjonn) {
+	public static List<Fodselsnummer> getFodselsnummerForDateAndGender(
+			Date date, KJONN kjonn) {
 		List<Fodselsnummer> result = getFodselsnummerForDate(date);
 		splitByGender(kjonn, result);
 		return result;
@@ -63,17 +66,19 @@ public class FodselsnummerCalculator {
 			}
 			sb.append(i);
 			Fodselsnummer f = new Fodselsnummer(sb.toString());
-			try {
+			if (FodselsnummerValidator.isFirstChecksumDigitValid(f)) {
 				sb.append(FodselsnummerValidator.calculateFirstChecksumDigit(f));
 				f = new Fodselsnummer(sb.toString());
-				sb.append(FodselsnummerValidator.calculateSecondChecksumDigit(f));
-				f = new Fodselsnummer(sb.toString());
-				String centuryByIndividnummer = f.getCentury();
-				if (centuryByIndividnummer != null && centuryByIndividnummer.equals(century)) {
-					result.add(f);
+				if (FodselsnummerValidator.isSecondChecksumDigitValid(f)) {
+					sb.append(FodselsnummerValidator
+							.calculateSecondChecksumDigit(f));
+					f = new Fodselsnummer(sb.toString());
+					String centuryByIndividnummer = f.getCentury();
+					if (centuryByIndividnummer != null
+							&& centuryByIndividnummer.equals(century)) {
+						result.add(f);
+					}
 				}
-			} catch (IllegalArgumentException e) {
-				continue;
 			}
 		}
 		return result;
@@ -86,7 +91,8 @@ public class FodselsnummerCalculator {
 		return Integer.toString(year).substring(0, 2);
 	}
 
-	public static List<Fodselsnummer> getValidFodselsnummere(List<Fodselsnummer> fodselsnumre) {
+	public static List<Fodselsnummer> getValidFodselsnummere(
+			List<Fodselsnummer> fodselsnumre) {
 		List<Fodselsnummer> validFodselsnumre = new ArrayList<Fodselsnummer>();
 		for (Fodselsnummer fodselsnummer : fodselsnumre) {
 			if (FodselsnummerValidator.isValid(fodselsnummer.getValue())) {

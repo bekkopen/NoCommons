@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import no.bekk.bekkopen.common.StringNumber;
 import no.bekk.bekkopen.common.StringNumberValidator;
 
 /**
@@ -57,6 +58,7 @@ public class FodselsnummerValidator extends StringNumberValidator {
 		}
 	}
 
+	
 	static void validateSyntax(String fodselsnummer) {
 		validateLengthAndAllDigits(fodselsnummer, LENGTH);
 	}
@@ -88,9 +90,17 @@ public class FodselsnummerValidator extends StringNumberValidator {
 			throw new IllegalArgumentException(ERROR_INVALID_CHECKSUM + fodselsnummer);
 		}
 	}
+	
+	static boolean isFirstChecksumDigitValid(StringNumber fodselsnummer){
+		return isValidMod11CheckSum(K1_WEIGHTS, fodselsnummer);
+	}
 
 	static int calculateFirstChecksumDigit(Fodselsnummer fodselsnummer) {
 		return calculateMod11CheckSum(K1_WEIGHTS, fodselsnummer);
+	}
+	
+	static boolean isSecondChecksumDigitValid(StringNumber fodselsnummer){
+		return isValidMod11CheckSum(getMod11Weights(fodselsnummer), fodselsnummer);
 	}
 
 	static int calculateSecondChecksumDigit(Fodselsnummer fodselsnummer) {
