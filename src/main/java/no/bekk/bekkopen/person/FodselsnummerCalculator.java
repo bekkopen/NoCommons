@@ -73,7 +73,7 @@ public class FodselsnummerCalculator {
 					result.add(f);
 				}
 			} catch (IllegalArgumentException e) {
-				return result;
+				continue;
 			}
 		}
 		return result;
