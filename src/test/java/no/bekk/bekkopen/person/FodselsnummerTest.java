@@ -7,11 +7,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Test class for Fodselsnummer.
- * 
- * @author per k. mengshoel
- */
 public class FodselsnummerTest {
 
 	private static final String VALID_FODSELSNUMMER = "01010123476";

@@ -5,8 +5,6 @@ import java.util.List;
 
 /**
  * This class calculates valid Kontonummer instances.
- * 
- * @author Håvard Nesvold
  */
 public class KontonummerCalculator {
 

@@ -2,7 +2,6 @@ package no.bekk.bekkopen.common;
 
 /**
  * Base class for all classes that represents a String with digits.
- * @author per k. mengshoel
  */
 public abstract class StringNumber {
 

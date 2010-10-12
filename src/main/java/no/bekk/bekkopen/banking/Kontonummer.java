@@ -8,7 +8,6 @@ import no.bekk.bekkopen.common.StringNumber;
  * Kontonummer consists of 11 digits, often grouped in 4, 2 and 5 digits from
  * left to right. The first 4 digits are known as the Registernummer. The last
  * digit in the final group of 5 digits is a checksum digit.
- * @author Per K. Mengshoel
  */
 public class Kontonummer extends StringNumber {
 	

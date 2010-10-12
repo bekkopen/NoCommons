@@ -5,8 +5,6 @@ import no.bekk.bekkopen.common.StringNumberValidator;
 /**
  * Provides methods that validates if a Kontonummer is valid with respect to
  * syntax (length and digits only) and that the checksum digit is correct.
- * 
- * @author Per K. Mengshoel
  */
 public class KontonummerValidator extends StringNumberValidator {
 

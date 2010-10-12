@@ -2,8 +2,6 @@ package no.bekk.bekkopen.mail;
 
 /**
  * This class represent a Norwegian postal area - a Poststed.
- * 
- * @author Per K. Mengshoel
  */
 public class Poststed {
 

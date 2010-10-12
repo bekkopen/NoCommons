@@ -15,8 +15,6 @@ import java.util.StringTokenizer;
  * This class loads data about Postnummer and Poststed into memory. The class
  * provides a method that loads data from a file included in the jar, and
  * another method that loads data from a given InputStream.
- * 
- * @author per k. mengshoel
  */
 public class MailDataLoader {
 

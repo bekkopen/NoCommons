@@ -7,8 +7,6 @@ import no.bekk.bekkopen.common.StringNumber;
  * Fodselsnummer consists of 11 digits, where the first 6 digits contains the
  * date of birth and the last 5 consists of an Individnummer (3 digits) and two
  * checksum digits.
- * 
- * @author Per K. Mengshoel
  */
 public class Fodselsnummer extends StringNumber {
 

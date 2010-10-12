@@ -8,11 +8,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-/**
- * Test for the OrganisasjonsnummerCalculator.
- * 
- * @author Håvard Nesvold
- */
 public class OrganisasjonsnummerCalculatorTest {
 
 	private static final int LIST_LENGTH = 100;

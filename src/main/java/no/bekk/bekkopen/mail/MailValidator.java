@@ -9,8 +9,6 @@ import no.bekk.bekkopen.common.StringNumberValidator;
 
 /**
  * Validates Postnummer and Poststed objects.
- * 
- * @author per k. mengshoel
  */
 public class MailValidator extends StringNumberValidator {
 

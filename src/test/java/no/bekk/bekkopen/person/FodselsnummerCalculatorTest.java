@@ -12,11 +12,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Test for the FodselsnummerCalculator.
- * 
- * @author Per K. Mengshoel
- */
 public class FodselsnummerCalculatorTest {
 
 	private DateFormat df = null;

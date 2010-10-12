@@ -8,8 +8,6 @@ import java.util.regex.Pattern;
 /**
  * This class provides utilities useful when working with text written in
  * Norwegian - usually related to the characters 'æ', 'ø' and 'å'.
- * 
- * @author Håvard Nesvold
  */
 public class TextParser {
 

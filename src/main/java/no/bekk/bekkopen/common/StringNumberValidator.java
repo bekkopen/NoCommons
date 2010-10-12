@@ -3,7 +3,6 @@ package no.bekk.bekkopen.common;
 
 /**
  * Base Validator class for all StringNumber based Validators.
- * @author per k. mengshoel
  */
 public abstract class StringNumberValidator {
 

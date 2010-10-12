@@ -13,8 +13,6 @@ import java.util.TimeZone;
 
 /**
  * Utility class for Norwegian dates.
- * 
- * @author Eivind Waaler
  */
 public class NorwegianDateUtil {
 	private static Map<Integer, Set<Date>> holidays;

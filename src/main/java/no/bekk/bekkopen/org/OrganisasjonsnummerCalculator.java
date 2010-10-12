@@ -5,8 +5,6 @@ import java.util.List;
 
 /**
  * This class calculates valid Organisasjonsnummer instances.
- * 
- * @author Håvard Nesvold
  */
 public class OrganisasjonsnummerCalculator {
 

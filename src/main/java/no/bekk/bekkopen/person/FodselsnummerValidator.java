@@ -9,8 +9,6 @@ import no.bekk.bekkopen.common.StringNumberValidator;
 /**
  * Provides methods that validates if a Fodselsnummer is valid with respect to
  * syntax, Individnummer, Date and checksum digits.
- * 
- * @author Per K. Mengshoel
  */
 public class FodselsnummerValidator extends StringNumberValidator {
 

@@ -9,9 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * This class calulates valid Fodselsnummer instances for a given date.
- * 
- * @author Per K. Mengshoel
+ * This class calculates valid Fodselsnummer instances for a given date.
  */
 public class FodselsnummerCalculator {
 

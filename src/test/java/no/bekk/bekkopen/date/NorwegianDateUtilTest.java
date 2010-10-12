@@ -14,11 +14,6 @@ import java.util.Locale;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Test case for the norwegian date utility.
- * 
- * @author Eivind Waaler
- */
 public class NorwegianDateUtilTest {
 	private final static DateFormat FORMAT = new SimpleDateFormat("dd.MM.yyyy");
 

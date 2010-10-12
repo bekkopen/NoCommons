@@ -8,11 +8,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-/**
- * Test for the KontonummerCalculator.
- * 
- * @author Håvard Nesvold
- */
 public class KontonummerCalculatorTest {
 
 	private static final int LIST_LENGTH = 100;
