@@ -12,6 +12,15 @@
 		Norway and Norwegian citizens.
 	</description>
 
+	<licenses>
+		<license>
+			<name>Reciprocal Public License 1.5 (RPL1.5)</name>
+			<distribution>repo</distribution>
+			<url>http://www.opensource.org/licenses/rpl1.5.txt</url>
+			<comments>The Reciprocal Public License (RPL) is based on the concept of reciprocity or, if you prefer, fairness.</comments>
+		</license>
+	</licenses>
+
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
 		<artifactId>oss-parent</artifactId>
