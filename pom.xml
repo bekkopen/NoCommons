@@ -14,10 +14,9 @@
 
 	<licenses>
 		<license>
-			<name>Reciprocal Public License 1.5 (RPL1.5)</name>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
 			<distribution>repo</distribution>
-			<url>http://www.opensource.org/licenses/rpl1.5.txt</url>
-			<comments>The Reciprocal Public License (RPL) is based on the concept of reciprocity or, if you prefer, fairness.</comments>
 		</license>
 	</licenses>
 
@@ -28,9 +27,9 @@
 	</parent>
 
 	<scm>
-		<connection>scm:git:git://github.com/bekkopen/NoCommons.git</connection>
-		<developerConnection>scm:git:https://bekkopen@github.com/bekkopen/NoCommons.git</developerConnection>
-		<url>http://github.com/bekkopen/NoCommons</url>
+		<connection>scm:git:git@github.com:bekkopen/NoCommons.git</connection>
+		<developerConnection>scm:git:git@github.com:bekkopen/NoCommons.git</developerConnection>
+		<url>scm:git:git@github.com:bekkopen/NoCommons.git</url>
 	</scm>
 
 	<organization>
@@ -135,6 +134,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
+				<version>2.1</version>
 			</plugin>
 		</plugins>
 	</build>
