@@ -29,7 +29,7 @@ public class PersonTest {
 		Date fodselsdato = kalender.getTime();
 		List<Fodselsnummer> fodselsnumre = FodselsnummerCalculator.getFodselsnummerForDateAndGender(fodselsdato,
 				KJONN.MANN);
-		Fodselsnummer fodselsnummer = FodselsnummerCalculator.getValidFodselsnummere(fodselsnumre).get(0);
+		Fodselsnummer fodselsnummer = fodselsnumre.get(0);
 		Navn navn = NavnGenerator.genererMannsnavn();
 		Person person = new Person(navn, fodselsnummer);
 
