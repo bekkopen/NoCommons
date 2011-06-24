@@ -3,7 +3,7 @@
 	<groupId>no.bekk.bekkopen</groupId>
 	<artifactId>nocommons</artifactId>
 	<packaging>jar</packaging>
-	<version>0.3-SNAPSHOT</version>
+	<version>0.4-SNAPSHOT</version>
 	<name>NoCommons</name>
 	<url>http://bekkopen.github.com/NoCommons/</url>
 	<description>
@@ -184,7 +184,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.8.1</version>
+			<version>4.8.2</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

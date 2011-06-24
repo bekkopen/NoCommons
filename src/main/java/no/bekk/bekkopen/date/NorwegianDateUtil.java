@@ -30,7 +30,7 @@ public class NorwegianDateUtil {
 	 * - Add 5 working days to Wednesday 04.04.2007 (day before
 	 * easter-long-weekend) -> yields Monday 16.04.2007 (skipping 2 weekends and
 	 * 3 weekday holidays).
-	 * 
+	 *
 	 * @param date
 	 *            The original date.
 	 * @param days
@@ -53,7 +53,7 @@ public class NorwegianDateUtil {
 	/**
 	 * Will check if the given date is a working day. That is check if the given
 	 * date is a weekend day or a national holiday.
-	 * 
+	 *
 	 * @param date
 	 *            The date to check.
 	 * @return true if the given date is a working day, false otherwise.
@@ -64,7 +64,7 @@ public class NorwegianDateUtil {
 
 	/**
 	 * Check if given Date object is a holiday.
-	 * 
+	 *
 	 * @param date
 	 *            The Date to check.
 	 * @return true if holiday, false otherwise.
@@ -75,7 +75,7 @@ public class NorwegianDateUtil {
 
 	/**
 	 * Return a sorted array of holidays for a given year.
-	 * 
+	 *
 	 * @param year
 	 *            The year to get holidays for.
 	 * @return The array of holidays, sorted by date.
@@ -89,7 +89,7 @@ public class NorwegianDateUtil {
 
 	/**
 	 * Get a set of holidays for a given year.
-	 * 
+	 *
 	 * @param year
 	 *            The year to get holidays for.
 	 * @return The set of dates.
@@ -144,7 +144,7 @@ public class NorwegianDateUtil {
 	/**
 	 * Will check if the given date is a working day. That is check if the given
 	 * date is a weekend day or a national holiday.
-	 * 
+	 *
 	 * @param cal
 	 *            The Calendar object representing the date.
 	 * @return true if the given date is a working day, false otherwise.
@@ -156,7 +156,7 @@ public class NorwegianDateUtil {
 
 	/**
 	 * Check if given Calendar object represents a holiday.
-	 * 
+	 *
 	 * @param cal
 	 *            The Calendar to check.
 	 * @return true if holiday, false otherwise.
@@ -164,8 +164,8 @@ public class NorwegianDateUtil {
 	private static boolean isHoliday(Calendar cal) {
 		int year = cal.get(Calendar.YEAR);
 		Set<?> yearSet = getHolidaySet(year);
-		for (Iterator<?> iterator = yearSet.iterator(); iterator.hasNext();) {
-			Date date = (Date) iterator.next();
+		for (Object aYearSet : yearSet) {
+			Date date = (Date) aYearSet;
 			if (checkDate(cal, dateToCalendar(date))) {
 				return true;
 			}
@@ -177,7 +177,7 @@ public class NorwegianDateUtil {
 	 * Calculates easter day (sunday) by using Spencer Jones formula found here:
 	 * <a href="http://no.wikipedia.org/wiki/P%C3%A5skeformelen">Wikipedia -
 	 * Påskeformelen</a>
-	 * 
+	 *
 	 * @param year
 	 *            The year to calculate from.
 	 * @return The Calendar object representing easter day for the given year.
@@ -208,7 +208,7 @@ public class NorwegianDateUtil {
 
 	/**
 	 * Check if the given dates match on day and month.
-	 * 
+	 *
 	 * @param cal
 	 *            The Calendar representing the first date.
 	 * @param other
@@ -221,7 +221,7 @@ public class NorwegianDateUtil {
 
 	/**
 	 * Check if the given date represents the given date and month.
-	 * 
+	 *
 	 * @param cal
 	 *            The Calendar object representing date to check.
 	 * @param date
@@ -236,7 +236,7 @@ public class NorwegianDateUtil {
 
 	/**
 	 * Convert the given Date object to a Calendar instance.
-	 * 
+	 *
 	 * @param date
 	 *            The Date object.
 	 * @return The Calendar instance.
@@ -249,7 +249,7 @@ public class NorwegianDateUtil {
 
 	/**
 	 * Add the given number of days to the calendar and convert to Date.
-	 * 
+	 *
 	 * @param calendar
 	 *            The calendar to add to.
 	 * @param days
@@ -264,7 +264,7 @@ public class NorwegianDateUtil {
 
 	/**
 	 * Get the date for the given values.
-	 * 
+	 *
 	 * @param day
 	 *            The day.
 	 * @param month
