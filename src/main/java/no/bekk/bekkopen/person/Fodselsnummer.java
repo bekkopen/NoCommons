@@ -17,7 +17,7 @@ public class Fodselsnummer extends StringNumber {
 	/**
 	 * Returns the first 4 digits of the Fodselsnummer that contains the date
 	 * (01-31) and month(01-12) of birth.
-	 * 
+	 *
 	 * @return A String containing the date and month of birth.
 	 */
 	public String getDateAndMonth() {
@@ -27,7 +27,7 @@ public class Fodselsnummer extends StringNumber {
 	/**
 	 * Returns the first 2 digits of the Fodselsnummer that contains the date
 	 * (01-31), stripped for eventual d-numbers.
-	 * 
+	 *
 	 * @return A String containing the date of birth
 	 */
 	public String getDayInMonth() {
@@ -37,7 +37,7 @@ public class Fodselsnummer extends StringNumber {
 	/**
 	 * Returns the digits 3 and 4 of the Fodselsnummer that contains the month
 	 * (01-12), stripped for eventual d-numbers.
-	 * 
+	 *
 	 * @return A String containing the date of birth
 	 */
 	public String getMonth() {
@@ -46,7 +46,7 @@ public class Fodselsnummer extends StringNumber {
 
 	/**
 	 * Returns the birthyear of the Fodselsnummer
-	 * 
+	 *
 	 * @return A String containing the year of birth.
 	 */
 	public String getBirthYear() {
@@ -72,7 +72,7 @@ public class Fodselsnummer extends StringNumber {
 	/**
 	 * Returns the two digits of the Fodselsnummer that contains the year birth
 	 * (00-99).
-	 * 
+	 *
 	 * @return A String containing the year of birth.
 	 */
 	public String get2DigitBirthYear() {
@@ -82,7 +82,7 @@ public class Fodselsnummer extends StringNumber {
 	/**
 	 * Returns the first 6 digits of the Fodselsnummer that contains the date
 	 * (01-31), month(01-12) and year(00-99) of birth.
-	 * 
+	 *
 	 * @return A String containing the date and month of birth.
 	 */
 	public String getDateOfBirth() {
@@ -93,7 +93,7 @@ public class Fodselsnummer extends StringNumber {
 	 * Returns the last 5 digits of the Fodselsnummer, also referred to as the
 	 * Personnummer. The Personnummer consists of the Individnummer (3 digits)
 	 * and two checksum digits.
-	 * 
+	 *
 	 * @return A String containing the Personnummer.
 	 */
 	public String getPersonnummer() {
@@ -103,7 +103,7 @@ public class Fodselsnummer extends StringNumber {
 	/**
 	 * Returns the first three digits of the Personnummer, also known as the
 	 * Individnummer.
-	 * 
+	 *
 	 * @return A String containing the Individnummer.
 	 */
 	public String getIndividnummer() {
@@ -112,7 +112,7 @@ public class Fodselsnummer extends StringNumber {
 
 	/**
 	 * Returns the digit that decides the gender - the 9th in the Fodselsnummer.
-	 * 
+	 *
 	 * @return The digit.
 	 */
 	public int getGenderDigit() {
@@ -121,7 +121,7 @@ public class Fodselsnummer extends StringNumber {
 
 	/**
 	 * Returns the first checksum digit - the 10th in the Fodselsnummer.
-	 * 
+	 *
 	 * @return The digit.
 	 */
 	public int getChecksumDigit1() {
@@ -130,7 +130,7 @@ public class Fodselsnummer extends StringNumber {
 
 	/**
 	 * Returns the second checksum digit - the 11th in the Fodselsnummer.
-	 * 
+	 *
 	 * @return The digit.
 	 */
 	public int getChecksumDigit2() {
@@ -139,7 +139,7 @@ public class Fodselsnummer extends StringNumber {
 
 	/**
 	 * Returns true if the Fodselsnummer represents a man.
-	 * 
+	 *
 	 * @return true or false.
 	 */
 	public boolean isMale() {
@@ -148,7 +148,7 @@ public class Fodselsnummer extends StringNumber {
 
 	/**
 	 * Returns true if the Fodselsnummer represents a woman.
-	 * 
+	 *
 	 * @return true or false.
 	 */
 	public boolean isFemale() {
@@ -185,5 +185,10 @@ public class Fodselsnummer extends StringNumber {
 		} else {
 			return KJONN.MANN;
 		}
+	}
+
+	@Override
+	public String toString(){
+		return super.getValue();
 	}
 }
