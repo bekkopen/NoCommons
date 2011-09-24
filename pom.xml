@@ -137,6 +137,94 @@
 						</filesets>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>${site-plugin.version}</version>
+					<configuration>
+						<reportPlugins>
+							<plugin>
+								<groupId>org.apache.maven.plugins</groupId>
+								<artifactId>maven-project-info-reports-plugin</artifactId>
+								<version>${project-info-reports-plugin.version}</version>
+								<configuration>
+									<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+									<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+								</configuration>
+								<reports>
+									<report>index</report>
+									<report>license</report>
+									<report>project-team</report>
+									<report>scm</report>
+									<report>dependencies</report>
+									<report>distribution-management</report>
+								</reports>
+							</plugin>
+							<plugin>
+								<groupId>org.codehaus.mojo</groupId>
+								<artifactId>cobertura-maven-plugin</artifactId>
+								<version>${cobertura-plugin.version}</version>
+							</plugin>
+							<plugin>
+								<groupId>org.apache.maven.plugins</groupId>
+								<artifactId>maven-changelog-plugin</artifactId>
+								<version>${changelog-plugin.version}</version>
+								<configuration>
+									<type>range</type>
+									<range>1095</range>
+								</configuration>
+							</plugin>
+							<plugin>
+								<groupId>org.apache.maven.plugins</groupId>
+								<artifactId>maven-javadoc-plugin</artifactId>
+								<version>${javadoc-plugin}</version>
+								<configuration>
+									<minmemory>128m</minmemory>
+									<maxmemory>512</maxmemory>
+								</configuration>
+							</plugin>
+							<plugin>
+								<groupId>org.apache.maven.plugins</groupId>
+								<artifactId>maven-pmd-plugin</artifactId>
+								<version>${pmd.plugin}</version>
+								<configuration>
+									<targetjdk>${project.jdk}</targetjdk>
+									<rulesets>
+										<ruleset>/rulesets/basic.xml</ruleset>
+										<ruleset>/rulesets/controversial.xml</ruleset>
+									</rulesets>
+									<format>xml</format>
+									<linkXref>true</linkXref>
+									<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+									<minimumTokens>100</minimumTokens>
+								</configuration>
+							</plugin>
+							<plugin>
+								<groupId>org.codehaus.mojo</groupId>
+								<artifactId>taglist-maven-plugin</artifactId>
+								<version>${taglist-plugin}</version>
+							</plugin>
+							<plugin>
+								<groupId>org.codehaus.mojo</groupId>
+								<artifactId>jdepend-maven-plugin</artifactId>
+								<version>${jdepend-plugin}</version>
+							</plugin>
+							<plugin>
+								<artifactId>maven-surefire-report-plugin</artifactId>
+								<version>${surefire-plugin.version}</version>
+							</plugin>
+							<plugin>
+								<artifactId>maven-surefire-plugin</artifactId>
+								<version>${surefire-plugin.version}</version>
+							</plugin>
+							<plugin>
+								<groupId>org.codehaus.mojo</groupId>
+								<artifactId>findbugs-maven-plugin</artifactId>
+								<version>${findbugs-plugin}</version>
+							</plugin>
+						</reportPlugins>
+					</configuration>
+				</plugin>
 				<!--This plugin's configuration is used to store Eclipse m2e settings 
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
@@ -231,79 +319,6 @@
 		</dependency>
 	</dependencies>
 
-	<!-- REPORTING -->
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>cobertura-maven-plugin</artifactId>
-				<version>${cobertura-plugin.version}</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-changelog-plugin</artifactId>
-				<version>${changelog-plugin.version}</version>
-				<configuration>
-					<type>range</type>
-					<range>1095</range>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>${javadoc-plugin}</version>
-				<configuration>
-					<minmemory>128m</minmemory>
-					<maxmemory>512</maxmemory>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jxr-maven-plugin</artifactId>
-				<version>${jxr-plugin}</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-				<version>${pmd.plugin}</version>
-				<configuration>
-					<targetjdk>${project.jdk}</targetjdk>
-					<rulesets>
-						<ruleset>/rulesets/basic.xml</ruleset>
-						<ruleset>/rulesets/controversial.xml</ruleset>
-					</rulesets>
-					<format>xml</format>
-					<linkXref>true</linkXref>
-					<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
-					<minimumTokens>100</minimumTokens>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>taglist-maven-plugin</artifactId>
-				<version>${taglist-plugin}</version>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jdepend-maven-plugin</artifactId>
-				<version>${jdepend-plugin}</version>
-			</plugin>
-			<plugin>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>${surefire-plugin.version}</version>
-			</plugin>
-			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${surefire-plugin.version}</version>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>${findbugs-plugin}</version>
-			</plugin>
-		</plugins>
-	</reporting>
-
 	<!-- DISTRIBUTION -->
 	<distributionManagement>
 		<site>
@@ -338,6 +353,8 @@
 		<taglist-plugin>2.4</taglist-plugin>
 		<jdepend-plugin>2.0-beta-2</jdepend-plugin>
 		<findbugs-plugin>2.3.1</findbugs-plugin>
+		<site-plugin.version>3.0</site-plugin.version>
+		<project-info-reports-plugin.version>2.4</project-info-reports-plugin.version>
 		<!-- Other properties -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.jdk>1.6</project.jdk>
