@@ -3,7 +3,7 @@
 	<groupId>no.bekk.bekkopen</groupId>
 	<artifactId>nocommons</artifactId>
 	<packaging>jar</packaging>
-	<version>0.5</version>
+	<version>0.6-SNAPSHOT</version>
 	<name>NoCommons</name>
 	<url>http://bekkopen.github.com/NoCommons/</url>
 	<description>
