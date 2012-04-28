@@ -42,6 +42,13 @@ public class FodselsnummerCalculatorTest {
 		assertTrue("Forventet 38 fødselsnumre, men fikk " + validOptions.size(), validOptions.size() == 38);
 	}
 
+   @Test
+   public void testThatAllGeneratedNumbersAreValid() {
+      for(Fodselsnummer fnr : FodselsnummerCalculator.getManyFodselsnummerForDate(date)) {
+         assertTrue("Ugyldig fødselsnummer: " + fnr, FodselsnummerValidator.isValid(fnr.toString()));
+      }
+   }
+
 	@Test
 	public void testInvalidDateTooEarly() throws ParseException {
 		date = df.parse("09091854");

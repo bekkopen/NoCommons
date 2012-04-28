@@ -42,8 +42,7 @@ public class Person {
 	}
 
 	public Date getFodselsdato() throws ParseException {
-		Date fdato = fDatoFormat.parse(this.fodselsnummer.getDateOfBirth());
-		return fdato;
+      return fDatoFormat.parse(this.fodselsnummer.getDateOfBirth());
 	}
 
 	public String getPersonnummer() {

@@ -46,7 +46,7 @@ public class FodselsnummerCalculator {
 		String dateString = df.format(date);
 		List<Fodselsnummer> result = new ArrayList<Fodselsnummer>();
 		for (int i = 999; i >= 0; i--) {
-			StringBuffer sb = new StringBuffer(dateString);
+			StringBuilder sb = new StringBuilder(dateString);
 			if (i < 10) {
 				sb.append("00");
 			} else if (i < 100) {

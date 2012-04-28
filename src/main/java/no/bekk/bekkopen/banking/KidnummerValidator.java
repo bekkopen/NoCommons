@@ -42,21 +42,6 @@ public class KidnummerValidator extends StringNumberValidator {
 		return new Kidnummer(kidnummer);
 	}
 
-	/**
-	 * Returns an object that represents a Kidnummer.
-	 * 
-	 * @param kidnummer
-	 *            A String containing a Kidnummer
-	 * @return A Kidnummer instance
-	 * @throws IllegalArgumentException
-	 *             thrown if String contains an invalid Kidnummer
-	 */
-	protected static StringNumber getObject(String kidnummer) throws IllegalArgumentException {
-		validateSyntax(kidnummer);
-		validateChecksum(kidnummer);
-		return new Kidnummer(kidnummer);
-	}
-
 	static void validateSyntax(String kidnummer) {
 		validateAllDigits(kidnummer);
 		validateLengthInRange(kidnummer, 2, 25);

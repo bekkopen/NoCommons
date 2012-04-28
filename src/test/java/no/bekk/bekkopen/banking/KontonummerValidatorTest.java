@@ -44,7 +44,7 @@ public class KontonummerValidatorTest extends NoCommonsTestCase {
 
 	@Test
 	public void testInvalidAccountTypeWrongLength() {
-		StringBuffer b = new StringBuffer(KontonummerValidator.ACCOUNTTYPE_NUM_DIGITS + 1);
+		StringBuilder b = new StringBuilder(KontonummerValidator.ACCOUNTTYPE_NUM_DIGITS + 1);
 		for (int i = 0; i < KontonummerValidator.ACCOUNTTYPE_NUM_DIGITS + 1; i++) {
 			b.append("0");
 		}
@@ -58,7 +58,7 @@ public class KontonummerValidatorTest extends NoCommonsTestCase {
 
 	@Test
 	public void testInvalidAccountTypeNotDigits() {
-		StringBuffer b = new StringBuffer(KontonummerValidator.ACCOUNTTYPE_NUM_DIGITS);
+		StringBuilder b = new StringBuilder(KontonummerValidator.ACCOUNTTYPE_NUM_DIGITS);
 		for (int i = 0; i < KontonummerValidator.ACCOUNTTYPE_NUM_DIGITS; i++) {
 			b.append("A");
 		}
@@ -72,7 +72,7 @@ public class KontonummerValidatorTest extends NoCommonsTestCase {
 
 	@Test
 	public void testInvalidRegisternummerNotDigits() {
-		StringBuffer b = new StringBuffer(KontonummerValidator.REGISTERNUMMER_NUM_DIGITS);
+		StringBuilder b = new StringBuilder(KontonummerValidator.REGISTERNUMMER_NUM_DIGITS);
 		for (int i = 0; i < KontonummerValidator.REGISTERNUMMER_NUM_DIGITS; i++) {
 			b.append("A");
 		}
@@ -86,7 +86,7 @@ public class KontonummerValidatorTest extends NoCommonsTestCase {
 
 	@Test
 	public void testInvalidRegisternummerWrongLength() {
-		StringBuffer b = new StringBuffer(KontonummerValidator.REGISTERNUMMER_NUM_DIGITS + 1);
+		StringBuilder b = new StringBuilder(KontonummerValidator.REGISTERNUMMER_NUM_DIGITS + 1);
 		for (int i = 0; i < KontonummerValidator.REGISTERNUMMER_NUM_DIGITS + 1; i++) {
 			b.append("0");
 		}
@@ -110,4 +110,11 @@ public class KontonummerValidatorTest extends NoCommonsTestCase {
 		assertFalse(KontonummerValidator.isValid(KONTONUMMER_INVALID_CHECKSUM));
 	}
 
+   @Test
+   public void testValidNumberEndingOn9() {
+      assertTrue(KontonummerValidator.isValid("97104133219"));
+      assertTrue(KontonummerValidator.isValid("97105302049"));
+      assertTrue(KontonummerValidator.isValid("97104008309"));
+      assertTrue(KontonummerValidator.isValid("97102749069"));
+   }
 }

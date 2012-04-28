@@ -40,8 +40,7 @@ public class TextParser {
 		Matcher norwegianLetterMatcher = norwegianLettersPattern.matcher(text);
 		StringBuffer replacedText = new StringBuffer();
 		while (norwegianLetterMatcher.find()) {
-			norwegianLetterMatcher.appendReplacement(replacedText, replacements.get(norwegianLetterMatcher.group())
-					.toString());
+			norwegianLetterMatcher.appendReplacement(replacedText, replacements.get(norwegianLetterMatcher.group()));
 		}
 		norwegianLetterMatcher.appendTail(replacedText);
 		return replacedText.toString();

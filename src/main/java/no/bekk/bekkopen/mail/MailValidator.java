@@ -25,13 +25,11 @@ public class MailValidator extends StringNumberValidator {
 	}
 
 	public static int getAntallPoststed() {
-		int size = poststedMap.size();
-		return size;
+      return poststedMap.size();
 	}
 
 	public static int getAntallPostnummer() {
-		int size = postnummerMap.size();
-		return size;
+      return postnummerMap.size();
 	}
 
 	public static boolean isValidPostnummer(String postnummer) {

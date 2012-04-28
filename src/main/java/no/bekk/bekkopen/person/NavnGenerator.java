@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -77,7 +78,7 @@ public class NavnGenerator {
 
 	private static Navn genererNavn(final KJONN kjonn) {
 		String fnavn, mnavn = null, enavn;
-		int indexF = 0;
+		int indexF;
 		if (KJONN.erKvinne(kjonn)) {
 			indexF = new Random().nextInt(kvinnenavn.size() - 1);
 			fnavn = kvinnenavn.get(indexF);
@@ -116,9 +117,7 @@ public class NavnGenerator {
 		try {
 			while ((line = br.readLine()) != null) {
 				array = line.split("[ ]*,[ ]*");
-				for (int i = 0; i < array.length; i++) {
-					vList.add(array[i]);
-				}
+            Collections.addAll(vList, array);
 			}
 			br.close();
 			isr.close();

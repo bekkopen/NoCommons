@@ -1,30 +1,25 @@
 package no.bekk.bekkopen.mail;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import no.bekk.bekkopen.NoCommonsTestCase;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Locale;
 
-import no.bekk.bekkopen.NoCommonsTestCase;
-
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class MailDataLoaderTest extends NoCommonsTestCase {
 
-	private InputStream is = null;
-
-	@Before
+   @Before
 	public void setUpLocaleAndLoadData() throws Exception {
 		Locale.setDefault(new Locale("no", "NO"));
 		File f = new File("src/main/resources/tilbud5.txt");
-		is = new FileInputStream(f);
-		MailDataLoader.loadFromInputStream(is);
+		MailDataLoader.loadFromInputStream(new FileInputStream(f));
 	}
 
 	@Test

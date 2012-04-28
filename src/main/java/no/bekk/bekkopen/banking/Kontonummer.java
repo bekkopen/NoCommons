@@ -50,7 +50,7 @@ public class Kontonummer extends StringNumber {
      * @return The formatted Kontonummer
      */
     public String getGroupedValue() {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append(getRegisternummer()).append(Constants.DOT);
         sb.append(getAccountType()).append(Constants.DOT);
         sb.append(getPartAfterAccountType());

@@ -9,8 +9,6 @@ import java.util.List;
 public class KontonummerCalculator {
 
 	private static final int LENGTH = 11;
-	// private static final int ACCOUNTTYPE_NUM_DIGITS = 2;
-	// private static final int REGISTERNUMMER_NUM_DIGITS = 4;
 	private static final int REGISTERNUMMER_START_DIGIT = 0;
 	private static final int ACCOUNTTYPE_START_DIGIT = 4;
 
@@ -62,7 +60,7 @@ public class KontonummerCalculator {
 
 			@Override
 			String generateKontonummer() {
-				StringBuffer kontonrBuffer = new StringBuffer(LENGTH);
+				StringBuilder kontonrBuffer = new StringBuilder(LENGTH);
 				for (int i = 0; i < LENGTH;) {
 					if (i == ACCOUNTTYPE_START_DIGIT) {
 						kontonrBuffer.append(accountType);
@@ -101,7 +99,7 @@ public class KontonummerCalculator {
 
 			@Override
 			String generateKontonummer() {
-				StringBuffer kontonrBuffer = new StringBuffer(LENGTH);
+				StringBuilder kontonrBuffer = new StringBuilder(LENGTH);
 				for (int i = 0; i < LENGTH;) {
 					if (i == REGISTERNUMMER_START_DIGIT) {
 						kontonrBuffer.append(registerNr);
@@ -131,7 +129,7 @@ public class KontonummerCalculator {
 		final class NormalKontonrDigitGenerator extends KontonummerDigitGenerator {
 			@Override
 			String generateKontonummer() {
-				StringBuffer kontonrBuffer = new StringBuffer(LENGTH);
+				StringBuilder kontonrBuffer = new StringBuilder(LENGTH);
 				for (int i = 0; i < LENGTH; i++) {
 					kontonrBuffer.append((int) (Math.random() * 10));
 				}

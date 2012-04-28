@@ -1,12 +1,11 @@
 package no.bekk.bekkopen.org;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 
-import java.util.Iterator;
 import java.util.List;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class OrganisasjonsnummerCalculatorTest {
 
@@ -16,11 +15,10 @@ public class OrganisasjonsnummerCalculatorTest {
 	public void testGetOrganisasjonsnummerList() {
 		List<?> options = OrganisasjonsnummerCalculator.getOrganisasjonsnummerList(LIST_LENGTH);
 		assertEquals(LIST_LENGTH, options.size());
-		Iterator<?> i = options.iterator();
-		while (i.hasNext()) {
-			Organisasjonsnummer orgNr = (Organisasjonsnummer) i.next();
-			assertTrue(OrganisasjonsnummerValidator.isValid(orgNr.toString()));
-		}
+      for (Object option : options) {
+         Organisasjonsnummer orgNr = (Organisasjonsnummer) option;
+         assertTrue(OrganisasjonsnummerValidator.isValid(orgNr.toString()));
+      }
 	}
 
 }

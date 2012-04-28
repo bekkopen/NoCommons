@@ -4,10 +4,6 @@ public enum KJONN {
 
 	MANN, KVINNE, BEGGE;
 
-	static boolean erMann(final KJONN kjonn) {
-		return kjonn.equals(MANN);
-	}
-
 	static boolean erKvinne(final KJONN kjonn) {
 		return kjonn.equals(KVINNE);
 	}

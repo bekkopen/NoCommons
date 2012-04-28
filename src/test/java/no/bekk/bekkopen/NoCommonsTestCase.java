@@ -8,7 +8,7 @@ import static org.junit.Assert.assertTrue;
 public abstract class NoCommonsTestCase {
 
 	protected void assertMessageContains(IllegalArgumentException e, String message) {
-		assertTrue(e.getMessage().indexOf(message) != -1);
+		assertTrue(e.getMessage().contains(message));
 	}
 
 }

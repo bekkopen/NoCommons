@@ -80,7 +80,7 @@ public class NorwegianDateUtil {
 	 * @return The array of holidays, sorted by date.
 	 */
 	public static Date[] getHolidays(int year) {
-		Set<?> days = getHolidaySet(year);
+		Set<Date> days = getHolidaySet(year);
 		Date[] dates = days.toArray(new Date[days.size()]);
 		Arrays.sort(dates);
 		return dates;
@@ -94,11 +94,10 @@ public class NorwegianDateUtil {
 	 * @return The set of dates.
 	 */
 	private static Set<Date> getHolidaySet(int year) {
-		Integer yInt = Integer.valueOf(year);
 		if (holidays == null) {
 			holidays = new HashMap<Integer, Set<Date>>();
 		}
-		if (!holidays.containsKey(yInt)) {
+		if (!holidays.containsKey(year)) {
 			Set<Date> yearSet = new HashSet<Date>();
 
 			// Add set holidays.
@@ -135,9 +134,9 @@ public class NorwegianDateUtil {
 			// Second "Pinse" day.
 			yearSet.add(rollGetDate(easterDay, 50));
 
-			holidays.put(yInt, yearSet);
+			holidays.put(year, yearSet);
 		}
-		return holidays.get(yInt);
+		return holidays.get(year);
 	}
 
 	/**

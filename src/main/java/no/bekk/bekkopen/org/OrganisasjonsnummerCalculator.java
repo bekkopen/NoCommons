@@ -28,7 +28,7 @@ public class OrganisasjonsnummerCalculator {
 		List<Organisasjonsnummer> result = new ArrayList<Organisasjonsnummer>();
 		int numAddedToList = 0;
 		while (numAddedToList < length) {
-			StringBuffer orgnrBuffer = new StringBuffer(LENGTH);
+			StringBuilder orgnrBuffer = new StringBuilder(LENGTH);
 			for (int i = 0; i < LENGTH; i++) {
 				orgnrBuffer.append((int) (Math.random() * 10));
 			}

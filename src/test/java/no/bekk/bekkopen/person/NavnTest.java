@@ -1,12 +1,8 @@
 package no.bekk.bekkopen.person;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.fail;
-
-import no.bekk.bekkopen.person.Navn;
-
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class NavnTest {
 
