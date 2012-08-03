@@ -50,11 +50,3 @@ Maven Site: [http://bekkopen.github.com/NoCommons/](http://bekkopen.github.com/N
   * Sjekk om dato er arbeidsdag (dvs. ikke helligdag eller helg)
   * Legg til x antall arbeidsdager til en gitt dato
   * Liste ut alle helligdager
-
-# Utviklere
-* [Per Kristian Mengshoel(perkrimen)](https://github.com/pekrimen)
-* Håvard Nesvold
-* [Eivind Waaler(eivindw)](https://github.com/eivindw)
-* [Stefan Magnus Landrø(landro)](https://github.com/landro)
-* [Ole Christian Langfjæran(judoole)](https://github.com/judoole)
-* [Stein Inge Morisbak(steinim)](https://github.com/steinim)
