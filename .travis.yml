@@ -2,3 +2,4 @@
 branches:
   only:
     - master
+script: mvn -q clean test
