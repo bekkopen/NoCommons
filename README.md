@@ -1,3 +1,6 @@
+[![Build Status](https://secure.travis-ci.org/bekkopen/NoCommons.png)](http://travis-ci.org/bekkopen/NoCommons) 
+
+
 NoCommons-biblioteket er en samling hjelpeklasser for manipulering, generering og validering av data spesifikt for Norge og norske innbyggere.
 
 > **Summary in english**: The NoCommons library is a collection of helper classes for manipulation, generation and validation of data specific to Norway and Norwegian citizens.
