@@ -356,6 +356,6 @@
 		<project-info-reports-plugin.version>2.4</project-info-reports-plugin.version>
 		<!-- Other properties -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.jdk>1.6</project.jdk>
+		<project.jdk>1.5</project.jdk>
 	</properties>
 </project>
