@@ -58,28 +58,6 @@ public class FodselsnummerValidator extends StringNumberValidator implements Con
 		}
 	}
 
-    /**
-     * Initialize-method normally used only by a JSR303 validator. Does nothing.
-     *
-     * @param fodselsnummer
-     *          Foddselsnummer-annotation which is validated
-     */
-    public void initialize(no.bekk.bekkopen.person.annotation.Fodselsnummer fodselsnummer) {}
-        
-	 /**
-	  * Validation method used by a JSR303 validator. Normally it is better to call the static methods directly.  
-	  *  
-	  * @param fodselsnummer
-	  *          The fodselsnummer to be validated
-	  * @param constraintValidatorContext
-      *         context sent in by a validator
-	  * @return boolean
-      *         whether or not the given fodselsnummer is valid
-	  */
-    public boolean isValid(String fodselsnummer, ConstraintValidatorContext constraintValidatorContext) {
-        return isValid(fodselsnummer);
-    }
-
 	static void validateSyntax(String fodselsnummer) {
 		validateLengthAndAllDigits(fodselsnummer, LENGTH);
 	}
@@ -119,4 +97,26 @@ public class FodselsnummerValidator extends StringNumberValidator implements Con
 	static int calculateSecondChecksumDigit(no.bekk.bekkopen.person.Fodselsnummer fodselsnummer) {
 		return calculateMod11CheckSum(getMod11Weights(fodselsnummer), fodselsnummer);
 	}
+
+    /**
+     * Initialize-method normally used only by a JSR303 validator. Does nothing.
+     *
+     * @param fodselsnummer
+     *          Foddselsnummer-annotation which is validated
+     */
+    public void initialize(no.bekk.bekkopen.person.annotation.Fodselsnummer fodselsnummer) {}
+
+    /**
+     * Validation method used by a JSR303 validator. Normally it is better to call the static methods directly.
+     *
+     * @param fodselsnummer
+     *          The fodselsnummer to be validated
+     * @param constraintValidatorContext
+     *         context sent in by a validator
+     * @return boolean
+     *         whether or not the given fodselsnummer is valid
+     */
+    public boolean isValid(String fodselsnummer, ConstraintValidatorContext constraintValidatorContext) {
+        return isValid(fodselsnummer);
+    }
 }
