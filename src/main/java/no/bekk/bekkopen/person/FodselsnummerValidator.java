@@ -13,7 +13,7 @@ import no.bekk.bekkopen.common.StringNumberValidator;
  * Provides methods that validates if a Fodselsnummer is valid with respect to
  * syntax, Individnummer, Date and checksum digits.
  */
-public class FodselsnummerValidator extends StringNumberValidator implements ConstraintValidator<GyldigFodselsnummer, String> {
+public class FodselsnummerValidator extends StringNumberValidator implements ConstraintValidator<no.bekk.bekkopen.person.annotation.Fodselsnummer, String> {
 
 	private static final int LENGTH = 11;
 
@@ -34,12 +34,12 @@ public class FodselsnummerValidator extends StringNumberValidator implements Con
 	 * @throws IllegalArgumentException
 	 *             thrown if String contains an invalid Fodselsnummer
 	 */
-	public static Fodselsnummer getFodselsnummer(String fodselsnummer) throws IllegalArgumentException {
+	public static no.bekk.bekkopen.person.Fodselsnummer getFodselsnummer(String fodselsnummer) throws IllegalArgumentException {
 		validateSyntax(fodselsnummer);
 		validateIndividnummer(fodselsnummer);
 		validateDate(fodselsnummer);
 		validateChecksums(fodselsnummer);
-		return new Fodselsnummer(fodselsnummer);
+		return new no.bekk.bekkopen.person.Fodselsnummer(fodselsnummer);
 	}
 
 	/**
@@ -57,18 +57,14 @@ public class FodselsnummerValidator extends StringNumberValidator implements Con
 			return false;
 		}
 	}
-	
-        /**
-         *
-         * Initialize-method normally used only by a JSR303 validator.
-         *
-         * @Param gyldigFodselsnummer
-         *          Instance of GyldigFodselsnummer. Called
-         */	
-        @Override
-        public void initialize(GyldigFodselsnummer gyldigFodselsnummer) {
-           //noop
-        }
+
+    /**
+     * Initialize-method normally used only by a JSR303 validator. Does nothing.
+     *
+     * @param fodselsnummer
+     *          Foddselsnummer-annotation which is validated
+     */
+    public void initialize(no.bekk.bekkopen.person.annotation.Fodselsnummer fodselsnummer) {}
         
 	 /**
 	  * Validation method used by a JSR303 validator. Normally it is better to call the static methods directly.  
@@ -76,26 +72,27 @@ public class FodselsnummerValidator extends StringNumberValidator implements Con
 	  * @param fodselsnummer
 	  *          The fodselsnummer to be validated
 	  * @param constraintValidatorContext
-	  * @return
+      *         context sent in by a validator
+	  * @return boolean
+      *         whether or not the given fodselsnummer is valid
 	  */
-        @Override
-        public boolean isValid(String fodselsnummer, ConstraintValidatorContext constraintValidatorContext) {
-            return isValid(fodselsnummer);
-        }	
+    public boolean isValid(String fodselsnummer, ConstraintValidatorContext constraintValidatorContext) {
+        return isValid(fodselsnummer);
+    }
 
 	static void validateSyntax(String fodselsnummer) {
 		validateLengthAndAllDigits(fodselsnummer, LENGTH);
 	}
 
 	static void validateIndividnummer(String fodselsnummer) {
-		Fodselsnummer fnr = new Fodselsnummer(fodselsnummer);
+		no.bekk.bekkopen.person.Fodselsnummer fnr = new no.bekk.bekkopen.person.Fodselsnummer(fodselsnummer);
 		if (fnr.getCentury() == null) {
 			throw new IllegalArgumentException(ERROR_INVALID_INDIVIDNUMMER + fodselsnummer);
 		}
 	}
 
 	static void validateDate(String fodselsnummer) {
-		Fodselsnummer fnr = new Fodselsnummer(fodselsnummer);
+		no.bekk.bekkopen.person.Fodselsnummer fnr = new no.bekk.bekkopen.person.Fodselsnummer(fodselsnummer);
 		try {
 			String dateString = fnr.getDateAndMonth() + fnr.getCentury() + fnr.get2DigitBirthYear();
 			DateFormat df = new SimpleDateFormat(DATE_FORMAT);
@@ -107,7 +104,7 @@ public class FodselsnummerValidator extends StringNumberValidator implements Con
 	}
 
 	static void validateChecksums(String fodselsnummer) {
-		Fodselsnummer fnr = new Fodselsnummer(fodselsnummer);
+		no.bekk.bekkopen.person.Fodselsnummer fnr = new no.bekk.bekkopen.person.Fodselsnummer(fodselsnummer);
 		int k1 = calculateFirstChecksumDigit(fnr);
 		int k2 = calculateSecondChecksumDigit(fnr);
 		if (k1 != fnr.getChecksumDigit1() || k2 != fnr.getChecksumDigit2()) {
@@ -115,11 +112,11 @@ public class FodselsnummerValidator extends StringNumberValidator implements Con
 		}
 	}
 
-	static int calculateFirstChecksumDigit(Fodselsnummer fodselsnummer) {
+	static int calculateFirstChecksumDigit(no.bekk.bekkopen.person.Fodselsnummer fodselsnummer) {
 		return calculateMod11CheckSum(K1_WEIGHTS, fodselsnummer);
 	}
 
-	static int calculateSecondChecksumDigit(Fodselsnummer fodselsnummer) {
+	static int calculateSecondChecksumDigit(no.bekk.bekkopen.person.Fodselsnummer fodselsnummer) {
 		return calculateMod11CheckSum(getMod11Weights(fodselsnummer), fodselsnummer);
 	}
 }
