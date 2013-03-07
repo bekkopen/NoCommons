@@ -4,13 +4,16 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
 import no.bekk.bekkopen.common.StringNumberValidator;
 
 /**
  * Provides methods that validates if a Fodselsnummer is valid with respect to
  * syntax, Individnummer, Date and checksum digits.
  */
-public class FodselsnummerValidator extends StringNumberValidator {
+public class FodselsnummerValidator extends StringNumberValidator implements ConstraintValidator<GyldigFodselsnummer, String> {
 
 	private static final int LENGTH = 11;
 
@@ -54,6 +57,31 @@ public class FodselsnummerValidator extends StringNumberValidator {
 			return false;
 		}
 	}
+	
+        /**
+         *
+         * Initialize-method normally used only by a JSR303 validator.
+         *
+         * @Param gyldigFodselsnummer
+         *          Instance of GyldigFodselsnummer. Called
+         */	
+        @Override
+        public void initialize(GyldigFodselsnummer gyldigFodselsnummer) {
+           //noop
+        }
+        
+	 /**
+	  * Validation method used by a JSR303 validator. Normally it is better to call the static methods directly.  
+	  *  
+	  * @param fodselsnummer
+	  *          The fodselsnummer to be validated
+	  * @param constraintValidatorContext
+	  * @return
+	  */
+        @Override
+        public boolean isValid(String fodselsnummer, ConstraintValidatorContext constraintValidatorContext) {
+            return isValid(fodselsnummer);
+        }	
 
 	static void validateSyntax(String fodselsnummer) {
 		validateLengthAndAllDigits(fodselsnummer, LENGTH);
