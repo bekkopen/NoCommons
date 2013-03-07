@@ -119,6 +119,7 @@
 					<version>${surefire-plugin.version}</version>
 					<configuration>
 						<childDelegation>true</childDelegation>
+						<useFile>${surefire-use-file}</useFile>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -342,6 +343,7 @@
 		<m2e-lifecycle-mapping.version>1.0.0</m2e-lifecycle-mapping.version>
 		<compiler-plugin.version>2.3.2</compiler-plugin.version>
 		<surefire-plugin.version>2.6</surefire-plugin.version>
+		<surefire-use-file>true</surefire-use-file>
 		<clean-plugin.version>2.4.1</clean-plugin.version>
 		<gpg-plugin>1.1</gpg-plugin>
 		<javadoc-plugin>2.7</javadoc-plugin>
