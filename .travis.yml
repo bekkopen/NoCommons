@@ -2,4 +2,4 @@
 branches:
   only:
     - master
-script: mvn -v && mvn -q clean test
+script: mvn -v && mvn -q clean test -Dsurefire-use-file=false
