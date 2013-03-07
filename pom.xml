@@ -309,6 +309,12 @@
 			<artifactId>commons-io</artifactId>
 			<version>${commons-io}</version>
 		</dependency>
+		<dependency>
+                        <groupId>javax.validation</groupId>
+                        <artifactId>validation-api</artifactId>
+                        <version>1.0.0.GA</version>
+                </dependency>
+		
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
