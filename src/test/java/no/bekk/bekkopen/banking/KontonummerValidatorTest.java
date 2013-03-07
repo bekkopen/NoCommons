@@ -110,6 +110,11 @@ public class KontonummerValidatorTest extends NoCommonsTestCase {
 		assertFalse(KontonummerValidator.isValid(KONTONUMMER_INVALID_CHECKSUM));
 	}
 
+	@Test
+	public void testIf00000000000IsValid(){
+		assertFalse(KontonummerValidator.isValid("00000000000"));
+	}
+
    @Test
    public void testValidNumberEndingOn9() {
       assertTrue(KontonummerValidator.isValid("97104133219"));

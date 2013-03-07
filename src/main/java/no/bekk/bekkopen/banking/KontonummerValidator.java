@@ -11,6 +11,8 @@ public class KontonummerValidator extends StringNumberValidator {
 	private static final int LENGTH = 11;
 	protected static final int ACCOUNTTYPE_NUM_DIGITS = 2;
 	protected static final int REGISTERNUMMER_NUM_DIGITS = 4;
+	private static final String NOT_ALLOWED_AS_LEADING = "0000";
+	public static final String ERROR_LEADING_ZEROS = "Leading zeros too many : ";
 
 	private KontonummerValidator() {
 		super();
@@ -72,6 +74,9 @@ public class KontonummerValidator extends StringNumberValidator {
 	}
 
 	static void validateSyntax(String kontonummer) {
+		if(kontonummer.startsWith(NOT_ALLOWED_AS_LEADING)){
+			throw new IllegalArgumentException(ERROR_LEADING_ZEROS + kontonummer);
+	 	}
 		validateLengthAndAllDigits(kontonummer, LENGTH);
 	}
 
