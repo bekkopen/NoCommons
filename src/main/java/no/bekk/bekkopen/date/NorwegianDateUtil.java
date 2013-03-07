@@ -272,7 +272,7 @@ public class NorwegianDateUtil {
 	 * @return The date represented by the given values.
 	 */
 	private static Date getDate(int day, int month, int year) {
-		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Berlin"), new Locale("no", "NO"));
+		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.YEAR, year);
 		cal.set(Calendar.MONTH, month);
 		cal.set(Calendar.DATE, day);
