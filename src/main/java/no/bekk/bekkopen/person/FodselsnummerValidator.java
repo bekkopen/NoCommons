@@ -1,13 +1,12 @@
 package no.bekk.bekkopen.person;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import no.bekk.bekkopen.common.StringNumberValidator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-
-import no.bekk.bekkopen.common.StringNumberValidator;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  * Provides methods that validates if a Fodselsnummer is valid with respect to
@@ -117,6 +116,10 @@ public class FodselsnummerValidator extends StringNumberValidator implements Con
      *         whether or not the given fodselsnummer is valid
      */
     public boolean isValid(String fodselsnummer, ConstraintValidatorContext constraintValidatorContext) {
+        if(fodselsnummer == null){
+            return true;
+        }
+
         return isValid(fodselsnummer);
     }
 }
