@@ -60,7 +60,7 @@ public class FodselsnummerAnnotationTest {
     }
 }
 
- class Person {
+class Person {
 
     static final String CUSTOM_MESSAGE = "IKKE GYLDIG FØDSELSNUMMER";
 
