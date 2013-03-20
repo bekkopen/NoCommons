@@ -1,11 +1,20 @@
 package no.bekk.bekkopen.mail;
 
-/**
- * Created with IntelliJ IDEA.
- * User: oyvind kvangardsnes
- * Date: 07.03.13
- * Time: 21.51
- * To change this template use File | Settings | File Templates.
- */
-public class Postnummervalidator {
+import no.bekk.bekkopen.mail.annotation.Postnummer;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
+public class PostnummerValidator implements ConstraintValidator<Postnummer, String> {
+
+    public void initialize(no.bekk.bekkopen.mail.annotation.Postnummer constraintAnnotation) {}
+
+    public boolean isValid(String postnummer, ConstraintValidatorContext context) {
+        if(postnummer == null){
+            return true;
+        }
+
+        return MailValidator.isValidPostnummer(postnummer);
+    }
+
 }
