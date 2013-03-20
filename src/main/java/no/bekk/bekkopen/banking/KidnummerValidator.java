@@ -66,6 +66,10 @@ public class KidnummerValidator extends StringNumberValidator implements Constra
     }
 
     public boolean isValid(String kidnummer, ConstraintValidatorContext context) {
+        if(kidnummer == null){
+            return true;
+        }
+
         return isValid(kidnummer);
     }
 }

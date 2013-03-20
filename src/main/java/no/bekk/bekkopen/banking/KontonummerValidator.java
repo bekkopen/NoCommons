@@ -98,6 +98,10 @@ public class KontonummerValidator extends StringNumberValidator implements Const
     }
 
     public boolean isValid(String kontonummer, ConstraintValidatorContext context) {
+        if(kontonummer == null){
+            return true;
+        }
+
         return isValid(kontonummer);
     }
 }

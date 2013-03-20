@@ -101,28 +101,10 @@ public class OrganisasjonsnummerValidator extends StringNumberValidator implemen
      *         whether or not the given organisasjonsnummer is valid
      */
     public boolean isValid(String organisasjonsnummer, ConstraintValidatorContext context) {
+        if(organisasjonsnummer == null){
+            return true;
+        }
+
         return isValid(organisasjonsnummer);
     }
-
-
-    /**
-     * Initialize-method normally used only by a JSR303 validator. Does nothing.
-     *
-     * @param fodselsnummer
-     *          Foddselsnummer-annotation which is validated
-     */
-    public void initialize(no.bekk.bekkopen.person.annotation.Fodselsnummer fodselsnummer) {}
-
-    /**
-     * Validation method used by a JSR303 validator. Normally it is better to call the static methods directly.
-     *
-     * @param fodselsnummer
-     *          The fodselsnummer to be validated
-     * @param constraintValidatorContext
-     *         context sent in by a validator
-     * @return boolean
-     *         whether or not the given fodselsnummer is valid
-     */
-
-
 }
