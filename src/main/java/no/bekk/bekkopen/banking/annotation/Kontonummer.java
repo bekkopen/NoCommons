@@ -15,7 +15,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = KontonummerValidator.class)
 public @interface Kontonummer {
 
-    String message() default "Invalid KID";
+    String message() default "Invalid Kontonummer";
 
     Class<?>[] groups() default {};
 
