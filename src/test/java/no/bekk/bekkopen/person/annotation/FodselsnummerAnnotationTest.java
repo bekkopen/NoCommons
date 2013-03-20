@@ -49,11 +49,22 @@ public class FodselsnummerAnnotationTest {
 
         assertEquals(0, violations.size());
     }
+
+    @Test
+    public void should_accept_message_value(){
+        Person k = new Person("1234");
+
+        Set<ConstraintViolation<Person>> violations = validator.validate(k);
+
+        assertEquals(Person.CUSTOM_MESSAGE, violations.iterator().next().getMessage());
+    }
 }
 
  class Person {
 
-    @Fodselsnummer
+    static final String CUSTOM_MESSAGE = "IKKE GYLDIG FØDSELSNUMMER";
+
+    @Fodselsnummer(message = CUSTOM_MESSAGE)
     public String fnr;
 
     public Person(String s) {
