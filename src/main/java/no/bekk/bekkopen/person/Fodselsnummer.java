@@ -61,7 +61,7 @@ public class Fodselsnummer extends StringNumber {
 			result = "19";
 		} else if (individnummerInt >= 500 && birthYear < 40) {
 			result = "20";
-		} else if (individnummerInt >= 500 && individnummerInt <= 749 && birthYear > 54) {
+		} else if (individnummerInt >= 500 && individnummerInt <= 749 && birthYear >= 54) {
 			result = "18";
 		} else if (individnummerInt >= 900 && birthYear > 39) {
 			result = "19";
