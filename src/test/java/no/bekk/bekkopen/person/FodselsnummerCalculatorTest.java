@@ -51,7 +51,7 @@ public class FodselsnummerCalculatorTest {
 
 	@Test
 	public void testInvalidDateTooEarly() throws ParseException {
-		date = df.parse("09091854");
+		date = df.parse("09091853");
 		List<Fodselsnummer> options = FodselsnummerCalculator.getManyFodselsnummerForDate(date);
 		assertEquals(0, options.size());
 	}
