@@ -2,12 +2,15 @@ package no.bekk.bekkopen.org;
 
 import no.bekk.bekkopen.common.StringNumberValidator;
 
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
 /**
  * Provides methods that validates if an Organisasjonsnummer is valid with
  * respect to syntax (length and digits only) and that the checksum digit is
  * correct.
  */
-public class OrganisasjonsnummerValidator extends StringNumberValidator {
+public class OrganisasjonsnummerValidator extends StringNumberValidator implements ConstraintValidator<no.bekk.bekkopen.org.annotation.Organisasjonsnummer, String> {
 
 	private static final int LENGTH = 9;
 
@@ -79,4 +82,29 @@ public class OrganisasjonsnummerValidator extends StringNumberValidator {
 		}
 	}
 
+    /**
+     * Initialize-method normally used only by a JSR303 validator. Does nothing.
+     *
+     * @param constraintAnnotation
+     *          Foddselsnummer-annotation which is validated
+     */
+    public void initialize(no.bekk.bekkopen.org.annotation.Organisasjonsnummer constraintAnnotation) {}
+
+    /**
+     * Validation method used by a JSR303 validator. Normally it is better to call the static methods directly.
+     *
+     * @param organisasjonsnummer
+     *          The organisasjonsnummer to be validated
+     * @param context
+     *         context sent in by a validator
+     * @return boolean
+     *         whether or not the given organisasjonsnummer is valid
+     */
+    public boolean isValid(String organisasjonsnummer, ConstraintValidatorContext context) {
+        if(organisasjonsnummer == null){
+            return true;
+        }
+
+        return isValid(organisasjonsnummer);
+    }
 }
