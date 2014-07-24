@@ -56,10 +56,14 @@ public class KidnummerValidator extends StringNumberValidator implements Constra
     public static void validateChecksum(String kidnummer) {
         StringNumber k = new Kidnummer(kidnummer);
         int kMod10 = calculateMod10CheckSum(getMod10Weights(k), k);
-        int kMod11 = calculateMod11CheckSum(getMod11Weights(k), k);
-        if (kMod10 != k.getChecksumDigit() && kMod11 != k.getChecksumDigit()) {
-            throw new IllegalArgumentException(ERROR_INVALID_CHECKSUM + kidnummer);
+        if (kMod10 == k.getChecksumDigit()) {
+            return;
         }
+        int kMod11 = calculateMod11CheckSum(getMod11Weights(k), k);
+        if (kMod11 == k.getChecksumDigit()) {
+            return;
+        }
+        throw new IllegalArgumentException(ERROR_INVALID_CHECKSUM + kidnummer);
     }
 
     public void initialize(no.bekk.bekkopen.banking.annotation.Kidnummer constraintAnnotation) {
