@@ -1,12 +1,11 @@
 package no.bekk.bekkopen.banking;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import no.bekk.bekkopen.NoCommonsTestCase;
 import no.bekk.bekkopen.common.StringNumberValidator;
 
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class KidnummerValidatorTest extends NoCommonsTestCase {
 
@@ -65,6 +64,13 @@ public class KidnummerValidatorTest extends NoCommonsTestCase {
 			assertMessageContains(e, StringNumberValidator.ERROR_INVALID_CHECKSUM);
 		}
 	}
+
+    @Test
+    public void testValidKidnummerMod10ButUnableToCalculateMod11() {
+        boolean result = KidnummerValidator.isValid("01290865");
+
+        assertEquals(true, result);
+    }
 
 	@Test
 	public void testIsValidMod10() {
