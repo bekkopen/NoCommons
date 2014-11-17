@@ -48,6 +48,9 @@ public class FodselsnummerTest {
         sut = new Fodselsnummer("01016666609");
         assertEquals("18", sut.getCentury());
 
+        sut = new Fodselsnummer("01015466609");
+        assertEquals("18", sut.getCentury());
+
         sut = new Fodselsnummer("01016633301");
         assertEquals("19", sut.getCentury());
 
