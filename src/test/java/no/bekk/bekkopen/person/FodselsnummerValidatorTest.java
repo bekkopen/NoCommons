@@ -1,5 +1,6 @@
 package no.bekk.bekkopen.person;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import no.bekk.bekkopen.NoCommonsTestCase;
@@ -116,5 +117,13 @@ public class FodselsnummerValidatorTest extends NoCommonsTestCase {
 	@Test
 	public void testGetDNumber() {
 		FodselsnummerValidator.getFodselsnummer("47086303651");
+	}
+
+	@Test
+	public void testCalculateSecondChecksumDigit() {
+		Fodselsnummer testcase = new Fodselsnummer("1234567891");
+		int correctChecksum = 1;
+		int calculatedChecksum = FodselsnummerValidator.calculateSecondChecksumDigit(testcase);
+		assertEquals(calculatedChecksum, correctChecksum);
 	}
 }
