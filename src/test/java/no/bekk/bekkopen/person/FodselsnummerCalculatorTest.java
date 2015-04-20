@@ -39,7 +39,7 @@ public class FodselsnummerCalculatorTest {
 	@Test
 	public void getValidFodselsnummerForDate() {
 		List<Fodselsnummer> validOptions = FodselsnummerCalculator.getManyFodselsnummerForDate(date);
-		assertTrue("Forventet 38 fødselsnumre, men fikk " + validOptions.size(), validOptions.size() == 38);
+		assertTrue("Forventet 413 fødselsnumre, men fikk " + validOptions.size(), validOptions.size() == 413);
 	}
 
    @Test

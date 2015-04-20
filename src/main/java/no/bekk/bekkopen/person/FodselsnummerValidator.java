@@ -19,6 +19,7 @@ public class FodselsnummerValidator extends StringNumberValidator implements Con
 	private static final String DATE_FORMAT = "ddMMyyyy";
 
 	private static final int[] K1_WEIGHTS = new int[] { 2, 5, 4, 9, 8, 1, 6, 7, 3 };
+	private static final int[] K2_WEIGHTS = new int[] { 2, 3, 4, 5, 6, 7, 2, 3, 4, 5 };
 
 	protected static final String ERROR_INVALID_DATE = "Invalid date in fødselsnummer : ";
 
@@ -94,7 +95,7 @@ public class FodselsnummerValidator extends StringNumberValidator implements Con
 	}
 
 	static int calculateSecondChecksumDigit(no.bekk.bekkopen.person.Fodselsnummer fodselsnummer) {
-		return calculateMod11CheckSum(getMod11Weights(fodselsnummer), fodselsnummer);
+		return calculateMod11CheckSum(K2_WEIGHTS, fodselsnummer);
 	}
 
     /**
