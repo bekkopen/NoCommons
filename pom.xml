@@ -137,6 +137,7 @@
 						</filesets>
 					</configuration>
 				</plugin>
+				<!--
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
@@ -183,7 +184,6 @@
 									<maxmemory>512</maxmemory>
 								</configuration>
 							</plugin>
-							<!--
 							<plugin>
 								<groupId>org.apache.maven.plugins</groupId>
 								<artifactId>maven-pmd-plugin</artifactId>
@@ -200,7 +200,6 @@
 									<minimumTokens>100</minimumTokens>
 								</configuration>
 							</plugin>
-							-->
 							<plugin>
 								<groupId>org.codehaus.mojo</groupId>
 								<artifactId>taglist-maven-plugin</artifactId>
@@ -219,16 +218,15 @@
 								<artifactId>maven-surefire-plugin</artifactId>
 								<version>${surefire-plugin.version}</version>
 							</plugin>
-							<!--
 							<plugin>
 								<groupId>org.codehaus.mojo</groupId>
 								<artifactId>findbugs-maven-plugin</artifactId>
 								<version>${findbugs-plugin}</version>
 							</plugin>
-							-->
 						</reportPlugins>
 					</configuration>
 				</plugin>
+				-->
 				<!--This plugin's configuration is used to store Eclipse m2e settings 
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
@@ -337,10 +335,10 @@
 
 	<!-- DISTRIBUTION -->
 	<distributionManagement>
-		<site>
+		<!--<site>
 			<id>NoCommons</id>
 			<url>http://bekkopen.github.com/NoCommons/</url>
-		</site>
+		</site>-->
 		<repository>
 			<id>sonatype-nexus-staging</id>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
