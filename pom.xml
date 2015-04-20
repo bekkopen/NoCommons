@@ -368,7 +368,7 @@
 		<taglist-plugin>2.4</taglist-plugin>
 		<jdepend-plugin>2.0-beta-2</jdepend-plugin>
 		<findbugs-plugin>2.3.1</findbugs-plugin>
-		<site-plugin.version>3.4</site-plugin.version>
+		<!-- <site-plugin.version>3.4</site-plugin.version> -->
 		<project-info-reports-plugin.version>2.4</project-info-reports-plugin.version>
 		<!-- Other properties -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
