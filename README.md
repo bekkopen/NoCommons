@@ -1,14 +1,11 @@
 [![Build Status](https://travis-ci.org/bekkopen/NoCommons.png?branch=master)](http://travis-ci.org/bekkopen/NoCommons) 
 
-
 NoCommons er en samling hjelpeklasser for validering, generering og manipulering data knyttet til Norske domener. 
-APIet er kjapt, standalone, offline og uten masse dependencies. 
-
-Verdier og lister som endrer seg over tid slik som kommunelister, poststed etc. er typisk ikke bygd inn.   
+APIet er kjapt, standalone, offline og uten masse dependencies.    
 
 > **Summary in english**: The NoCommons library is a collection of helper classes for validation, generation and manipulation of domains specific to Norway and Norwegian citizens.
 
-Maven Site: [http://bekkopen.github.com/NoCommons/](http://bekkopen.github.com/NoCommons/)
+Maven Site: [http://bekkopen.github.com/NoCommons/](http://bekkopen.github.com/NoCommons/)  
 
 # Features
 * Personnummer
@@ -33,7 +30,7 @@ Maven Site: [http://bekkopen.github.com/NoCommons/](http://bekkopen.github.com/N
   * Liste ut alle helligdager
   
 
-## Features som ikke er implementert, men som kan passe inn
+## Features som ikke er implementert, men som kan passe inn  
 * Bank
   * KID generator
 * Fylkesnummer
