@@ -1,10 +1,10 @@
 [![Build Status](https://travis-ci.org/bekkopen/NoCommons.png?branch=master)](http://travis-ci.org/bekkopen/NoCommons) 
 
 
-NoCommons er en samling hjelpeklasser for validering, generering og manipulering data knyttet til Norske domener.
+NoCommons er en samling hjelpeklasser for validering, generering og manipulering data knyttet til Norske domener. 
+APIet er kjapt, standalone, offline og uten masse dependencies. 
 
-NoCommons skal fungere offline, har et enkelt API, er kjapt, og er standalone uten masse dependencies. 
-NoCommons inneholder i liten grad verdier som endrer seg over tid slik som kommunelister, poststed etc. er ikke  
+Verdier og lister som endrer seg over tid slik som kommunelister, poststed etc. er typisk ikke bygd inn.   
 
 > **Summary in english**: The NoCommons library is a collection of helper classes for validation, generation and manipulation of domains specific to Norway and Norwegian citizens.
 
