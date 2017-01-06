@@ -28,7 +28,7 @@ public abstract class StringNumberValidator {
       if (c == 1) {
          throw new IllegalArgumentException(ERROR_INVALID_CHECKSUM + number);
       }
-      return c == 0 ? 0 : 11 - c;
+      return c;
    }
 
    /**
@@ -39,8 +39,7 @@ public abstract class StringNumberValidator {
     * @return The checksum
     */
    protected static int calculateMod10CheckSum(int[] weights, StringNumber number) {
-      int c = calculateChecksum(weights, number, true) % 10;
-      return c == 0 ? 0 : 10 - c;
+      return calculateChecksum(weights, number, true) % 10;
    }
 
    private static int calculateChecksum(int[] weights, StringNumber number, boolean tverrsum) {
