@@ -5,6 +5,10 @@ import no.bekk.bekkopen.common.StringNumberValidator;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import static no.bekk.bekkopen.common.Checksums.ERROR_INVALID_CHECKSUM;
+import static no.bekk.bekkopen.common.Checksums.calculateMod11CheckSum;
+import static no.bekk.bekkopen.common.Checksums.getMod11Weights;
+
 /**
  * Provides methods that validates if an Organisasjonsnummer is valid with
  * respect to syntax (length and digits only) and that the checksum digit is

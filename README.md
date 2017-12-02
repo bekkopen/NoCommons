@@ -19,6 +19,7 @@ Maven Site: [http://bekkopen.github.com/NoCommons/](http://bekkopen.github.com/N
   * validering
 * Bank
   * Kontonummer validering og generering
+  * KID generering
   * KID validering
 * Norsk språk o.l.
   * Konvertering av norske bokstaver i en tekst til de engelske erstatningene aa, ae og oe
@@ -28,11 +29,8 @@ Maven Site: [http://bekkopen.github.com/NoCommons/](http://bekkopen.github.com/N
   * Sjekk om dato er arbeidsdag (dvs. ikke helligdag eller helg)
   * Legg til x antall arbeidsdager til en gitt dato
   * Liste ut alle helligdager
-  
 
 ## Features som ikke er implementert, men som kan passe inn  
-* Bank
-  * KID generator
 * Fylkesnummer
   * Finn fylkesnummer for fylke
   * Finn fylke for fylkesnummer

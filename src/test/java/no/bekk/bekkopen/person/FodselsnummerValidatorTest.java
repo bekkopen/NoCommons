@@ -1,5 +1,6 @@
 package no.bekk.bekkopen.person;
 
+import static no.bekk.bekkopen.common.Checksums.ERROR_INVALID_CHECKSUM;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -95,7 +96,7 @@ public class FodselsnummerValidatorTest extends NoCommonsTestCase {
 			FodselsnummerValidator.validateChecksums("01010101010");
 			fail();
 		} catch (IllegalArgumentException e) {
-			assertMessageContains(e, FodselsnummerValidator.ERROR_INVALID_CHECKSUM);
+			assertMessageContains(e, ERROR_INVALID_CHECKSUM);
 		}
 	}
 

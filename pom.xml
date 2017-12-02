@@ -317,6 +317,11 @@
             <artifactId>validation-api</artifactId>
             <version>1.0.0.GA</version>
         </dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.4</version>
+		</dependency>
 		
 		<!-- Test -->
 		<dependency>
@@ -372,6 +377,6 @@
 		<project-info-reports-plugin.version>2.4</project-info-reports-plugin.version>
 		<!-- Other properties -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.jdk>1.5</project.jdk>
+		<project.jdk>1.6</project.jdk>
 	</properties>
 </project>
