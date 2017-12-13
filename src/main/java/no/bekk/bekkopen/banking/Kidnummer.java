@@ -1,7 +1,8 @@
 package no.bekk.bekkopen.banking;
 
 import no.bekk.bekkopen.common.StringNumber;
-import org.apache.commons.lang3.StringUtils;
+
+import java.math.BigInteger;
 
 import static no.bekk.bekkopen.common.Checksums.*;
 
@@ -35,11 +36,11 @@ public class Kidnummer extends StringNumber {
     public static Kidnummer mod10Kid(String baseNumber, int targetLength) {
         if (baseNumber.length() >= targetLength)
             throw new IllegalArgumentException("baseNumber too long");
-        String padded = StringUtils.leftPad(baseNumber, targetLength-1, "0");
+        String padded = String.format("%0" + (targetLength-1) + "d", new BigInteger(baseNumber));
         Kidnummer k = new Kidnummer(padded + "0");
         return KidnummerValidator.getKidnummer(padded + calculateMod10CheckSum(getMod10Weights(k), k));
     }
-
+    
     /**
      * Return a valid mod10 Kidnummer by adding checksum digit
      * @param baseNumber input number, digits only
@@ -59,7 +60,7 @@ public class Kidnummer extends StringNumber {
     public static Kidnummer mod11Kid(String baseNumber, int targetLength) {
         if (baseNumber.length() >= targetLength)
             throw new IllegalArgumentException("baseNumber too long");
-        String padded = StringUtils.leftPad(baseNumber, targetLength-1, "0");
+        String padded = String.format("%0" + (targetLength-1) + "d", new BigInteger(baseNumber));
         Kidnummer k = new Kidnummer(padded + "0");
         return KidnummerValidator.getKidnummer(padded + calculateMod11CheckSum(getMod11Weights(k), k));
     }
