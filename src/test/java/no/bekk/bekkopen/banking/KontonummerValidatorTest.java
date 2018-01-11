@@ -1,5 +1,6 @@
 package no.bekk.bekkopen.banking;
 
+import static no.bekk.bekkopen.common.Checksums.ERROR_INVALID_CHECKSUM;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -38,7 +39,7 @@ public class KontonummerValidatorTest extends NoCommonsTestCase {
 			KontonummerValidator.validateChecksum(KONTONUMMER_INVALID_CHECKSUM);
 			fail();
 		} catch (IllegalArgumentException e) {
-			assertMessageContains(e, KontonummerValidator.ERROR_INVALID_CHECKSUM);
+			assertMessageContains(e, ERROR_INVALID_CHECKSUM);
 		}
 	}
 

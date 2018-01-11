@@ -6,6 +6,8 @@ import no.bekk.bekkopen.common.StringNumberValidator;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import static no.bekk.bekkopen.common.Checksums.*;
+
 public class KidnummerValidator extends StringNumberValidator implements ConstraintValidator<no.bekk.bekkopen.banking.annotation.Kidnummer, String> {
 
     public static final String ERROR_LENGTH = "A Kidnummer is between 2 and 25 digits";

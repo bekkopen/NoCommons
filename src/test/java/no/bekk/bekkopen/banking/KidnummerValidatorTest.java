@@ -5,6 +5,7 @@ import no.bekk.bekkopen.common.StringNumberValidator;
 
 import org.junit.Test;
 
+import static no.bekk.bekkopen.common.Checksums.ERROR_INVALID_CHECKSUM;
 import static org.junit.Assert.*;
 
 public class KidnummerValidatorTest extends NoCommonsTestCase {
@@ -61,7 +62,7 @@ public class KidnummerValidatorTest extends NoCommonsTestCase {
 			KidnummerValidator.validateChecksum(KIDNUMMER_INVALID_CHECKSUM);
 			fail();
 		} catch (IllegalArgumentException e) {
-			assertMessageContains(e, StringNumberValidator.ERROR_INVALID_CHECKSUM);
+			assertMessageContains(e, ERROR_INVALID_CHECKSUM);
 		}
 	}
 

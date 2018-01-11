@@ -8,6 +8,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import static no.bekk.bekkopen.common.Checksums.ERROR_INVALID_CHECKSUM;
+import static no.bekk.bekkopen.common.Checksums.calculateMod11CheckSum;
+
 /**
  * Provides methods that validates if a Fodselsnummer is valid with respect to
  * syntax, Individnummer, Date and checksum digits.
