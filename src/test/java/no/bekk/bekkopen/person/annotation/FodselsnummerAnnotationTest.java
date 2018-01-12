@@ -11,7 +11,7 @@ import javax.validation.ValidatorFactory;
 import java.util.Date;
 import java.util.Set;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class FodselsnummerAnnotationTest {
 

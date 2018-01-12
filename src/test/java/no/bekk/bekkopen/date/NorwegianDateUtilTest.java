@@ -1,8 +1,7 @@
 package no.bekk.bekkopen.date;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -11,14 +10,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class NorwegianDateUtilTest {
 	private final static DateFormat FORMAT = new SimpleDateFormat("dd.MM.yyyy");
 
 	@Before
-	public void setLocale() throws Exception {
+	public void setLocale() {
 		Locale.setDefault(new Locale("no", "NO"));
 	}
 
@@ -112,7 +110,7 @@ public class NorwegianDateUtilTest {
 	}
 
 	@Test
-	public void testGetAllNorwegianHolidaysForYear() throws Exception {
+	public void testGetAllNorwegianHolidaysForYear() {
 		Date[] holidays = NorwegianDateUtil.getHolidays(2008);
 		assertEquals(12, holidays.length);
 		assertEquals("01.01.2008", FORMAT.format(holidays[0]));
