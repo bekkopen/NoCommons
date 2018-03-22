@@ -113,20 +113,21 @@ public class NorwegianDateUtilTest {
 
 	@Test
 	public void testGetAllNorwegianHolidaysForYear() {
-		Date[] holidays = NorwegianDateUtil.getHolidays(2008);
-		assertEquals(12, holidays.length);
-		assertEquals("01.01.2008", FORMAT().format(holidays[0]));
-		assertEquals("16.03.2008", FORMAT().format(holidays[1]));
-		assertEquals("20.03.2008", FORMAT().format(holidays[2]));
-		assertEquals("21.03.2008", FORMAT().format(holidays[3]));
-		assertEquals("23.03.2008", FORMAT().format(holidays[4]));
-		assertEquals("24.03.2008", FORMAT().format(holidays[5]));
-		assertEquals("01.05.2008", FORMAT().format(holidays[6]));
-		assertEquals("11.05.2008", FORMAT().format(holidays[7]));
-		assertEquals("12.05.2008", FORMAT().format(holidays[8]));
-		assertEquals("17.05.2008", FORMAT().format(holidays[9]));
-		assertEquals("25.12.2008", FORMAT().format(holidays[10]));
-		assertEquals("26.12.2008", FORMAT().format(holidays[11]));
+		Date[] holidays = NorwegianDateUtil.getHolidays(2009);
+		assertEquals(13, holidays.length);
+		assertEquals("01.01.2009", FORMAT().format(holidays[0]));
+		assertEquals("05.04.2009", FORMAT().format(holidays[1]));
+		assertEquals("09.04.2009", FORMAT().format(holidays[2]));
+		assertEquals("10.04.2009", FORMAT().format(holidays[3]));
+		assertEquals("12.04.2009", FORMAT().format(holidays[4]));
+		assertEquals("13.04.2009", FORMAT().format(holidays[5]));
+		assertEquals("01.05.2009", FORMAT().format(holidays[6]));
+		assertEquals("17.05.2009", FORMAT().format(holidays[7]));
+		assertEquals("21.05.2009", FORMAT().format(holidays[8]));
+		assertEquals("31.05.2009", FORMAT().format(holidays[9]));
+		assertEquals("01.06.2009", FORMAT().format(holidays[10]));
+		assertEquals("25.12.2009", FORMAT().format(holidays[11]));
+		assertEquals("26.12.2009", FORMAT().format(holidays[12]));
 	}
 
 	private void checkHoliday(String date) throws ParseException {
