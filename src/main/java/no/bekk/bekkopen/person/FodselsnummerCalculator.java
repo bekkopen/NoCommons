@@ -35,15 +35,23 @@ public class FodselsnummerCalculator {
 	 * Returns a List with with VALID Fodselsnummer instances for a given Date.
 	 *
 	 * @param date The Date instance
+	 * @param generateDNumber Whether to generate D-nummer instead of fødselsnummer
 	 * @return A List with Fodelsnummer instances
 	 */
-	public static List<Fodselsnummer> getManyFodselsnummerForDate(Date date) {
+
+	public static List<Fodselsnummer> getManyFodselsnummerForDate(Date date, boolean generateDNumber) {
 		if (date == null) {
 			throw new IllegalArgumentException();
 		}
 		DateFormat df = new SimpleDateFormat("ddMMyy");
 		String century = getCentury(date);
 		String dateString = df.format(date);
+		if (generateDNumber) {
+			dateString = new StringBuilder()
+					.append(dateString.charAt(0) + 4)
+					.append(dateString.substring(1))
+					.toString();
+		}
 		List<Fodselsnummer> result = new ArrayList<Fodselsnummer>();
 		for (int i = 999; i >= 0; i--) {
 			StringBuilder sb = new StringBuilder(dateString);
@@ -70,6 +78,17 @@ public class FodselsnummerCalculator {
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * Returns a List with with VALID Fodselsnummer instances for a given Date.
+	 *
+	 * @param date The Date instance
+	 * @return A List with Fodelsnummer instances
+	 */
+
+	public static List<Fodselsnummer> getManyFodselsnummerForDate(Date date) {
+		return getManyFodselsnummerForDate(date, false);
 	}
 
 	private static String getCentury(Date date) {
