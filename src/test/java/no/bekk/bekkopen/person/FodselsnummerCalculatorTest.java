@@ -49,6 +49,27 @@ public class FodselsnummerCalculatorTest {
       }
    }
 
+   @Test
+   public void testThatAllGeneratedNumbersAreNotDNumbers() {
+		for(Fodselsnummer fnr : FodselsnummerCalculator.getManyFodselsnummerForDate(date)) {
+			assertTrue("Ugyldig fødselsnummer: " + fnr, Fodselsnummer.isDNumber(fnr.toString()) != true);
+		}
+   }
+
+   @Test
+   public void testThatAllGeneratedDNumbersAreValid() {
+		for(Fodselsnummer dnr : FodselsnummerCalculator.getManyDNumberFodselsnummerForDate(date)) {
+			assertTrue("Ugyldig D-nummer: " + dnr, FodselsnummerValidator.isValid(dnr.toString()));
+		}
+   }
+
+   @Test
+   public void testThatAllGeneratedDNumbersAreDNumbers() {
+	   for(Fodselsnummer dnr : FodselsnummerCalculator.getManyDNumberFodselsnummerForDate(date)) {
+		   assertTrue("Ugyldig D-nummer: " + dnr, Fodselsnummer.isDNumber(dnr.toString()) == true);
+	   }
+   }
+
 	@Test
 	public void testInvalidDateTooEarly() throws ParseException {
 		date = df.parse("09091853");

@@ -32,18 +32,44 @@ public class FodselsnummerCalculator {
 	}
 
 	/**
+	 * Returns a List with with VALID DNumber Fodselsnummer instances for a given Date.
+	 *
+	 * @param date The Date instance
+	 * @return A List with Fodelsnummer instances
+	 */
+
+	public static List<Fodselsnummer> getManyDNumberFodselsnummerForDate(Date date) {
+		if (date == null) {
+			throw new IllegalArgumentException();
+		}
+		DateFormat df = new SimpleDateFormat("ddMMyy");
+		String centuryString = getCentury(date);
+		String dateString = df.format(date);
+		dateString = new StringBuilder()
+				.append(dateString.charAt(0) + 4)
+				.append(dateString.substring(1))
+				.toString();
+		return generateFodselsnummerForDate(dateString, centuryString);
+	}
+
+	/**
 	 * Returns a List with with VALID Fodselsnummer instances for a given Date.
 	 *
 	 * @param date The Date instance
 	 * @return A List with Fodelsnummer instances
 	 */
+
 	public static List<Fodselsnummer> getManyFodselsnummerForDate(Date date) {
 		if (date == null) {
 			throw new IllegalArgumentException();
 		}
 		DateFormat df = new SimpleDateFormat("ddMMyy");
-		String century = getCentury(date);
+		String centuryString = getCentury(date);
 		String dateString = df.format(date);
+		return generateFodselsnummerForDate(dateString, centuryString);
+	}
+
+	private static List<Fodselsnummer> generateFodselsnummerForDate(String dateString, String centuryString) {
 		List<Fodselsnummer> result = new ArrayList<Fodselsnummer>();
 		for (int i = 999; i >= 0; i--) {
 			StringBuilder sb = new StringBuilder(dateString);
@@ -62,7 +88,7 @@ public class FodselsnummerCalculator {
 				fodselsnummer = new Fodselsnummer(sb.toString());
 
 				String centuryByIndividnummer = fodselsnummer.getCentury();
-				if (centuryByIndividnummer != null && centuryByIndividnummer.equals(century) && FodselsnummerValidator.isValid(fodselsnummer.getValue())) {
+				if (centuryByIndividnummer != null && centuryByIndividnummer.equals(centuryString) && FodselsnummerValidator.isValid(fodselsnummer.getValue())) {
 					result.add(fodselsnummer);
 				}
 			} catch (IllegalArgumentException e) {
