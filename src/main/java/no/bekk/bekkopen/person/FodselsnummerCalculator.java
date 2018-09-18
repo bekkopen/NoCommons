@@ -46,7 +46,7 @@ public class FodselsnummerCalculator {
 		String centuryString = getCentury(date);
 		String dateString = df.format(date);
 		dateString = new StringBuilder()
-				.append(dateString.charAt(0) + 4)
+				.append(Character.toChars(dateString.charAt(0) + 4)[0])
 				.append(dateString.substring(1))
 				.toString();
 		return generateFodselsnummerForDate(dateString, centuryString);
