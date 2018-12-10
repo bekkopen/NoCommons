@@ -1,0 +1,13 @@
+architect:
+- eivinhb
+decrypt:
+  settings.xml: "repo/settings.xml.asc"
+  pubring.gpg: "repo/pubring.pgp.asc"
+  secring.gpg: "repo/secring.pgp.asc"
+release:
+  script: |
+    mvn versions:set "-DnewVersion=${tag}"
+    git commit -am "${tag}"
+    mvn clean deploy -Pjcabi-gpg,sonatype --settings /home/r/settings.xml
+  commanders:
+  - eivinhb
