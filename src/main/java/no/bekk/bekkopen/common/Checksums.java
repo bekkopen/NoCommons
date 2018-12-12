@@ -7,6 +7,9 @@ public class Checksums {
     /**
      * Calculate the check sum for the given weights and number.
      *
+     * Does not allow the remainder to be 1 so that checksum should be 10
+     * and throws an IllegalArgumentException if that should be the case.
+     * 
      * @param weights The weights
      * @param number  The number
      * @return The checksum
@@ -17,6 +20,23 @@ public class Checksums {
           throw new IllegalArgumentException(ERROR_INVALID_CHECKSUM + number);
        }
        return c == 0 ? 0 : 11 - c;
+    }
+    
+    /**
+     * Calculate the check sum for the given weights and number.
+     * 
+     * Allow checksum to be `-`.
+     *
+     * @param weights The weights
+     * @param number  The number
+     * @return The checksum
+     */
+    public static String calculateMod11CheckSumAllowDash(int[] weights, StringNumber number) {
+       int c = calculateChecksum(weights, number, false) % 11;
+       if (c == 1) {
+          return "-";
+       }
+       return String.valueOf((c == 0 ? 0 : 11 - c));
     }
  
     /**
