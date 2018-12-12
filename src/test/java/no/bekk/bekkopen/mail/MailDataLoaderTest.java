@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -23,28 +22,28 @@ public class MailDataLoaderTest extends NoCommonsTestCase {
 	}
 
 	@Test
-	public void testAntallPoststed() throws IOException {
-		assertEquals(1852, MailValidator.getAntallPoststed());
+	public void testAntallPoststed() {
+		assertEquals(1823, MailValidator.getAntallPoststed());
 	}
 
 	@Test
-	public void testAntallPostnummer() throws IOException {
-		assertEquals(4586, MailValidator.getAntallPostnummer());
+	public void testAntallPostnummer() {
+		assertEquals(5056, MailValidator.getAntallPostnummer());
 	}
 
 	@Test
-	public void testAntallPostnummerForHamar() throws IOException {
+	public void testAntallPostnummerForHamar() {
 		List<?> options = MailValidator.getPostnummerForPoststed("HAMAR");
-		assertEquals(17, options.size());
+		assertEquals(18, options.size());
 	}
 
 	@Test
-	public void testPoststedForPostnummer2315() throws IOException {
+	public void testPoststedForPostnummer2315() {
 		assertEquals("HAMAR", MailValidator.getPoststedForPostnummer("2315").toString());
 	}
 
 	@Test
-	public void testLoadDataFromClasspath() throws IOException {
+	public void testLoadDataFromClasspath() {
 		boolean success = MailDataLoader.loadFromClassPath();
 		assertTrue(success);
 	}
