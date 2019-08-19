@@ -74,8 +74,8 @@ public class OrganisasjonsnummerValidator extends StringNumberValidator implemen
 		return new Organisasjonsnummer(organisasjonsnummer);
 	}
 
-	static void validateSyntax(String fodselsnummer) {
-		validateLengthAndAllDigits(fodselsnummer, LENGTH);
+	static void validateSyntax(String organisasjonsnummer) {
+		validateLengthAndAllDigits(organisasjonsnummer, LENGTH);
 	}
 
 	static void validateChecksum(String organisasjonsnummer) {
