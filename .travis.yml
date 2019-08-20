@@ -1,1 +1,7 @@
-script: mvn -v && mvn -q clean test -Dsurefire-use-file=false
+dist: xenial
+language: java
+jdk:
+  - openjdk8
+  - openjdk11
+script:
+  - mvn -v && mvn -q clean test -Dsurefire-use-file=false
