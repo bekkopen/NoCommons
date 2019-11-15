@@ -10,7 +10,7 @@ import static no.bekk.bekkopen.common.Checksums.*;
 
 public class KidnummerValidator extends StringNumberValidator implements ConstraintValidator<no.bekk.bekkopen.banking.annotation.Kidnummer, String> {
 
-    public static final String ERROR_LENGTH = "A Kidnummer is between 2 and 25 digits";
+    public static final String ERROR_LENGTH = "A Kidnummer is between 3(+1) and 25 digits";
 
     private KidnummerValidator() {
         super();
@@ -45,8 +45,8 @@ public class KidnummerValidator extends StringNumberValidator implements Constra
     }
 
     static void validateSyntax(String kidnummer) {
-        validateAllDigits(kidnummer);
-        validateLengthInRange(kidnummer, 2, 25);
+        validateAllDigits(kidnummer.replace("-", ""));
+        validateLengthInRange(kidnummer, 4, 25);
     }
 
     private static void validateLengthInRange(String kidnummer, int i, int j) {
@@ -61,8 +61,8 @@ public class KidnummerValidator extends StringNumberValidator implements Constra
         if (kMod10 == k.getChecksumDigit()) {
             return;
         }
-        int kMod11 = calculateMod11CheckSum(getMod11Weights(k), k);
-        if (kMod11 == k.getChecksumDigit()) {
+        String kMod11 = calculateMod11CheckSumAllowDash(getMod11Weights(k), k);
+        if ("-".equals(kMod11) || Integer.parseInt(kMod11) == k.getChecksumDigit()) {
             return;
         }
         throw new IllegalArgumentException(ERROR_INVALID_CHECKSUM + kidnummer);
@@ -72,7 +72,7 @@ public class KidnummerValidator extends StringNumberValidator implements Constra
     }
 
     public boolean isValid(String kidnummer, ConstraintValidatorContext context) {
-        if(kidnummer == null){
+        if (kidnummer == null) {
             return true;
         }
 

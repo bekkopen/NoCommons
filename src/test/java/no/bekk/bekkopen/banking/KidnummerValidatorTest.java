@@ -2,7 +2,6 @@ package no.bekk.bekkopen.banking;
 
 import no.bekk.bekkopen.NoCommonsTestCase;
 import no.bekk.bekkopen.common.StringNumberValidator;
-
 import org.junit.Test;
 
 import static no.bekk.bekkopen.common.Checksums.ERROR_INVALID_CHECKSUM;
@@ -10,13 +9,14 @@ import static org.junit.Assert.*;
 
 public class KidnummerValidatorTest extends NoCommonsTestCase {
 
-	private static final String KIDNUMMER_VALID_MOD10 = "2345676";
+    private static final String KIDNUMMER_VALID_MOD10 = "2345676";
 	private static final String KIDNUMMER_VALID_MOD11 = "12345678903";
 	private static final String KIDNUMMER_INVALID_CHECKSUM = "2345674";
-	private static final String KIDNUMMER_INVALID_LENGTH_SHORT = "1";
+	private static final String KIDNUMMER_INVALID_LENGTH_SHORT = "122";
 	private static final String KIDNUMMER_INVALID_LENGTH_LONG = "12345678901234567890123456";
+    private static final String KIDNUMMER_VALID_WITH_DASH = "1000005-";
 
-	@Test
+    @Test
 	public void testInvalidKidnummer() {
 		try {
 			KidnummerValidator.validateSyntax("");
@@ -87,5 +87,10 @@ public class KidnummerValidatorTest extends NoCommonsTestCase {
 	public void testIsInvalid() {
 		assertFalse(KidnummerValidator.isValid(KIDNUMMER_INVALID_CHECKSUM));
 	}
+
+    @Test
+    public void testKidWithDash() {
+        assertTrue(KidnummerValidator.isValid(KIDNUMMER_VALID_WITH_DASH));
+    }
 
 }
