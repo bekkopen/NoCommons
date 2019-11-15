@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/bekkopen/NoCommons.png?branch=master)](http://travis-ci.org/bekkopen/NoCommons) 
+![](https://github.com/bekkopen/NoCommons/workflows/Java%20CI/badge.svg)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/bekkopen/NoCommons/blob/master/LICENSE.txt)
 
 NoCommons er en samling hjelpeklasser for validering, generering og manipulering data knyttet til Norske domener. 
