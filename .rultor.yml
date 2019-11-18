@@ -1,9 +1,9 @@
 architect:
 - eivinhb
 decrypt:
-  settings.xml: "repo/settings.xml.asc"
-  pubring.gpg: "repo/pubring.pgp.asc"
-  secring.gpg: "repo/secring.pgp.asc"
+  settings.xml: "repo/.scrt/settings.xml.asc"
+  pubring.gpg:  "repo/.scrt/pubring.pgp.asc"
+  secring.gpg:  "repo/.scrt/secring.pgp.asc"
 release:
   script: |
     mvn versions:set "-DnewVersion=${tag}"
