@@ -1,3 +1,4 @@
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/no.bekk.bekkopen/nocommons/badge.svg)](https://maven-badges.herokuapp.com/maven-central/no.bekk.bekkopen/nocommons)
 ![](https://github.com/bekkopen/NoCommons/workflows/Java%20CI/badge.svg)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/bekkopen/NoCommons/blob/master/LICENSE.txt)
 
