@@ -17,7 +17,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = OrganisasjonsnummerValidator.class)
 public @interface Organisasjonsnummer {
 
-    String message() default "Invalid organisassjonsnummer";
+    String message() default "Invalid organisasjonsnummer";
 
     Class<?>[] groups() default {};
 
