@@ -45,10 +45,49 @@ public class FodselsnummerCalculator {
 		DateFormat df = new SimpleDateFormat("ddMMyy");
 		String centuryString = getCentury(date);
 		String dateString = df.format(date);
-		dateString = new StringBuilder()
-				.append(Character.toChars(dateString.charAt(0) + 4)[0])
-				.append(dateString.substring(1))
-				.toString();
+		dateString = Character.toChars(dateString.charAt(0) + 4)[0] +
+      dateString.substring(1);
+		return generateFodselsnummerForDate(dateString, centuryString);
+	}
+
+	/**
+	 * Returns a List with with VALID DNumber Fodselsnummer instances for a given Date.
+	 *
+	 * @param date The Date instance
+	 * @return A List with Fodelsnummer instances
+	 */
+
+	public static List<Fodselsnummer> getManySynteticFodselsnummerForDate(Date date) {
+		if (date == null) {
+			throw new IllegalArgumentException();
+		}
+		DateFormat df = new SimpleDateFormat("ddMMyy");
+		String centuryString = getCentury(date);
+		String dateString = df.format(date);
+		dateString = dateString.substring(0, 2) +
+      Character.toChars(dateString.charAt(2) + 8)[0] +
+      dateString.substring(3);
+		return generateFodselsnummerForDate(dateString, centuryString);
+	}
+
+	/**
+	 * Returns a List with with VALID DNumber Fodselsnummer instances for a given Date.
+	 *
+	 * @param date The Date instance
+	 * @return A List with Fodelsnummer instances
+	 */
+
+	public static List<Fodselsnummer> getManySynteticDNumberFodselsnummerForDate(Date date) {
+		if (date == null) {
+			throw new IllegalArgumentException();
+		}
+		DateFormat df = new SimpleDateFormat("ddMMyy");
+		String centuryString = getCentury(date);
+		String dateString = df.format(date);
+		dateString = Character.toChars(dateString.charAt(0) + 4)[0] +
+      dateString.substring(1, 2) +
+      Character.toChars(dateString.charAt(2) + 8)[0] +
+      dateString.substring(3);
 		return generateFodselsnummerForDate(dateString, centuryString);
 	}
 

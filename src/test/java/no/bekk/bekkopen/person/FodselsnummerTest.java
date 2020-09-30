@@ -1,11 +1,11 @@
 package no.bekk.bekkopen.person;
 
+import org.junit.Before;
+import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
-import org.junit.Before;
-import org.junit.Test;
 
 public class FodselsnummerTest {
 
@@ -16,7 +16,7 @@ public class FodselsnummerTest {
     private Fodselsnummer sut = null;
 
     @Before
-    public void setUpValidFodselsnummer() throws Exception {
+    public void setUpValidFodselsnummer() {
         sut = new Fodselsnummer(VALID_FODSELSNUMMER);
     }
 
@@ -119,28 +119,6 @@ public class FodselsnummerTest {
     }
 
     @Test
-    public void testIsMale() {
-        assertEquals(false, sut.isMale());
-    }
-
-    @Test
-    public void testIsMaleDNumber() {
-        sut = new Fodselsnummer(D_FODSELSNUMMER);
-        assertEquals(false, sut.isMale());
-    }
-
-    @Test
-    public void testIsFemale() {
-        assertEquals(true, sut.isFemale());
-    }
-
-    @Test
-    public void testIsFemaleDNumber() {
-        sut = new Fodselsnummer(D_FODSELSNUMMER);
-        assertEquals(true, sut.isFemale());
-    }
-
-    @Test
     public void testIsDNumber() {
         assertFalse(Fodselsnummer.isDNumber("01010101006"));
         assertFalse(Fodselsnummer.isDNumber("80000000000"));
@@ -150,5 +128,17 @@ public class FodselsnummerTest {
     @Test
     public void testParseDNumber() {
         assertEquals("07086303651", Fodselsnummer.parseDNumber("47086303651"));
+    }
+
+    @Test
+    public void testParseSynteticNumber() {
+        assertEquals("07086303651", Fodselsnummer.parseSynthenticNumber("07886303651"));
+    }
+
+    @Test
+    public void testIsSynteticNumber() {
+        assertFalse(Fodselsnummer.isSynthetic("01010101006"));
+        assertFalse(Fodselsnummer.isSynthetic("80000000000"));
+        assertTrue(Fodselsnummer.isSynthetic("07886303651"));
     }
 }

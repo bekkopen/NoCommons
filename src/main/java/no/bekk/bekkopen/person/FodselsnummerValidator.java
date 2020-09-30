@@ -14,6 +14,14 @@ import static no.bekk.bekkopen.common.Checksums.calculateMod11CheckSum;
 /**
  * Provides methods that validates if a Fodselsnummer is valid with respect to
  * syntax, Individnummer, Date and checksum digits.
+ *
+ * This validator also validates DNummer as valid.
+ * Birth date is modified by adding 4 on the first digit
+ *
+ * The Norwegian registry Det Norske Folkeregister has decided
+ * that it will create syntetic ssn for its testpopulation.
+ * This validator will can now validate true for Fodselsnummer that has month +80
+ * for synthetic fnr/dnr
  */
 public class FodselsnummerValidator extends StringNumberValidator implements ConstraintValidator<no.bekk.bekkopen.person.annotation.Fodselsnummer, String> {
 
@@ -28,9 +36,16 @@ public class FodselsnummerValidator extends StringNumberValidator implements Con
 
 	protected static final String ERROR_INVALID_INDIVIDNUMMER = "Invalid individnummer in fødselsnummer : ";
 
+  /**
+   * Truthy validation of synthetic fnr/dnr is false. You are adviced to
+   * set til value to false in test environments where you expect
+   * syntetic fnr/dnr to appair.
+   */
+	public static boolean FAIL_ON_SYNTHETIC_NUMBER = true;
+
 	/**
 	 * Returns an object that represents a Fodselsnummer.
-	 * 
+	 *
 	 * @param fodselsnummer
 	 *            A String containing a Fodselsnummer
 	 * @return A Fodselsnummer instance
@@ -42,12 +57,19 @@ public class FodselsnummerValidator extends StringNumberValidator implements Con
 		validateIndividnummer(fodselsnummer);
 		validateDate(fodselsnummer);
 		validateChecksums(fodselsnummer);
+		validateSynthetic(fodselsnummer);
 		return new no.bekk.bekkopen.person.Fodselsnummer(fodselsnummer);
 	}
 
-	/**
+  private static void validateSynthetic(String fodselsnummer) {
+    if (Fodselsnummer.isSynthetic(fodselsnummer) && FAIL_ON_SYNTHETIC_NUMBER) {
+      throw new IllegalArgumentException("Syntetic fødselsnummer is not allowd" + fodselsnummer);
+    }
+  }
+
+  /**
 	 * Return true if the provided String is a valid Fodselsnummer.
-	 * 
+	 *
 	 * @param fodselsnummer
 	 *            A String containing a Fodselsnummer
 	 * @return true or false
