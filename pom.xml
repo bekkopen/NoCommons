@@ -178,7 +178,7 @@
 
 	<properties>
 		<!-- Dependency version -->
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 		<jaxb-api.version>2.3.0</jaxb-api.version>
 	</properties>
 </project>
