@@ -20,14 +20,14 @@ public class NorwegianDateUtil {
 	 * Adds the given number of working days to the given date. A working day is
 	 * specified as a regular Norwegian working day, excluding weekends and all
 	 * national holidays.
-	 * <p/>
-	 * Example 1:<br/>
-	 * - Add 5 working days to Wednesday 21.03.2007 -> Yields Wednesday
-	 * 28.03.2007. (skipping saturday and sunday)<br/>
-	 * <p/>
-	 * Example 2:<br/>
+	 *
+	 * Example 1:
+	 * - Add 5 working days to Wednesday 21.03.2007  Yields Wednesday
+	 * 28.03.2007. (skipping saturday and sunday)
+	 *
+	 * Example 2:
 	 * - Add 5 working days to Wednesday 04.04.2007 (day before
-	 * easter-long-weekend) -> yields Monday 16.04.2007 (skipping 2 weekends and
+	 * easter-long-weekend)  yields Monday 16.04.2007 (skipping 2 weekends and
 	 * 3 weekday holidays).
 	 *
 	 * @param date
