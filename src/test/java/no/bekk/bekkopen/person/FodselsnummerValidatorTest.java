@@ -1,12 +1,12 @@
 package no.bekk.bekkopen.person;
 
+import no.bekk.bekkopen.NoCommonsTestCase;
+import org.junit.Test;
+
 import static no.bekk.bekkopen.common.Checksums.ERROR_INVALID_CHECKSUM;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import no.bekk.bekkopen.NoCommonsTestCase;
-
-import org.junit.Test;
 
 public class FodselsnummerValidatorTest extends NoCommonsTestCase {
 

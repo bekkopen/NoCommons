@@ -21,7 +21,7 @@ public class Fodselsnummer extends StringNumber {
 	 * @return A String containing the date and month of birth.
 	 */
 	public String getDateAndMonth() {
-		return parseDNumber(getValue()).substring(0, 4);
+		return parseSynthenticNumber(parseDNumber(getValue())).substring(0, 4);
 	}
 
 	/**
@@ -31,7 +31,7 @@ public class Fodselsnummer extends StringNumber {
 	 * @return A String containing the date of birth
 	 */
 	public String getDayInMonth() {
-		return parseDNumber(getValue()).substring(0, 2);
+		return parseSynthenticNumber(parseDNumber(getValue())).substring(0, 2);
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class Fodselsnummer extends StringNumber {
 	 * @return A String containing the date of birth
 	 */
 	public String getMonth() {
-		return parseDNumber(getValue()).substring(2, 4);
+		return parseSynthenticNumber(parseDNumber(getValue())).substring(2, 4);
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class Fodselsnummer extends StringNumber {
 	 * @return A String containing the date and month of birth.
 	 */
 	public String getDateOfBirth() {
-		return parseDNumber(getValue()).substring(0, 6);
+		return parseSynthenticNumber(parseDNumber(getValue())).substring(0, 6);
 	}
 
 	/**
@@ -155,10 +155,18 @@ public class Fodselsnummer extends StringNumber {
 		return !isMale();
 	}
 
-	static boolean isDNumber(String fodselsnummer) {
+  static String parseSynthenticNumber(String fodselsnummer) {
+    if (!isSynthetic(fodselsnummer)) {
+      return fodselsnummer;
+    } else {
+      return fodselsnummer.substring(0, 2) + (getThirdDigit(fodselsnummer) - 8) + fodselsnummer.substring(3);
+    }
+  }
+
+  static boolean isSynthetic(String fodselsnummer) {
 		try {
-			int firstDigit = getFirstDigit(fodselsnummer);
-			if (firstDigit > 3 && firstDigit < 8) {
+			int thirdDigit = getThirdDigit(fodselsnummer);
+			if (thirdDigit == 8 || thirdDigit == 9) {
 				return true;
 			}
 		} catch (IllegalArgumentException e) {
@@ -166,6 +174,18 @@ public class Fodselsnummer extends StringNumber {
 		}
 		return false;
 	}
+
+  static boolean isDNumber(String fodselsnummer) {
+    try {
+      int firstDigit = getFirstDigit(fodselsnummer);
+      if (firstDigit > 3 && firstDigit < 8) {
+        return true;
+      }
+    } catch (IllegalArgumentException e) {
+      // ignore
+    }
+    return false;
+  }
 
 	static String parseDNumber(String fodselsnummer) {
 		if (!isDNumber(fodselsnummer)) {
@@ -177,6 +197,10 @@ public class Fodselsnummer extends StringNumber {
 
 	private static int getFirstDigit(String fodselsnummer) {
 		return Integer.parseInt(fodselsnummer.substring(0, 1));
+	}
+
+	private static int getThirdDigit(String fodselsnummer) {
+		return Integer.parseInt(fodselsnummer.substring(2, 3));
 	}
 
 	public KJONN getKjonn() {
