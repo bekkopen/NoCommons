@@ -4,6 +4,7 @@ import no.bekk.bekkopen.common.StringNumberValidator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,6 +43,13 @@ public class FodselsnummerValidator extends StringNumberValidator implements Con
    * syntetic fnr/dnr to appair.
    */
 	public static boolean ALLOW_SYNTHETIC_NUMBERS = false;
+
+  static {
+    final URL flag = FodselsnummerValidator.class.getResource("/no.bekk.bekkopen.person.allow_synthetic_numbers.flag");
+    if (flag != null) {
+      ALLOW_SYNTHETIC_NUMBERS = true;
+    }
+  }
 
 	/**
 	 * Returns an object that represents a Fodselsnummer.
