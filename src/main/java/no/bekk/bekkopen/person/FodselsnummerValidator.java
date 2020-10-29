@@ -37,11 +37,11 @@ public class FodselsnummerValidator extends StringNumberValidator implements Con
 	protected static final String ERROR_INVALID_INDIVIDNUMMER = "Invalid individnummer in fødselsnummer : ";
 
   /**
-   * Truthy validation of synthetic fnr/dnr is false. You are adviced to
-   * set til value to false in test environments where you expect
+   * Truthy validation of synthetic fnr/dnr is true. You are adviced to
+   * set til value to true in test environments where you expect
    * syntetic fnr/dnr to appair.
    */
-	public static boolean FAIL_ON_SYNTHETIC_NUMBER = true;
+	public static boolean ALLOW_SYNTHETIC_NUMBERS = false;
 
 	/**
 	 * Returns an object that represents a Fodselsnummer.
@@ -62,7 +62,7 @@ public class FodselsnummerValidator extends StringNumberValidator implements Con
 	}
 
   private static void validateSynthetic(String fodselsnummer) {
-    if (Fodselsnummer.isSynthetic(fodselsnummer) && FAIL_ON_SYNTHETIC_NUMBER) {
+    if (Fodselsnummer.isSynthetic(fodselsnummer) && !ALLOW_SYNTHETIC_NUMBERS) {
       throw new IllegalArgumentException("Syntetic fødselsnummer is not allowd" + fodselsnummer);
     }
   }

@@ -17,12 +17,12 @@ public class SyntheticFodselsnummerCalculatorTest {
 
   @BeforeClass
   public static void setup() {
-    FodselsnummerValidator.FAIL_ON_SYNTHETIC_NUMBER = false;
+    FodselsnummerValidator.ALLOW_SYNTHETIC_NUMBERS = true;
   }
 
   @AfterClass
   public static void taredown() {
-    FodselsnummerValidator.FAIL_ON_SYNTHETIC_NUMBER = true;
+    FodselsnummerValidator.ALLOW_SYNTHETIC_NUMBERS = false;
   }
 
   @Before
