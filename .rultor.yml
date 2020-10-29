@@ -8,6 +8,6 @@ release:
   script: |
     mvn versions:set "-DnewVersion=${tag}"
     git commit -am "${tag}"
-    mvn clean deploy -Pjcabi-gpg,sonatype --settings /home/r/settings.xml
+    mvn clean deploy -Pjcabi-gpg,sonatype -Dmaven.javadoc.skip=true --settings /home/r/settings.xml
   commanders:
   - eivinhb
