@@ -1,6 +1,5 @@
 package no.bekk.bekkopen.mail;
 
-import no.bekk.bekkopen.NoCommonsBase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class MailValidatorTest extends NoCommonsBase {
+public class MailValidatorTest {
 
 	private static final Poststed OSLO = new Poststed("Oslo");
 	private static final Poststed HAMAR = new Poststed("Hamar");

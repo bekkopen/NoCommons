@@ -1,13 +1,12 @@
 package no.bekk.bekkopen.person;
 
-import no.bekk.bekkopen.NoCommonsBase;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class SyntheticFodselsnummerValidatorTest extends NoCommonsBase {
+public class SyntheticFodselsnummerValidatorTest {
 
   @BeforeAll
   public static void setup() {
@@ -15,7 +14,7 @@ public class SyntheticFodselsnummerValidatorTest extends NoCommonsBase {
   }
 
   @AfterAll
-  public static void taredown() {
+  public static void teardown() {
     FodselsnummerValidator.ALLOW_SYNTHETIC_NUMBERS = false;
   }
 
