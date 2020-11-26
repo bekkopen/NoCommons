@@ -1,120 +1,93 @@
 package no.bekk.bekkopen.banking;
 
-import no.bekk.bekkopen.NoCommonsBase;
 import org.junit.jupiter.api.Test;
 
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.joining;
 import static no.bekk.bekkopen.common.Checksums.ERROR_INVALID_CHECKSUM;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
-public class KontonummerValidatorTest extends NoCommonsBase {
+public class KontonummerValidatorTest {
 
-	private static final String KONTONUMMER_VALID = "99990000006";
-	private static final String KONTONUMMER_INVALID_CHECKSUM = "99990000005";
+    private static final String KONTONUMMER_VALID = "99990000006";
+    private static final String KONTONUMMER_INVALID_CHECKSUM = "99990000005";
 
-	@Test
-	public void testInvalidKontonummerWrongLength() {
-		try {
-			KontonummerValidator.validateSyntax("123456789012");
-			fail();
-		} catch (IllegalArgumentException e) {
-			assertMessageContains(e, KontonummerValidator.ERROR_SYNTAX);
-		}
-	}
+    @Test
+    public void testInvalidKontonummerWrongLength() {
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> KontonummerValidator.validateSyntax("123456789012"));
+        assertThat(thrown.getMessage(), containsString(KontonummerValidator.ERROR_SYNTAX));
+    }
 
-	@Test
-	public void testInvalidKontonummerNotDigits() {
-		try {
-			KontonummerValidator.validateSyntax("abcdefghijk");
-			fail();
-		} catch (IllegalArgumentException e) {
-			assertMessageContains(e, KontonummerValidator.ERROR_SYNTAX);
-		}
-	}
+    @Test
+    public void testInvalidKontonummerNotDigits() {
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> KontonummerValidator.validateSyntax("abcdefghijk"));
+        assertThat(thrown.getMessage(), containsString(KontonummerValidator.ERROR_SYNTAX));
+    }
 
-	@Test
-	public void testInvalidKontonummerWrongChecksum() {
-		try {
-			KontonummerValidator.validateChecksum(KONTONUMMER_INVALID_CHECKSUM);
-			fail();
-		} catch (IllegalArgumentException e) {
-			assertMessageContains(e, ERROR_INVALID_CHECKSUM);
-		}
-	}
+    @Test
+    public void testInvalidKontonummerWrongChecksum() {
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> KontonummerValidator.validateChecksum(KONTONUMMER_INVALID_CHECKSUM));
+        assertThat(thrown.getMessage(), containsString(ERROR_INVALID_CHECKSUM));
+    }
 
-	@Test
-	public void testInvalidAccountTypeWrongLength() {
-		StringBuilder b = new StringBuilder(KontonummerValidator.ACCOUNTTYPE_NUM_DIGITS + 1);
-		for (int i = 0; i < KontonummerValidator.ACCOUNTTYPE_NUM_DIGITS + 1; i++) {
-			b.append("0");
-		}
-		try {
-			KontonummerValidator.validateAccountTypeSyntax(b.toString());
-			fail();
-		} catch (IllegalArgumentException e) {
-			assertMessageContains(e, KontonummerValidator.ERROR_SYNTAX);
-		}
-	}
+    @Test
+    public void testInvalidAccountTypeWrongLength() {
+        String wrongLength = Stream.generate(() -> "0").limit(KontonummerValidator.ACCOUNTTYPE_NUM_DIGITS + 1).collect(joining());
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> KontonummerValidator.validateAccountTypeSyntax(wrongLength));
+        assertThat(thrown.getMessage(), containsString(KontonummerValidator.ERROR_SYNTAX));
+    }
 
-	@Test
-	public void testInvalidAccountTypeNotDigits() {
-		StringBuilder b = new StringBuilder(KontonummerValidator.ACCOUNTTYPE_NUM_DIGITS);
-		for (int i = 0; i < KontonummerValidator.ACCOUNTTYPE_NUM_DIGITS; i++) {
-			b.append("A");
-		}
-		try {
-			KontonummerValidator.validateAccountTypeSyntax(b.toString());
-			fail();
-		} catch (IllegalArgumentException e) {
-			assertMessageContains(e, KontonummerValidator.ERROR_SYNTAX);
-		}
-	}
+    @Test
+    public void testInvalidAccountTypeNotDigits() {
+        String correctLengthButNotDigits = Stream.generate(() -> "A").limit(KontonummerValidator.ACCOUNTTYPE_NUM_DIGITS).collect(joining());
 
-	@Test
-	public void testInvalidRegisternummerNotDigits() {
-		StringBuilder b = new StringBuilder(KontonummerValidator.REGISTERNUMMER_NUM_DIGITS);
-		for (int i = 0; i < KontonummerValidator.REGISTERNUMMER_NUM_DIGITS; i++) {
-			b.append("A");
-		}
-		try {
-			KontonummerValidator.validateRegisternummerSyntax(b.toString());
-			fail();
-		} catch (IllegalArgumentException e) {
-			assertMessageContains(e, KontonummerValidator.ERROR_SYNTAX);
-		}
-	}
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> KontonummerValidator.validateAccountTypeSyntax(correctLengthButNotDigits));
+        assertThat(thrown.getMessage(), containsString(KontonummerValidator.ERROR_SYNTAX));
+    }
 
-	@Test
-	public void testInvalidRegisternummerWrongLength() {
-		StringBuilder b = new StringBuilder(KontonummerValidator.REGISTERNUMMER_NUM_DIGITS + 1);
-		for (int i = 0; i < KontonummerValidator.REGISTERNUMMER_NUM_DIGITS + 1; i++) {
-			b.append("0");
-		}
-		try {
-			KontonummerValidator.validateRegisternummerSyntax(b.toString());
-			fail();
-		} catch (IllegalArgumentException e) {
-			assertMessageContains(e, KontonummerValidator.ERROR_SYNTAX);
-		}
-	}
+    @Test
+    public void testInvalidRegisternummerNotDigits() {
+        String correctLengthButNotDigits = Stream.generate(() -> "A").limit(KontonummerValidator.REGISTERNUMMER_NUM_DIGITS).collect(joining());
 
-	@Test
-	public void testGetValidKontonummerFromInvalidKontonummerWrongChecksum() {
-		Kontonummer knr = KontonummerValidator.getAndForceValidKontonummer(KONTONUMMER_INVALID_CHECKSUM);
-		assertTrue(KontonummerValidator.isValid(knr.toString()));
-	}
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> KontonummerValidator.validateRegisternummerSyntax(correctLengthButNotDigits));
+        assertThat(thrown.getMessage(), containsString(KontonummerValidator.ERROR_SYNTAX));
+    }
 
-	@Test
-	public void testIsValid() {
-		assertTrue(KontonummerValidator.isValid(KONTONUMMER_VALID));
-		assertFalse(KontonummerValidator.isValid(KONTONUMMER_INVALID_CHECKSUM));
-	}
+    @Test
+    public void testInvalidRegisternummerWrongLength() {
+        String wrongLength = Stream.generate(() -> "0").limit(KontonummerValidator.REGISTERNUMMER_NUM_DIGITS + 1).collect(joining());
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> KontonummerValidator.validateRegisternummerSyntax(wrongLength));
+        assertThat(thrown.getMessage(), containsString(KontonummerValidator.ERROR_SYNTAX));
+    }
 
-	@Test
-	public void testIf00000000000IsValid(){
-		assertFalse(KontonummerValidator.isValid("00000000000"));
-	}
+    @Test
+    public void testGetValidKontonummerFromInvalidKontonummerWrongChecksum() {
+        Kontonummer knr = KontonummerValidator.getAndForceValidKontonummer(KONTONUMMER_INVALID_CHECKSUM);
+        assertTrue(KontonummerValidator.isValid(knr.toString()));
+    }
+
+    @Test
+    public void testIsValid() {
+        assertTrue(KontonummerValidator.isValid(KONTONUMMER_VALID));
+        assertFalse(KontonummerValidator.isValid(KONTONUMMER_INVALID_CHECKSUM));
+    }
+
+    @Test
+    public void testIf00000000000IsValid(){
+        assertFalse(KontonummerValidator.isValid("00000000000"));
+    }
 
    @Test
    public void testValidNumberEndingOn9() {
