@@ -1,10 +1,10 @@
 package no.bekk.bekkopen.person;
 
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class NavnGeneratorTest {
 
@@ -51,8 +51,8 @@ public class NavnGeneratorTest {
 				antallMedMellomnavn++;
 			}
 		}
-		assertTrue("Forventet mindre enn 50 og fler en 5. Antall med mellomnavn: " + antallMedMellomnavn,
-				5 < antallMedMellomnavn && 50 > antallMedMellomnavn);
+		assertTrue(5 < antallMedMellomnavn && 50 > antallMedMellomnavn,
+      "Forventet mindre enn 50 og fler en 5. Antall med mellomnavn: " + antallMedMellomnavn);
 	}
 
 	@Test
@@ -64,8 +64,8 @@ public class NavnGeneratorTest {
 				antallMedMellomnavn++;
 			}
 		}
-		assertTrue("Forventet mindre enn 50 og fler en 5. Antall med mellomnavn: " + antallMedMellomnavn,
-				5 < antallMedMellomnavn && 50 > antallMedMellomnavn);
+		assertTrue(5 < antallMedMellomnavn && 50 > antallMedMellomnavn,
+      "Forventet mindre enn 50 og fler en 5. Antall med mellomnavn: " + antallMedMellomnavn);
 	}
 
 	private void assertGyldigeNavn(List<Navn> navneliste) {
@@ -75,11 +75,11 @@ public class NavnGeneratorTest {
 	}
 
 	protected static void assertGyldigNavn(Navn navn) {
-		assertTrue(navn.getFornavn() + " matcher ikke " + NAVN_PATTERN, navn.getFornavn().matches(NAVN_PATTERN));
-		assertTrue(navn.getEtternavn() + " matcher ikke " + NAVN_PATTERN, navn.getEtternavn().matches(NAVN_PATTERN));
+		assertTrue(navn.getFornavn().matches(NAVN_PATTERN), navn.getFornavn() + " matcher ikke " + NAVN_PATTERN);
+		assertTrue(navn.getEtternavn().matches(NAVN_PATTERN), navn.getEtternavn() + " matcher ikke " + NAVN_PATTERN);
 		if (null != navn.getMellomnavn()) {
-			assertTrue(navn.getMellomnavn() + " matcher ikke " + NAVN_PATTERN,
-					navn.getMellomnavn().matches(NAVN_PATTERN));
+			assertTrue(navn.getMellomnavn().matches(NAVN_PATTERN),
+        navn.getMellomnavn() + " matcher ikke " + NAVN_PATTERN);
 		}
 	}
 }

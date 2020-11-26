@@ -1,14 +1,14 @@
 package no.bekk.bekkopen.banking;
 
+import no.bekk.bekkopen.NoCommonsBase;
+import org.junit.jupiter.api.Test;
+
 import static no.bekk.bekkopen.common.Checksums.ERROR_INVALID_CHECKSUM;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import no.bekk.bekkopen.NoCommonsTestCase;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Test;
-
-public class KontonummerValidatorTest extends NoCommonsTestCase {
+public class KontonummerValidatorTest extends NoCommonsBase {
 
 	private static final String KONTONUMMER_VALID = "99990000006";
 	private static final String KONTONUMMER_INVALID_CHECKSUM = "99990000005";

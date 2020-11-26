@@ -1,8 +1,8 @@
 package no.bekk.bekkopen.person.annotation;
 
 import no.bekk.bekkopen.person.FodselsnummerCalculator;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -11,13 +11,13 @@ import javax.validation.ValidatorFactory;
 import java.util.Date;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FodselsnummerAnnotationTest {
 
     private static Validator validator;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUp() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();

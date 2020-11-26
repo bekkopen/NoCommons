@@ -1,22 +1,25 @@
 package no.bekk.bekkopen.banking;
 
-import no.bekk.bekkopen.NoCommonsTestCase;
+import no.bekk.bekkopen.NoCommonsBase;
 import no.bekk.bekkopen.common.StringNumberValidator;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static no.bekk.bekkopen.common.Checksums.ERROR_INVALID_CHECKSUM;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-public class KidnummerValidatorTest extends NoCommonsTestCase {
+public class KidnummerValidatorTest extends NoCommonsBase {
 
-    private static final String KIDNUMMER_VALID_MOD10 = "2345676";
+  private static final String KIDNUMMER_VALID_MOD10 = "2345676";
 	private static final String KIDNUMMER_VALID_MOD11 = "12345678903";
 	private static final String KIDNUMMER_INVALID_CHECKSUM = "2345674";
 	private static final String KIDNUMMER_INVALID_LENGTH_SHORT = "122";
 	private static final String KIDNUMMER_INVALID_LENGTH_LONG = "12345678901234567890123456";
-    private static final String KIDNUMMER_VALID_WITH_DASH = "1000005-";
+  private static final String KIDNUMMER_VALID_WITH_DASH = "1000005-";
 
-    @Test
+  @Test
 	public void testInvalidKidnummer() {
 		try {
 			KidnummerValidator.validateSyntax("");

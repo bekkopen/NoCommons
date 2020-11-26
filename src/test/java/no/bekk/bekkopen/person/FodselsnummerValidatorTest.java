@@ -1,14 +1,14 @@
 package no.bekk.bekkopen.person;
 
-import no.bekk.bekkopen.NoCommonsTestCase;
-import org.junit.Test;
+import no.bekk.bekkopen.NoCommonsBase;
+import org.junit.jupiter.api.Test;
 
 import static no.bekk.bekkopen.common.Checksums.ERROR_INVALID_CHECKSUM;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-public class FodselsnummerValidatorTest extends NoCommonsTestCase {
+public class FodselsnummerValidatorTest extends NoCommonsBase {
 
 	@Test
 	public void testInvalidFodselsnummerWrongLength() {

@@ -1,14 +1,14 @@
 package no.bekk.bekkopen.org;
 
+import no.bekk.bekkopen.NoCommonsBase;
+import org.junit.jupiter.api.Test;
+
 import static no.bekk.bekkopen.common.Checksums.ERROR_INVALID_CHECKSUM;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import no.bekk.bekkopen.NoCommonsTestCase;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Test;
-
-public class OrganisasjonsnummerValidatorTest extends NoCommonsTestCase {
+public class OrganisasjonsnummerValidatorTest extends NoCommonsBase {
 
 	private static final String ORGNUMMER_VALID = "981566378";
 	private static final String ORGNUMMER_INVALID_CHECKSUM = "123456789";

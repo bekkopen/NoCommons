@@ -1,10 +1,10 @@
 package no.bekk.bekkopen.banking;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class KontonummerTest {
 
@@ -12,14 +12,14 @@ public class KontonummerTest {
 	private static final String KONTONUMMER_WITH_DOTS = "9999.00.00001";
 	private Kontonummer k = null;
 
-	@Before
-	public void setUpKontonummer() throws Exception {
+	@BeforeEach
+	public void setUpKontonummer() {
 		k = new Kontonummer(KONTONUMMER);
 	}
 
 	@Test
 	public void testKontonummer() {
-		assertNotNull(k);
+		Assertions.assertNotNull(k);
 		assertEquals(KONTONUMMER, k.getValue());
 	}
 
@@ -45,7 +45,7 @@ public class KontonummerTest {
 
 	@Test
 	public void testGetGroupedValue() {
-		assertNotNull(k);
+		Assertions.assertNotNull(k);
 		assertEquals(KONTONUMMER_WITH_DOTS, k.getGroupedValue());
 	}
 

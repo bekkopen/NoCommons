@@ -1,52 +1,66 @@
 package no.bekk.bekkopen.banking;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class KidnummerTest {
     @Test
-    public void mod10Kid() throws Exception {
+    public void mod10Kid() {
         assertValidKid("0000001230", Kidnummer.mod10Kid("123", 10));
         assertValidKid("0000012344", Kidnummer.mod10Kid("1234", 10));
     }
-    
+
     @Test
-    public void mod11Kid() throws Exception {
+    public void mod11Kid() {
         assertValidKid("0000001236", Kidnummer.mod11Kid("123", 10));
         assertValidKid("0000012343", Kidnummer.mod11Kid("1234", 10));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void tooLongBaseMod10() {
-        Kidnummer.mod10Kid("1234567890", 3);
-    } 
+      Assertions.assertThrows(IllegalArgumentException.class,() ->
+        Kidnummer.mod10Kid("1234567890", 3)
+      );
+    }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void tooLongBaseMod101() {
-        Kidnummer.mod11Kid("1234567890", 3);
-    } 
+      Assertions.assertThrows(IllegalArgumentException.class,() ->
+        Kidnummer.mod11Kid("1234567890", 3)
+      );
+    }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void belowRangeMod10() {
-        Kidnummer.mod10Kid("12", 1);
-    } 
+      Assertions.assertThrows(IllegalArgumentException.class,() ->
+        Kidnummer.mod10Kid("12", 1)
+      );
+    }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void belowRangeMod11() {
-        Kidnummer.mod11Kid("12", 1);
-    } 
+      Assertions.assertThrows(IllegalArgumentException.class,() ->
+        Kidnummer.mod11Kid("12", 1)
+      );
+    }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void aboveRangeMod10() {
-        Kidnummer.mod10Kid("12", 26);
-    } 
+      Assertions.assertThrows(IllegalArgumentException.class,() ->
+        Kidnummer.mod10Kid("12", 26)
+      );
+    }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void aboveRangeMod11() {
-        Kidnummer.mod11Kid("12", 26);
-    } 
-    
+      Assertions.assertThrows(IllegalArgumentException.class,() ->
+        Kidnummer.mod11Kid("12", 26)
+      );
+    }
+
     private void assertValidKid(String expected, Kidnummer kidnummer) {
         KidnummerValidator.isValid(kidnummer.toString());
         assertEquals(expected, kidnummer.toString());
