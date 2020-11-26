@@ -105,7 +105,6 @@
 	</developers>
 
   <dependencies>
-    <!-- Apache Commons -->
     <dependency>
       <groupId>javax.validation</groupId>
       <artifactId>validation-api</artifactId>
