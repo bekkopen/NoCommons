@@ -1,8 +1,7 @@
 package no.bekk.bekkopen.person;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -11,14 +10,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class PersonTest {
 
 	private Calendar kalender;
 
-	@Before
+	@BeforeEach
 	public void initialiserKalender() {
 		kalender = Calendar.getInstance();
 	}
@@ -37,17 +38,17 @@ public class PersonTest {
 		assertFalse(person.erKvinne());
 
 		String pFornavn = person.getFornavn();
-		assertTrue(pFornavn + " matcher ikke " + NavnGeneratorTest.NAVN_PATTERN,
-				pFornavn.matches(NavnGeneratorTest.NAVN_PATTERN));
+		assertTrue(pFornavn.matches(NavnGeneratorTest.NAVN_PATTERN),
+      pFornavn + " matcher ikke " + NavnGeneratorTest.NAVN_PATTERN);
 
 		String pEtternavn = person.getEtternavn();
-		assertTrue(pEtternavn + " matcher ikke " + NavnGeneratorTest.NAVN_PATTERN,
-				pEtternavn.matches(NavnGeneratorTest.NAVN_PATTERN));
+		assertTrue(pEtternavn.matches(NavnGeneratorTest.NAVN_PATTERN),
+      pEtternavn + " matcher ikke " + NavnGeneratorTest.NAVN_PATTERN);
 
 		String pMellomnavn = person.getMellomnavn();
 		if (null != pMellomnavn) {
-			assertTrue(pMellomnavn + " matcher ikke " + NavnGeneratorTest.NAVN_PATTERN,
-					pMellomnavn.matches(NavnGeneratorTest.NAVN_PATTERN));
+			assertTrue(pMellomnavn.matches(NavnGeneratorTest.NAVN_PATTERN),
+        pMellomnavn + " matcher ikke " + NavnGeneratorTest.NAVN_PATTERN);
 		}
 
 		Navn pNavn = person.getNavn();
@@ -62,8 +63,8 @@ public class PersonTest {
 
 		Fodselsnummer pFodselsnummer = person.getFodselsnummer();
 		String pFodselsnummerString = pFodselsnummer.getValue();
-		assertTrue(pFodselsnummerString + " er ikke et gyldig fødselsnummer",
-				FodselsnummerValidator.isValid(pFodselsnummerString));
+		assertTrue(FodselsnummerValidator.isValid(pFodselsnummerString),
+      pFodselsnummerString + " er ikke et gyldig fødselsnummer");
 
 		String pPersonnummer = person.getPersonnummer();
 		assertEquals(pFodselsnummer.getPersonnummer(), pPersonnummer);

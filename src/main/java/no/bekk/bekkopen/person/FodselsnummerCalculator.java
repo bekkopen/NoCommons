@@ -2,7 +2,12 @@ package no.bekk.bekkopen.person;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * This class calculates valid Fodselsnummer instances for a given date.
@@ -116,7 +121,7 @@ public class FodselsnummerCalculator {
 	}
 
 	private static List<Fodselsnummer> generateFodselsnummerForDate(String dateString, String centuryString) {
-		List<Fodselsnummer> result = new ArrayList<Fodselsnummer>();
+		List<Fodselsnummer> result = new ArrayList<>();
 		for (int i = 999; i >= 0; i--) {
 			StringBuilder sb = new StringBuilder(dateString);
 			if (i < 10) {

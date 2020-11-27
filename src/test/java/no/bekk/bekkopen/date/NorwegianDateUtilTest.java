@@ -1,7 +1,7 @@
 package no.bekk.bekkopen.date;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -10,14 +10,16 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class NorwegianDateUtilTest {
 	private static DateFormat FORMAT(){
 	    return new SimpleDateFormat("dd.MM.yyyy");
     }
 
-	@Before
+	@BeforeEach
 	public void setLocale() {
 		Locale.setDefault(new Locale("no", "NO"));
 	}
@@ -75,10 +77,10 @@ public class NorwegianDateUtilTest {
 
 	@Test
 	public void testWorkingDays() throws Exception {
-		assertFalse("Sunday not working day", NorwegianDateUtil.isWorkingDay(FORMAT().parse("25.03.2007")));
-		assertTrue("Monday is working day", NorwegianDateUtil.isWorkingDay(FORMAT().parse("26.03.2007")));
-		assertFalse("New years day not working day", NorwegianDateUtil.isWorkingDay(FORMAT().parse("01.01.2007")));
-		assertFalse("Easter day not working day", NorwegianDateUtil.isWorkingDay(FORMAT().parse("08.04.2007")));
+		assertFalse(NorwegianDateUtil.isWorkingDay(FORMAT().parse("25.03.2007")), "Sunday not working day");
+		assertTrue(NorwegianDateUtil.isWorkingDay(FORMAT().parse("26.03.2007")), "Monday is working day");
+		assertFalse(NorwegianDateUtil.isWorkingDay(FORMAT().parse("01.01.2007")), "New years day not working day");
+		assertFalse(NorwegianDateUtil.isWorkingDay(FORMAT().parse("08.04.2007")), "Easter day not working day");
 	}
 
 	@Test
@@ -131,6 +133,6 @@ public class NorwegianDateUtilTest {
 	}
 
 	private void checkHoliday(String date) throws ParseException {
-		assertTrue(date, NorwegianDateUtil.isHoliday(FORMAT().parse(date)));
+		assertTrue(NorwegianDateUtil.isHoliday(FORMAT().parse(date)), date);
 	}
 }

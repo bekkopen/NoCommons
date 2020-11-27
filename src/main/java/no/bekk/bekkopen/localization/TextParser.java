@@ -13,7 +13,7 @@ public class TextParser {
 
 	private final static Map<String, String> replacements;
 	static {
-		replacements = new HashMap<String, String>();
+		replacements = new HashMap<>();
 		replacements.put("\u00F8", "oe");
 		replacements.put("\u00D8", "Oe");
 		replacements.put("\u00E6", "ae");
@@ -29,7 +29,7 @@ public class TextParser {
 	/**
 	 * Replaces the norwegian letters 'æ/Æ', 'ø/Ø' and 'å/Å' with their English
 	 * substitutes ae/Ae, oe/Oe and aa/Aa.
-	 * 
+	 *
 	 * @param text
 	 *            The text containing the Norwegian letters to replace
 	 * @return A text with all Norwegian letters replaced by their respective

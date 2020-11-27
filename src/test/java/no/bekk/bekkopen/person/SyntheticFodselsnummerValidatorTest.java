@@ -1,21 +1,20 @@
 package no.bekk.bekkopen.person;
 
-import no.bekk.bekkopen.NoCommonsTestCase;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class SyntheticFodselsnummerValidatorTest extends NoCommonsTestCase {
+public class SyntheticFodselsnummerValidatorTest {
 
-  @BeforeClass
+  @BeforeAll
   public static void setup() {
     FodselsnummerValidator.ALLOW_SYNTHETIC_NUMBERS = true;
   }
 
-  @AfterClass
-  public static void taredown() {
+  @AfterAll
+  public static void teardown() {
     FodselsnummerValidator.ALLOW_SYNTHETIC_NUMBERS = false;
   }
 

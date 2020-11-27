@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,9 +26,9 @@ public class MailDataLoader {
 		if (is == null) {
 			throw new IllegalArgumentException();
 		}
-		Map<Poststed, List<Postnummer>> poststedMap = new HashMap<Poststed, List<Postnummer>>();
-		Map<Postnummer, Poststed> postnummerMap = new HashMap<Postnummer, Poststed>();
-		InputStreamReader isr = new InputStreamReader(is, Charset.forName("UTF-8"));
+		Map<Poststed, List<Postnummer>> poststedMap = new HashMap<>();
+		Map<Postnummer, Poststed> postnummerMap = new HashMap<>();
+		InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
 		BufferedReader br = new BufferedReader(isr);
 		String line;
 		while ((line = br.readLine()) != null) {
@@ -37,7 +37,7 @@ public class MailDataLoader {
 			Poststed ps = new Poststed(st.nextToken());
 
 			// add to poststedMap
-			List<Postnummer> postnummerList = new ArrayList<Postnummer>();
+			List<Postnummer> postnummerList = new ArrayList<>();
 			if (poststedMap.containsKey(ps)) {
 				postnummerList = poststedMap.get(ps);
 			}

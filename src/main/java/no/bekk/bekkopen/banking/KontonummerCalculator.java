@@ -21,7 +21,7 @@ public class KontonummerCalculator {
 	}
 
 	private static List<Kontonummer> getKontonummerListUsingGenerator(KontonummerDigitGenerator generator, int length) {
-		List<Kontonummer> result = new ArrayList<Kontonummer>();
+		List<Kontonummer> result = new ArrayList<>();
 		int numAddedToList = 0;
 		while (numAddedToList < length) {
 			Kontonummer kontoNr;
@@ -40,7 +40,7 @@ public class KontonummerCalculator {
 	/**
 	 * Returns a List with random but syntactically valid Kontonummer instances
 	 * for a given AccountType.
-	 * 
+	 *
 	 * @param accountType
 	 *            A String representing the AccountType to use for all
 	 *            Kontonummer instances
@@ -79,7 +79,7 @@ public class KontonummerCalculator {
 	/**
 	 * Returns a List with random but syntactically valid Kontonummer instances
 	 * for a given Registernummer.
-	 * 
+	 *
 	 * @param registernummer
 	 *            A String representing the Registernummer to use for all
 	 *            Kontonummer instances
@@ -118,11 +118,11 @@ public class KontonummerCalculator {
 	/**
 	 * Returns a List with completely random but syntactically valid Kontonummer
 	 * instances.
-	 * 
+	 *
 	 * @param length
 	 *            Specifies the number of Kontonummer instances to create in the
 	 *            returned List
-	 * 
+	 *
 	 * @return A List with random valid Kontonummer instances
 	 */
 	public static List<Kontonummer> getKontonummerList(int length) {
