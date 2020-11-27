@@ -6,7 +6,11 @@ import no.bekk.bekkopen.common.StringNumberValidator;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import static no.bekk.bekkopen.common.Checksums.*;
+import static no.bekk.bekkopen.common.Checksums.ERROR_INVALID_CHECKSUM;
+import static no.bekk.bekkopen.common.Checksums.calculateMod10CheckSum;
+import static no.bekk.bekkopen.common.Checksums.calculateMod11CheckSumAllowDash;
+import static no.bekk.bekkopen.common.Checksums.getMod10Weights;
+import static no.bekk.bekkopen.common.Checksums.getMod11Weights;
 
 public class KidnummerValidator extends StringNumberValidator implements ConstraintValidator<no.bekk.bekkopen.banking.annotation.Kidnummer, String> {
 

@@ -1,11 +1,11 @@
 package no.bekk.bekkopen.mail;
 
+import no.bekk.bekkopen.common.StringNumberValidator;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import no.bekk.bekkopen.common.StringNumberValidator;
 
 /**
  * Validates Postnummer and Poststed objects.
@@ -13,8 +13,8 @@ import no.bekk.bekkopen.common.StringNumberValidator;
 public class MailValidator extends StringNumberValidator {
 
 	private static final int POSTNUMMER_LENGTH = 4;
-	private static Map<?, ?> poststedMap = new HashMap<Object, Object>();
-	private static Map<?, ?> postnummerMap = new HashMap<Object, Object>();
+	private static Map<?, ?> poststedMap = new HashMap<>();
+	private static Map<?, ?> postnummerMap = new HashMap<>();
 
 	public static void setPostnummerMap(Map<?, ?> aPostnummerMap) {
 		MailValidator.postnummerMap = aPostnummerMap;
@@ -49,7 +49,7 @@ public class MailValidator extends StringNumberValidator {
 	public static List<?> getPostnummerForPoststed(String string) {
 		Poststed p = new Poststed(string);
 		List<?> postnummerList = (List<?>) poststedMap.get(p);
-		return (postnummerList == null ? new ArrayList<Object>() : postnummerList);
+		return (postnummerList == null ? new ArrayList<>() : postnummerList);
 	}
 
 	private static void validateSyntax(String postnummer) {

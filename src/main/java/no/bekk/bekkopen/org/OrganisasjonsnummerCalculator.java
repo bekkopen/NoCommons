@@ -17,15 +17,15 @@ public class OrganisasjonsnummerCalculator {
 	/**
 	 * Returns a List with completely random but syntactically valid
 	 * Organisasjonsnummer instances.
-	 * 
+	 *
 	 * @param length
 	 *            Specifies the number of Organisasjonsnummer instances to
 	 *            create in the returned List
-	 * 
+	 *
 	 * @return A List with random valid Organisasjonsnummer instances
 	 */
 	public static List<Organisasjonsnummer> getOrganisasjonsnummerList(int length) {
-		List<Organisasjonsnummer> result = new ArrayList<Organisasjonsnummer>();
+		List<Organisasjonsnummer> result = new ArrayList<>();
 		int numAddedToList = 0;
 		while (numAddedToList < length) {
 			StringBuilder orgnrBuffer = new StringBuilder(LENGTH);
