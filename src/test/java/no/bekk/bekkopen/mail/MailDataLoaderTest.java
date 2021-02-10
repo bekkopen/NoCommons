@@ -1,6 +1,7 @@
 package no.bekk.bekkopen.mail;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
@@ -20,6 +21,13 @@ public class MailDataLoaderTest {
         Locale.setDefault(new Locale("no", "NO"));
         File f = new File("src/main/resources/postnummer.csv");
         MailDataLoader.loadFromInputStream(new FileInputStream(f));
+    }
+
+    @Test
+    public void testExceptionVedFeilInputVedLastingAvFil() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            MailDataLoader.loadFromInputStream(null);
+        });
     }
 
     @Test

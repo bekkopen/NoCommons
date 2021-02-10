@@ -27,63 +27,60 @@ public class MailDataLoader {
         super();
     }
 
-    public static void loadFromInputStream(InputStream is) throws IOException {
+    public static void loadFromInputStream(InputStream is) {
         if (is == null) {
             throw new IllegalArgumentException();
         }
 
         Map<Postnummer, PostInfo> postInfo = new HashMap<>();
 
-        InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
-        BufferedReader br = new BufferedReader(isr);
-        String line;
-        while ((line = br.readLine()) != null) {
-            StringTokenizer st = new StringTokenizer(line, ",", false);
+        try (
+            InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
+            BufferedReader br = new BufferedReader(isr);
+        ) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                StringTokenizer st = new StringTokenizer(line, ",", false);
 
-            Postnummer postnummer = MailValidator.getPostnummer(st.nextToken());
-            Poststed poststed = new Poststed(st.nextToken());
-            Kommunenummer kommunenummer = MailValidator.getKommunenummer(st.nextToken());
-            Kommunenavn kommunenavn = new Kommunenavn(st.nextToken());
-            PostnummerKategori postnummerKategori = MailValidator.getPostnummerKategori(st.nextToken());
+                Postnummer postnummer = MailValidator.getPostnummer(st.nextToken());
+                Poststed poststed = new Poststed(st.nextToken());
+                Kommunenummer kommunenummer = MailValidator.getKommunenummer(st.nextToken());
+                Kommunenavn kommunenavn = new Kommunenavn(st.nextToken());
+                PostnummerKategori postnummerKategori = MailValidator.getPostnummerKategori(st.nextToken());
 
-            // add to postInfo
-            postInfo.put(
-                postnummer,
-                new PostInfo(
+                // add to postInfo
+                postInfo.put(
                     postnummer,
-                    poststed,
-                    kommunenummer,
-                    kommunenavn,
-                    postnummerKategori
-                )
-            );
+                    new PostInfo(
+                        postnummer,
+                        poststed,
+                        kommunenummer,
+                        kommunenavn,
+                        postnummerKategori
+                    )
+                );
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        br.close();
-        isr.close();
 
         MailValidator.setPostInfo(postInfo);
     }
 
     public static boolean loadFromClassPath() {
         boolean success = false;
-        InputStream is = null;
-        try {
-            is = MailDataLoader.class.getResourceAsStream("/postnummer.csv");
+
+        try (InputStream is = MailDataLoader.class.getResourceAsStream("/postnummer.csv")) {
             loadFromInputStream(is);
             success = true;
         } catch (IOException e) {
-            // ignore
-        } finally {
-            try {
-                if (is != null) {
-                    is.close();
-                }
-            } catch (IOException e) {
-                // ignore
-            }
+            e.printStackTrace();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
         }
+
         return success;
     }
-
 }
