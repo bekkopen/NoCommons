@@ -5,11 +5,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
+
+import no.bekk.bekkopen.mail.model.Kommunenavn;
+import no.bekk.bekkopen.mail.model.Kommunenummer;
+import no.bekk.bekkopen.mail.model.PostInfo;
+import no.bekk.bekkopen.mail.model.Postnummer;
+import no.bekk.bekkopen.mail.model.PostnummerKategori;
+import no.bekk.bekkopen.mail.model.Poststed;
 
 /**
  * This class loads data about Postnummer and Poststed into memory. The class
@@ -18,64 +23,67 @@ import java.util.StringTokenizer;
  */
 public class MailDataLoader {
 
-	private MailDataLoader() {
-		super();
-	}
+    private MailDataLoader() {
+        super();
+    }
 
-	public static void loadFromInputStream(InputStream is) throws IOException {
-		if (is == null) {
-			throw new IllegalArgumentException();
-		}
-		Map<Poststed, List<Postnummer>> poststedMap = new HashMap<>();
-		Map<Postnummer, Poststed> postnummerMap = new HashMap<>();
-		InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
-		BufferedReader br = new BufferedReader(isr);
-		String line;
-		while ((line = br.readLine()) != null) {
-			StringTokenizer st = new StringTokenizer(line, "\t", false);
-			Postnummer pn = MailValidator.getPostnummer(st.nextToken());
-			Poststed ps = new Poststed(st.nextToken());
+    public static void loadFromInputStream(InputStream is) throws IOException {
+        if (is == null) {
+            throw new IllegalArgumentException();
+        }
 
-			// add to poststedMap
-			List<Postnummer> postnummerList = new ArrayList<>();
-			if (poststedMap.containsKey(ps)) {
-				postnummerList = poststedMap.get(ps);
-			}
-			if (!postnummerList.contains(pn)) {
-				postnummerList.add(pn);
-			}
-			poststedMap.put(ps, postnummerList);
+        Map<Postnummer, PostInfo> postInfo = new HashMap<>();
 
-			// add to postnummerMap
-			if (!postnummerMap.containsKey(pn)) {
-				postnummerMap.put(pn, ps);
-			}
-		}
-		br.close();
-		isr.close();
-		MailValidator.setPoststedMap(poststedMap);
-		MailValidator.setPostnummerMap(postnummerMap);
-	}
+        InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
+        BufferedReader br = new BufferedReader(isr);
+        String line;
+        while ((line = br.readLine()) != null) {
+            StringTokenizer st = new StringTokenizer(line, ",", false);
 
-	public static boolean loadFromClassPath() {
-		boolean success = false;
-		InputStream is = null;
-		try {
-			is = MailDataLoader.class.getResourceAsStream("/tilbud5.txt");
-			loadFromInputStream(is);
-			success = true;
-		} catch (IOException e) {
-			// ignore
-		} finally {
-			try {
-				if (is != null) {
-					is.close();
-				}
-			} catch (IOException e) {
-				// ignore
-			}
-		}
-		return success;
-	}
+            Postnummer postnummer = MailValidator.getPostnummer(st.nextToken());
+            Poststed poststed = new Poststed(st.nextToken());
+            Kommunenummer kommunenummer = MailValidator.getKommunenummer(st.nextToken());
+            Kommunenavn kommunenavn = new Kommunenavn(st.nextToken());
+            PostnummerKategori postnummerKategori = MailValidator.getPostnummerKategori(st.nextToken());
+
+            // add to postInfo
+            postInfo.put(
+                postnummer,
+                new PostInfo(
+                    postnummer,
+                    poststed,
+                    kommunenummer,
+                    kommunenavn,
+                    postnummerKategori
+                )
+            );
+        }
+
+        br.close();
+        isr.close();
+
+        MailValidator.setPostInfo(postInfo);
+    }
+
+    public static boolean loadFromClassPath() {
+        boolean success = false;
+        InputStream is = null;
+        try {
+            is = MailDataLoader.class.getResourceAsStream("/postnummer.csv");
+            loadFromInputStream(is);
+            success = true;
+        } catch (IOException e) {
+            // ignore
+        } finally {
+            try {
+                if (is != null) {
+                    is.close();
+                }
+            } catch (IOException e) {
+                // ignore
+            }
+        }
+        return success;
+    }
 
 }

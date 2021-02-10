@@ -1,4 +1,4 @@
-package no.bekk.bekkopen.mail;
+package no.bekk.bekkopen.mail.model;
 
 import no.bekk.bekkopen.common.StringNumber;
 
@@ -7,9 +7,7 @@ import no.bekk.bekkopen.common.StringNumber;
  * consists of 4 digits.
  */
 public class Postnummer extends StringNumber {
-
-    Postnummer(String postnummerString) {
+    public Postnummer(String postnummerString) {
         super(postnummerString);
     }
-
 }

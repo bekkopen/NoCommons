@@ -13,14 +13,14 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import no.bekk.bekkopen.mail.validator.PostnummerValidator;
+import no.bekk.bekkopen.mail.validator.KommunenummerValidator;
 
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, TYPE_USE, TYPE_PARAMETER })
 @Retention(RUNTIME)
-@Constraint(validatedBy = PostnummerValidator.class)
-public @interface Postnummer {
+@Constraint(validatedBy = KommunenummerValidator.class)
+public @interface Kommunenummer {
 
-    String message() default "Invalid postnummer";
+    String message() default "Invalid kommunenummer";
 
     Class<?>[] groups() default {};
 
