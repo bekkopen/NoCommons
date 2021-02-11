@@ -18,6 +18,10 @@ Maven Site: [http://bekkopen.github.com/NoCommons/](http://bekkopen.github.com/N
   * validering
   * generering
 * Postnummer
+  * oppslag
+  * validering
+* Kommunenummer / kommunenavn
+  * oppslag
   * validering
 * Bank
   * Kontonummer validering og generering
@@ -37,10 +41,6 @@ Maven Site: [http://bekkopen.github.com/NoCommons/](http://bekkopen.github.com/N
   * Finn fylkesnummer for fylke
   * Finn fylke for fylkesnummer
   * Validere fylke og / eller fylkesnummer
-* Kommunenummer
-  * Finn kommunenummer for kommune
-  * Finn kommune for kommunenummer
-  * Validere kommune og / eller kommunenummer
 * Registreringsnummer
   * Validering av regnummer
   * Finn trafikkstasjon for bilnummer
@@ -49,7 +49,3 @@ Maven Site: [http://bekkopen.github.com/NoCommons/](http://bekkopen.github.com/N
   * Gyldig nummer (mange er reserverte)
   * "Korrekte" skrivemåter
   * Diverse logikk rundt nummerserier - finn leverandør, fylke etc
-* Postnummer
-  * Finn poststed basert på postnummer og omvendt
-  * Finn poststed basert på starten av postnummer og omvendt
-  * Basere seg på lister fra posten: [http://epab.posten.no/Norsk/Nedlasting/NedlastingMeny.htm](http://epab.posten.no/Norsk/Nedlasting/NedlastingMeny.htm])
