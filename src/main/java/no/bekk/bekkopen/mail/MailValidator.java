@@ -3,7 +3,6 @@ package no.bekk.bekkopen.mail;
 import static no.bekk.bekkopen.common.HelperFunctions.distinctByKey;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -35,7 +34,9 @@ public class MailValidator extends StringNumberValidator {
     private static final int POSTNUMMER_LENGTH = 4;
     private static final int KOMMUNENUMMER_LENGTH = 4;
 
-    private static Map<Postnummer, PostInfo> postInfo = new HashMap<>();
+    private static Map<Postnummer, PostInfo> postInfo = MailDataLoader.loadFromInputStream(
+        MailValidator.class.getResourceAsStream("/postnummer.csv")
+    );
 
     public static Postnummer getPostnummer(String postnummer) {
         validatePostnummerSyntax(postnummer);
@@ -53,6 +54,10 @@ public class MailValidator extends StringNumberValidator {
 
     // Setup
 
+    /**
+     * @deprecated 11.02.2021 The postnummer data is loaded automatically
+     */
+    @Deprecated
     public static void setPostInfo(Map<Postnummer, PostInfo> postInfo) {
         MailValidator.postInfo = postInfo;
     }

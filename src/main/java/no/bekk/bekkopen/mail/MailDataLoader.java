@@ -27,7 +27,7 @@ public class MailDataLoader {
         super();
     }
 
-    public static void loadFromInputStream(InputStream is) {
+    public static Map<Postnummer, PostInfo> loadFromInputStream(InputStream is) {
         if (is == null) {
             throw new IllegalArgumentException();
         }
@@ -64,14 +64,19 @@ public class MailDataLoader {
             e.printStackTrace();
         }
 
-        MailValidator.setPostInfo(postInfo);
+        return postInfo;
     }
 
+    /**
+     * @deprecated 11.02.2021 The postnummer data is loaded automatically
+     */
+    @Deprecated
     public static boolean loadFromClassPath() {
         boolean success = false;
+        Map<Postnummer, PostInfo> postInfo = new HashMap<>();
 
         try (InputStream is = MailDataLoader.class.getResourceAsStream("/postnummer.csv")) {
-            loadFromInputStream(is);
+            postInfo = loadFromInputStream(is);
             success = true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -79,6 +84,10 @@ public class MailDataLoader {
             e.printStackTrace();
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
+        }
+
+        if (success) {
+            MailValidator.setPostInfo(postInfo);
         }
 
         return success;

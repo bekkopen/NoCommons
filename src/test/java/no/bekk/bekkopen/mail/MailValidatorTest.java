@@ -4,89 +4,28 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import no.bekk.bekkopen.mail.model.Kommunenavn;
-import no.bekk.bekkopen.mail.model.Kommunenummer;
-import no.bekk.bekkopen.mail.model.PostInfo;
-import no.bekk.bekkopen.mail.model.Postnummer;
 import no.bekk.bekkopen.mail.model.PostnummerKategori;
 import no.bekk.bekkopen.mail.model.Poststed;
 
 public class MailValidatorTest {
     private static final Poststed HAMAR = new Poststed("Hamar");
 
-    private static final List<PostInfo> postInfo = Arrays.asList(
-        new PostInfo(
-            new Postnummer("4633"),
-            new Poststed("KRISTIANSAND S"),
-            new Kommunenummer("4204"),
-            new Kommunenavn("KRISTIANSAND"),
-            PostnummerKategori.G
-        ),
-        new PostInfo(
-            new Postnummer("2315"),
-            new Poststed("HAMAR"),
-            new Kommunenummer("3403"),
-            new Kommunenavn("HAMAR"),
-            PostnummerKategori.G
-        ),
-        new PostInfo(
-            new Postnummer("2316"),
-            new Poststed("HAMAR"),
-            new Kommunenummer("3403"),
-            new Kommunenavn("HAMAR"),
-            PostnummerKategori.G
-        ),
-        new PostInfo(
-            new Postnummer("0457"),
-            new Poststed("OSLO"),
-            new Kommunenummer("0301"),
-            new Kommunenavn("OSLO"),
-            PostnummerKategori.G
-        ),
-        new PostInfo(
-            new Postnummer("0357"),
-            new Poststed("OSLO"),
-            new Kommunenummer("0301"),
-            new Kommunenavn("OSLO"),
-            PostnummerKategori.G
-        ),
-        new PostInfo(
-            new Postnummer("0102"),
-            new Poststed("OSLO"),
-            new Kommunenummer("0301"),
-            new Kommunenavn("OSLO"),
-            PostnummerKategori.P
-        )
-    );
-
-    @BeforeEach
-    public void setUpMailValidator() {
-        Map<Postnummer, PostInfo> postInfo =
-            MailValidatorTest.postInfo.stream().collect(Collectors.toMap(e -> e.getPostnummer(), e -> e));
-
-        MailValidator.setPostInfo(postInfo);
-    }
-
     @Test
     public void testGetPostnummerForPoststed() {
         List<?> options = MailValidator.getPostnummerForPoststed("Hamar");
-        assertEquals(2, options.size());
+        assertEquals(18, options.size());
         options = MailValidator.getPostnummerForPoststed("Oslo");
-        assertEquals(3, options.size());
+        assertEquals(637, options.size());
     }
 
     @Test
     public void testGetPostnummerForPoststedWithDifferentCase() {
         List<?> options = MailValidator.getPostnummerForPoststed("HAMAR");
-        assertEquals(2, options.size());
+        assertEquals(18, options.size());
     }
 
     @Test
