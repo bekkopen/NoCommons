@@ -94,7 +94,7 @@ public class MailValidator extends StringNumberValidator {
 
     public static int getAntallPoststed() {
         return (int) postInfo.entrySet().stream()
-            .map(s -> s.getValue())
+            .map(pI -> pI.getValue())
             .filter(distinctByKey(PostInfo::getPoststed))
             .count();
     }
@@ -105,7 +105,7 @@ public class MailValidator extends StringNumberValidator {
 
     public static int getAntallKommunenummer() {
         return (int) postInfo.entrySet().stream()
-            .map(s -> s.getValue())
+            .map(pI -> pI.getValue())
             .filter(distinctByKey(PostInfo::getKommunenummer))
             .count();
     }
@@ -144,8 +144,8 @@ public class MailValidator extends StringNumberValidator {
 
         List<Postnummer> postnummerList =
             postInfo.entrySet().stream()
-                .filter(a -> a.getValue().getPoststed().equals(p))
-                .map(x -> x.getValue().getPostnummer())
+                .filter(pI -> pI.getValue().getPoststed().equals(p))
+                .map(pI -> pI.getValue().getPostnummer())
                 .collect(Collectors.toList());
 
         return (postnummerList == null ? new ArrayList<>() : postnummerList);
@@ -155,8 +155,8 @@ public class MailValidator extends StringNumberValidator {
 
     public static Optional<PostInfo> getPostInfoForKommunenummer(String kommunenummer) {
         return postInfo.entrySet().stream()
-            .map(s -> s.getValue())
-            .filter(s -> s.getKommunenummer().toString().equals(kommunenummer))
+            .map(pI -> pI.getValue())
+            .filter(pI -> pI.getKommunenummer().toString().equals(kommunenummer))
             .findFirst();
     }
 
@@ -168,8 +168,8 @@ public class MailValidator extends StringNumberValidator {
 
     public static Optional<PostInfo> getPostInfoForKommunenavn(String kommunenavn) {
         return postInfo.entrySet().stream()
-            .map(s -> s.getValue())
-            .filter(s -> s.getKommunenavn().toString().equalsIgnoreCase(kommunenavn))
+            .map(pI -> pI.getValue())
+            .filter(pI -> pI.getKommunenavn().toString().equalsIgnoreCase(kommunenavn))
             .findFirst();
     }
 
