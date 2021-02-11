@@ -13,8 +13,7 @@ Maven Site: [http://bekkopen.github.com/NoCommons/](http://bekkopen.github.com/N
 * Personnummer
   * validering
   * generering
-* Organisasjonsnummer
-  * [http://www.brreg.no/samordning/organisasjonsnummer.html](http://www.brreg.no/samordning/organisasjonsnummer.html)
+* [Organisasjonsnummer](https://www.brreg.no/om-oss/oppgavene-vare/alle-registrene-vare/om-enhetsregisteret/organisasjonsnummeret/)
   * validering
   * generering
 * Postnummer
