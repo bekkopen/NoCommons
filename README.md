@@ -39,9 +39,6 @@ Maven Site: [http://bekkopen.github.com/NoCommons/](http://bekkopen.github.com/N
 * Registreringsnummer
   * validering
   * oppslag
-
-## Features som ikke er implementert, men som kan passe inn  
 * Telefonnummer
-  * Gyldig nummer (mange er reserverte)
-  * "Korrekte" skrivemåter
-  * Diverse logikk rundt nummerserier - finn leverandør, fylke etc
+  * validering
+  * oppslag
