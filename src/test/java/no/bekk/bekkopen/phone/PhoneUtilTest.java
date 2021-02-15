@@ -55,7 +55,7 @@ public class PhoneUtilTest {
 
     @DisplayName("Telefonnummer skal være gyldig")
     @ParameterizedTest
-    @ValueSource(strings = { "99999999", "95087795", "40095096", "41414141" })
+    @ValueSource(strings = { "99999999", "99 99 99 99", "95087795", "40095096", "41414141" })
     void testAtGyldigeTelefonnummerValiderer(String telefonnummer) {
         assertTrue(PhoneUtil.erGyldigNummer(telefonnummer));
     }

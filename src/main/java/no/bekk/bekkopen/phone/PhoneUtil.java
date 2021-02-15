@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
@@ -70,18 +69,14 @@ public class PhoneUtil {
     }
 
     public static List<Nummerserie> hentNummerserieFraTilbyder(Tilbyder tilbyder) {
-        try {
-            return nummerserier.stream().filter(
-                ns -> ns.getTilbyder().equals(tilbyder)
-            ).collect(Collectors.toList());
-        } catch (NullPointerException e) { // TODO
-            return Collections.emptyList();
-        }
+        return nummerserier.stream().filter(
+            ns -> ns.getTilbyder().equals(tilbyder)
+        ).collect(Collectors.toList());
     }
 
     public static Nummerserie hentNummerserieFraTelefonnummer(String telefonnummer) {
         return nummerserier.stream()
-            .filter(nummerserie -> nummerserie.getNummerområde().erInnenforNummerområde(telefonnummer))
+            .filter(nummerserie -> nummerserie.getNummerområde().erInnenforNummerområde(s(telefonnummer)))
             .findAny()
             .orElse(null);
     }
@@ -95,19 +90,19 @@ public class PhoneUtil {
     // Validate
 
     public static boolean erGyldigNummer(String telefonnummer) {
-        return telefonnummerPattern.matcher(telefonnummer).matches()
-            && nummerEksisterer(telefonnummer);
+        return telefonnummerPattern.matcher(s(telefonnummer)).matches()
+            && nummerEksisterer(s(telefonnummer));
     }
 
     public static boolean nummerEksisterer(String telefonnummer) {
         return nummerserier.stream()
-            .filter(nummerserie -> nummerserie.getNummerområde().erInnenforNummerområde(telefonnummer))
+            .filter(nummerserie -> nummerserie.getNummerområde().erInnenforNummerområde(s(telefonnummer)))
             .findAny().orElse(null) != null;
     }
 
     public static boolean nummerErTildelt(String telefonnummer) {
         return nummerserier.stream()
-            .filter(nummerserie -> nummerserie.getNummerområde().erInnenforNummerområde(telefonnummer)
+            .filter(nummerserie -> nummerserie.getNummerområde().erInnenforNummerområde(s(telefonnummer))
                 && nummerserie.getStatus() == Status.TILDELT)
             .findAny().orElse(null) != null;
     }
@@ -161,5 +156,12 @@ public class PhoneUtil {
         } else {
             return nextToken;
         }
+    }
+
+    /**
+     * remove whitespace from string
+     */
+    private static String s(String text) {
+        return text.replaceAll("\\s+", "");
     }
 }
