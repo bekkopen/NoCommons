@@ -36,12 +36,11 @@ Maven Site: [http://bekkopen.github.com/NoCommons/](http://bekkopen.github.com/N
   * Sjekk om dato er arbeidsdag (dvs. ikke helligdag eller helg)
   * Legg til x antall arbeidsdager til en gitt dato
   * Liste ut alle helligdager
+* Registreringsnummer
+  * validering
+  * oppslag
 
 ## Features som ikke er implementert, men som kan passe inn  
-* Registreringsnummer
-  * Validering av regnummer
-  * Finn trafikkstasjon for bilnummer
-  * Finn lenke på nettet til infoside
 * Telefonnummer
   * Gyldig nummer (mange er reserverte)
   * "Korrekte" skrivemåter

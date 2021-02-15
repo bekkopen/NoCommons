@@ -1,6 +1,9 @@
 package no.bekk.bekkopen.vehicle;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -52,16 +55,34 @@ public class VehicleUtilTest {
 
         assertEquals(2, traffikstasjoner.size());
         assertEquals("JESSHEIM",
-            traffikstasjoner.stream()
-                .filter(trafikkstasjon -> trafikkstasjon.getGeografiskOmråde().equals("JESSHEIM"))
-                .findFirst()
-                .get().getGeografiskOmråde()
+            traffikstasjoner.get(0).getGeografiskOmråde()
         );
         assertEquals("LILLESTRØM",
-            traffikstasjoner.stream()
-                .filter(trafikkstasjon -> trafikkstasjon.getGeografiskOmråde().equals("LILLESTRØM"))
-                .findFirst()
-                .get().getGeografiskOmråde()
+            traffikstasjoner.get(1).getGeografiskOmråde()
         );
+    }
+
+    @Test
+    public void testHentSkiltserieFraKjennemerke() {
+        List<Trafikkstasjon> traffikstasjoner =
+            VehicleUtil.hentSkiltserieFraKjennemerke("PR12345").getTrafikkstasjoner();
+
+        assertEquals(1, traffikstasjoner.size());
+        assertEquals("KRISTIANSAND",
+            traffikstasjoner.get(0).getGeografiskOmråde()
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            VehicleUtil.hentSkiltserieFraKjennemerke("PR01234");
+        });
+    }
+
+    @Test
+    public void testGyldigKjennemerke() {
+        assertTrue(VehicleUtil.erGyldigKjennemerke("PR12345"));
+        assertTrue(VehicleUtil.erGyldigKjennemerke("PR12345"));
+        assertFalse(VehicleUtil.erGyldigKjennemerke("PR01234"));
+        assertFalse(VehicleUtil.erGyldigKjennemerke("P12345"));
+        assertFalse(VehicleUtil.erGyldigKjennemerke("DUMMY"));
     }
 }

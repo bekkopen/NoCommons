@@ -10,8 +10,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.regex.Pattern;
 
-import no.bekk.bekkopen.person.NavnGenerator;
 import no.bekk.bekkopen.vehicle.model.BokstavKombinasjon;
 import no.bekk.bekkopen.vehicle.model.BokstavKombinasjonKategori;
 import no.bekk.bekkopen.vehicle.model.Skiltserie;
@@ -26,13 +26,23 @@ import no.bekk.bekkopen.vehicle.model.Trafikkstasjon;
  * Tallseriene for biler og lastebiler er fra 10000 til 99999, mens for andre kjøretøy er det fra 1000 til 9999.
  */
 public class VehicleUtil {
+    private static final Pattern skiltnummerPattern = Pattern.compile("^[A-Z]{2}[1-9]{1}[0-9]{3,4}$");
+
     // Setup
 
     private final static Map<BokstavKombinasjon, Skiltserie> skiltserier = lesSkiltserierFraCsvFil(
-        NavnGenerator.class.getResourceAsStream("/kjennemerke_skiltserier.csv")
+        VehicleUtil.class.getResourceAsStream("/kjennemerke_skiltserier.csv")
     );
 
     // Lookup
+
+    public static Skiltserie hentSkiltserieFraKjennemerke(String kjennemerke) {
+        if (!erGyldigKjennemerke(kjennemerke)) {
+            throw new IllegalArgumentException("Ugyldig kjennemerke");
+        }
+
+        return hentSkiltserieFraBokstavkombinasjon(kjennemerke.substring(0, 2));
+    }
 
     public static Skiltserie hentSkiltserieFraBokstavkombinasjon(String bokstavKombinasjon) {
         return hentSkiltserieFraBokstavkombinasjon(
@@ -53,6 +63,12 @@ public class VehicleUtil {
             .map(s -> s.getValue())
             .filter(distinctByKey(Skiltserie::getBokstavKombinasjon))
             .count();
+    }
+
+    // Validator
+
+    public static boolean erGyldigKjennemerke(String kjennemerke) {
+        return skiltnummerPattern.matcher(kjennemerke).matches();
     }
 
     // Helper functions
