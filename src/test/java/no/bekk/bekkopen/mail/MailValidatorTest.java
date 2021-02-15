@@ -78,6 +78,11 @@ public class MailValidatorTest {
     }
 
     @Test
+    public void testPoststedFor4633() {
+        assertEquals("KRISTIANSAND S", MailValidator.getPoststedForPostnummer("4633").toString());
+    }
+
+    @Test
     public void testKommuneFor4633() {
         assertEquals("4204", MailValidator.getKommunenummerForPostnummer("4633").toString());
         assertEquals("KRISTIANSAND", MailValidator.getKommunenavnForPostnummer("4633").toString());
@@ -92,5 +97,17 @@ public class MailValidatorTest {
     public void testKommunenummerForKristiansand() {
         assertEquals("4204", MailValidator.getKommunenummerForKommunenavn("Kristiansand").toString());
         assertEquals("4204", MailValidator.getKommunenummerForKommunenavn("KRISTIANSAND").toString());
+    }
+
+    @Test
+    public void testFylkeForKristiansand() {
+        assertEquals("Agder", MailValidator.getFylkeForPostnummer("4633").getFylkesNavn());
+        assertEquals("Agder", MailValidator.getFylkeForKommunenummer("4204").getFylkesNavn());
+        assertEquals("Agder", MailValidator.getFylkeForPoststed("Kristiansand S").getFylkesNavn());
+    }
+
+    @Test void testFylkeForFylkesnavnOgFylkesnummer() {
+        assertEquals("Agder", MailValidator.getFylkeForFylkesnummer("42").getFylkesNavn());
+        assertEquals("42", MailValidator.getFylkeForFylkesnavn("Agder").getFylkesNummer());
     }
 }

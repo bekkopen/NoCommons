@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import no.bekk.bekkopen.common.StringNumberValidator;
+import no.bekk.bekkopen.mail.model.Fylke;
 import no.bekk.bekkopen.mail.model.Kommunenavn;
 import no.bekk.bekkopen.mail.model.Kommunenummer;
 import no.bekk.bekkopen.mail.model.PostInfo;
@@ -34,9 +35,25 @@ public class MailValidator extends StringNumberValidator {
     private static final int POSTNUMMER_LENGTH = 4;
     private static final int KOMMUNENUMMER_LENGTH = 4;
 
-    private static Map<Postnummer, PostInfo> postInfo = MailDataLoader.loadFromInputStream(
+    // Setup
+
+    private static Map<Postnummer, PostInfo> postInfo = MailDataLoader.lesPostnummerFraCsvFil(
         MailValidator.class.getResourceAsStream("/postnummer.csv")
     );
+
+    private static List<Fylke> fylker = MailDataLoader.lesFylkerFraCsvFil(
+        MailValidator.class.getResourceAsStream("/fylker.csv")
+    );
+
+    /**
+     * @deprecated 11.02.2021 The postnummer data is loaded automatically
+     */
+    @Deprecated
+    public static void setPostInfo(Map<Postnummer, PostInfo> postInfo) {
+        MailValidator.postInfo = postInfo;
+    }
+
+    // Model
 
     public static Postnummer getPostnummer(String postnummer) {
         validatePostnummerSyntax(postnummer);
@@ -50,16 +67,6 @@ public class MailValidator extends StringNumberValidator {
 
     public static PostnummerKategori getPostnummerKategori(String postnummerKategori) {
         return PostnummerKategori.fromString(postnummerKategori);
-    }
-
-    // Setup
-
-    /**
-     * @deprecated 11.02.2021 The postnummer data is loaded automatically
-     */
-    @Deprecated
-    public static void setPostInfo(Map<Postnummer, PostInfo> postInfo) {
-        MailValidator.postInfo = postInfo;
     }
 
     // Validation
@@ -110,6 +117,10 @@ public class MailValidator extends StringNumberValidator {
             .count();
     }
 
+    public static int getAntallFylker() {
+        return fylker.size();
+    }
+
     // Lookup - Postnummer
 
     public static PostInfo getPostInfoForPostnummer(String postnummer) {
@@ -132,7 +143,8 @@ public class MailValidator extends StringNumberValidator {
     }
 
     public static Kommunenummer getKommunenummerForPostnummer(String postnummer) {
-        return getPostInfoForPostnummer(postnummer).getKommunenummer();
+        PostInfo postInfo = getPostInfoForPostnummer(postnummer);
+        return postInfo != null ? postInfo.getKommunenummer() : null;
     }
 
     public static PostnummerKategori getPostnummerKategoriForPostnummer(String postnummer) {
@@ -140,11 +152,13 @@ public class MailValidator extends StringNumberValidator {
     }
 
     public static List<Postnummer> getPostnummerForPoststed(String poststed) {
-        Poststed p = new Poststed(poststed);
+        return getPostnummerForPoststed(new Poststed(poststed));
+    }
 
+    public static List<Postnummer> getPostnummerForPoststed(Poststed poststed) {
         List<Postnummer> postnummerList =
             postInfo.entrySet().stream()
-                .filter(pI -> pI.getValue().getPoststed().equals(p))
+                .filter(pI -> pI.getValue().getPoststed().equals(poststed))
                 .map(pI -> pI.getValue().getPostnummer())
                 .collect(Collectors.toList());
 
@@ -177,5 +191,55 @@ public class MailValidator extends StringNumberValidator {
         Optional<PostInfo> result = getPostInfoForKommunenavn(kommunenavn);
 
         return result.isPresent() ? result.get().getKommunenummer() : null;
+    }
+
+    // Lookup - Fylke
+
+    public static Fylke getFylkeForFylkesnummer(String fylkesnummer) {
+        return fylker.stream()
+            .filter(fylke -> fylke.getFylkesNummer().equals(fylkesnummer))
+            .findAny().orElse(null);
+    }
+
+    public static Fylke getFylkeForFylkesnavn(String fylkesnavn) {
+        return fylker.stream()
+            .filter(fylke -> fylke.getFylkesNavn().equalsIgnoreCase(fylkesnavn))
+            .findAny().orElse(null);
+    }
+
+    public static Fylke getFylkeForPostnummer(String postnummer) {
+        return getFylkeForPostnummer(getPostnummer(postnummer));
+    }
+
+    public static Fylke getFylkeForPostnummer(Postnummer postnummer) {
+        return getFylkeForKommunenummer(
+            getKommunenummerForPostnummer(postnummer.getValue())
+        );
+    }
+
+    public static Fylke getFylkeForPoststed(String poststed) {
+        return getFylkeForPoststed(new Poststed(poststed));
+    }
+
+    public static Fylke getFylkeForPoststed(Poststed poststed) {
+        Optional<Postnummer> postnummer = getPostnummerForPoststed(poststed).stream().findFirst();
+
+        return postnummer.isPresent() ? getFylkeForPostnummer(postnummer.get()) : null;
+    }
+
+    public static Fylke getFylkeForKommunenummer(String kommunenummer) {
+        return getFylkeForKommunenummer(getKommunenummer(kommunenummer));
+    }
+
+    public static Fylke getFylkeForKommunenummer(Kommunenummer kommunenummer) {
+        if (kommunenummer != null && kommunenummer.getValue() != null) {
+            String fylkesId = kommunenummer.getValue().substring(0, 2);
+
+            return fylker.stream().filter(
+                fylke -> fylke.getFylkesNummer().equals(fylkesId)
+            ).findFirst().orElse(null);
+        }
+
+        return null;
     }
 }

@@ -12,7 +12,7 @@ public class MailDataLoaderTest {
     @Test
     public void testExceptionVedFeilInputVedLastingAvFil() {
         assertThrows(IllegalArgumentException.class, () -> {
-            MailDataLoader.loadFromInputStream(null);
+            MailDataLoader.lesPostnummerFraCsvFil(null);
         });
     }
 
@@ -29,6 +29,11 @@ public class MailDataLoaderTest {
     @Test
     public void testAntallKommunenummer() {
         assertEquals(358, MailValidator.getAntallKommunenummer());
+    }
+
+    @Test
+    public void testAntallFylker() {
+        assertEquals(13, MailValidator.getAntallFylker());
     }
 
     @Test

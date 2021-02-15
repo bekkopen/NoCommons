@@ -5,10 +5,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import no.bekk.bekkopen.mail.model.Fylke;
 import no.bekk.bekkopen.mail.model.Kommunenavn;
 import no.bekk.bekkopen.mail.model.Kommunenummer;
 import no.bekk.bekkopen.mail.model.PostInfo;
@@ -27,7 +30,7 @@ public class MailDataLoader {
         super();
     }
 
-    public static Map<Postnummer, PostInfo> loadFromInputStream(InputStream is) {
+    public static Map<Postnummer, PostInfo> lesPostnummerFraCsvFil(InputStream is) {
         if (is == null) {
             throw new IllegalArgumentException();
         }
@@ -67,6 +70,39 @@ public class MailDataLoader {
         return postInfo;
     }
 
+    public static List<Fylke> lesFylkerFraCsvFil(InputStream is) {
+        if (is == null) {
+            throw new IllegalArgumentException();
+        }
+
+        List<Fylke> fylker = new ArrayList<>();
+
+        try (
+            InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
+            BufferedReader br = new BufferedReader(isr);
+        ) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                StringTokenizer st = new StringTokenizer(line, ",", false);
+
+                String fylkesNummer = st.nextToken();
+                String fylkesNavn = st.nextToken();
+
+                // add to fylker
+                fylker.add(
+                    new Fylke(
+                        fylkesNummer,
+                        fylkesNavn
+                    )
+                );
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return fylker;
+    }
+
     /**
      * @deprecated 11.02.2021 The postnummer data is loaded automatically
      */
@@ -76,7 +112,7 @@ public class MailDataLoader {
         Map<Postnummer, PostInfo> postInfo = new HashMap<>();
 
         try (InputStream is = MailDataLoader.class.getResourceAsStream("/postnummer.csv")) {
-            postInfo = loadFromInputStream(is);
+            postInfo = lesPostnummerFraCsvFil(is);
             success = true;
         } catch (IOException e) {
             e.printStackTrace();

@@ -22,6 +22,8 @@ Maven Site: [http://bekkopen.github.com/NoCommons/](http://bekkopen.github.com/N
 * Kommunenummer / kommunenavn
   * oppslag
   * validering
+* Fylkesnummer
+  * oppslag
 * Bank
   * Kontonummer validering og generering
   * KID generering
@@ -36,10 +38,6 @@ Maven Site: [http://bekkopen.github.com/NoCommons/](http://bekkopen.github.com/N
   * Liste ut alle helligdager
 
 ## Features som ikke er implementert, men som kan passe inn  
-* Fylkesnummer
-  * Finn fylkesnummer for fylke
-  * Finn fylke for fylkesnummer
-  * Validere fylke og / eller fylkesnummer
 * Registreringsnummer
   * Validering av regnummer
   * Finn trafikkstasjon for bilnummer
