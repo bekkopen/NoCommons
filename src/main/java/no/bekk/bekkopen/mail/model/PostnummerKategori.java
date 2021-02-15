@@ -21,7 +21,7 @@ public enum PostnummerKategori {
 
     private String beskrivelse;
 
-    private PostnummerKategori(String beskrivelse) {
+    PostnummerKategori(String beskrivelse) {
         if (beskrivelse == null) {
             throw new IllegalArgumentException();
         }
