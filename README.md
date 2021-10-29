@@ -7,7 +7,7 @@ APIet er kjapt, standalone, offline og uten masse dependencies.
 
 > **Summary in english**: The NoCommons library is a collection of helper classes for validation, generation and manipulation of domains specific to Norway and Norwegian citizens.
 
-Maven Site: [http://bekkopen.github.com/NoCommons/](http://bekkopen.github.com/NoCommons/)  
+Maven Site: [https://mvnrepository.com/artifact/no.bekk.bekkopen/nocommons](https://mvnrepository.com/artifact/no.bekk.bekkopen/nocommons)  
 
 # Features
 * Personnummer
