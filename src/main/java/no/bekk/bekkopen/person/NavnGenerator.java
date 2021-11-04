@@ -66,7 +66,7 @@ public class NavnGenerator {
 		KJONN kjonnSwitch = kjonn;
 		while (navneliste.size() < antall) {
 			if (KJONN.erBegge(kjonn)) {
-				kjonnSwitch = KJONN.byttKjonn(kjonn);
+				kjonnSwitch = KJONN.byttKjonn(kjonnSwitch);
 			}
 			Navn navn = genererNavn(kjonnSwitch);
 			if (!navneliste.contains(navn)) {
