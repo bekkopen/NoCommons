@@ -89,7 +89,13 @@ public class FodselsnummerValidatorTest {
 		assertTrue(FodselsnummerValidator.isValid("47086303651"));
 	}
 
-	@Test
+  @Test
+  void testDNumberIsValidUtvidelse2021() {
+		assertTrue(FodselsnummerValidator.isValid("41014061078"));
+		assertTrue(FodselsnummerValidator.isValid("41010021861"));
+  }
+
+  @Test
 	public void testGetDNumber() {
 		FodselsnummerValidator.getFodselsnummer("47086303651");
 	}

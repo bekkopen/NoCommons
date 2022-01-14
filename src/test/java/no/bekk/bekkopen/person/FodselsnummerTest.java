@@ -11,7 +11,7 @@ public class FodselsnummerTest {
 
     private static final String VALID_FODSELSNUMMER = "01010123476";
 
-    private static final String D_FODSELSNUMMER = "41010123476";//Invalid but valid is tested in FodselsnummerValidatorTest
+    private static final String D_FODSELSNUMMER = "41010119500";//Invalid but valid is tested in FodselsnummerValidatorTest
 
     private Fodselsnummer sut = null;
 
@@ -61,7 +61,7 @@ public class FodselsnummerTest {
         assertEquals("20", sut.getCentury());
 
         // DNumber...
-        sut = new Fodselsnummer("41016666609");
+        sut = new Fodselsnummer("41016656638");
         assertEquals("18", sut.getCentury());
 
         sut = new Fodselsnummer("41016633301");
@@ -71,6 +71,12 @@ public class FodselsnummerTest {
         assertEquals("19", sut.getCentury());
 
         sut = new Fodselsnummer("41013366671");
+        assertEquals("20", sut.getCentury());
+
+        sut = new Fodselsnummer("41014061078");
+        assertEquals("19", sut.getCentury());
+
+        sut = new Fodselsnummer("41010021861");
         assertEquals("20", sut.getCentury());
     }
 

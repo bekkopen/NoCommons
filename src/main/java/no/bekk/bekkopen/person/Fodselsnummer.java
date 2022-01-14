@@ -57,15 +57,29 @@ public class Fodselsnummer extends StringNumber {
 		String result = null;
 		int individnummerInt = Integer.parseInt(getIndividnummer());
 		int birthYear = Integer.parseInt(get2DigitBirthYear());
-		if (individnummerInt <= 499) {
-			result = "19";
-		} else if (individnummerInt >= 500 && birthYear < 40) {
-			result = "20";
-		} else if (individnummerInt >= 500 && individnummerInt <= 749 && birthYear >= 54) {
-			result = "18";
-		} else if (individnummerInt >= 900 && birthYear > 39) {
-			result = "19";
-		}
+
+		if(isDNumber(this.getValue())){
+		  if(individnummerInt >= 500 && individnummerInt <= 599){
+		    result = "18";
+      } else if (individnummerInt <= 199 && birthYear < 40){
+		    result = "19";
+      } else if ((individnummerInt <= 499 || (individnummerInt >= 600 && individnummerInt <= 999)) && birthYear >= 40){
+		    result = "19";
+      } else if (individnummerInt >= 200 && individnummerInt <= 999 && birthYear < 40) {
+        result = "20";
+      }
+    } else {
+      if (individnummerInt <= 499) {
+        result = "19";
+      } else if (individnummerInt >= 500 && birthYear < 40) {
+        result = "20";
+      } else if (individnummerInt >= 500 && individnummerInt <= 749 && birthYear >= 54) {
+        result = "18";
+      } else if (individnummerInt >= 900 && birthYear > 39) {
+        result = "19";
+      }
+    }
+
 		return result;
 	}
 
