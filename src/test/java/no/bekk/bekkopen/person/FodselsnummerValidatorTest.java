@@ -13,65 +13,65 @@ public class FodselsnummerValidatorTest {
 
 	@Test
 	public void testInvalidFodselsnummerWrongLength() {
-	    IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
-	            () -> FodselsnummerValidator.validateSyntax("0123456789"));
-	    assertThat(thrown.getMessage(), containsString(FodselsnummerValidator.ERROR_SYNTAX));
+		IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+			() -> FodselsnummerValidator.validateSyntax("0123456789"));
+		assertThat(thrown.getMessage(), containsString(FodselsnummerValidator.ERROR_SYNTAX));
 	}
 
 	@Test
 	public void testInvalidFodselsnummerNotDigits() {
-	    IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
-                () -> FodselsnummerValidator.validateSyntax("abcdefghijk"));
-        assertThat(thrown.getMessage(), containsString(FodselsnummerValidator.ERROR_SYNTAX));
+		IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+			() -> FodselsnummerValidator.validateSyntax("abcdefghijk"));
+		assertThat(thrown.getMessage(), containsString(FodselsnummerValidator.ERROR_SYNTAX));
 	}
 
 	@Test
 	public void testInvalidIndividnummer() {
-	    IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
-                () -> FodselsnummerValidator.validateIndividnummer("01015780000"));
-        assertThat(thrown.getMessage(), containsString(FodselsnummerValidator.ERROR_INVALID_INDIVIDNUMMER));
+		IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+			() -> FodselsnummerValidator.validateIndividnummer("01015780000"));
+		assertThat(thrown.getMessage(), containsString(FodselsnummerValidator.ERROR_INVALID_INDIVIDNUMMER));
 	}
 
 	@Test
 	public void testInvalidDateMonthMax() {
-	    IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
-	            () -> FodselsnummerValidator.validateDate("01130400000"));
-	    assertThat(thrown.getMessage(), containsString(FodselsnummerValidator.ERROR_INVALID_DATE));
+		IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+			() -> FodselsnummerValidator.validateDate("01130400000"));
+		assertThat(thrown.getMessage(), containsString(FodselsnummerValidator.ERROR_INVALID_DATE));
 	}
 
 	@Test
 	public void testInvalidDateMonthMin() {
-	    IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
-	            () -> FodselsnummerValidator.validateDate("01000400000"));
-	    assertThat(thrown.getMessage(), containsString(FodselsnummerValidator.ERROR_INVALID_DATE));
+		IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+			() -> FodselsnummerValidator.validateDate("01000400000"));
+		assertThat(thrown.getMessage(), containsString(FodselsnummerValidator.ERROR_INVALID_DATE));
 	}
 
 	@Test
 	public void testInvalidDateDayMin() {
-	    IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
-	            () -> FodselsnummerValidator.validateDate("00120467800"));
-	    assertThat(thrown.getMessage(), containsString(FodselsnummerValidator.ERROR_INVALID_DATE));
+		IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+			() -> FodselsnummerValidator.validateDate("00120467800"));
+		assertThat(thrown.getMessage(), containsString(FodselsnummerValidator.ERROR_INVALID_DATE));
 	}
 
 	@Test
 	public void testInvalidDateDayMax() {
-	    IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
-	            () -> FodselsnummerValidator.validateDate("32120400000"));
-	    assertThat(thrown.getMessage(), containsString(FodselsnummerValidator.ERROR_INVALID_DATE));
+		IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+			() -> FodselsnummerValidator.validateDate("32120400000"));
+		assertThat(thrown.getMessage(), containsString(FodselsnummerValidator.ERROR_INVALID_DATE));
 	}
 
 	@Test
 	public void testInvalidDateLeapDay() {
-	    IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
-                () -> FodselsnummerValidator.validateDate("29020700000"));
-        assertThat(thrown.getMessage(), containsString(FodselsnummerValidator.ERROR_INVALID_DATE));
+		IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+			() -> FodselsnummerValidator.validateDate("29020700000"));
+		assertThat(thrown.getMessage(), containsString(FodselsnummerValidator.ERROR_INVALID_DATE));
 	}
 
 	@Test
 	public void testInvalidFodselsnummerChecksum() {
-	    IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
-	            () -> FodselsnummerValidator.validateChecksums("01010101010"));
-	    assertThat(thrown.getMessage(), containsString(ERROR_INVALID_CHECKSUM));
+		IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+			() -> FodselsnummerValidator.validateChecksums("01010101010"));
+		assertThat(thrown.getMessage(), containsString(ERROR_INVALID_CHECKSUM));
 	}
 
 	@Test
@@ -89,13 +89,13 @@ public class FodselsnummerValidatorTest {
 		assertTrue(FodselsnummerValidator.isValid("47086303651"));
 	}
 
-  @Test
-  void testDNumberIsValidUtvidelse2021() {
+	@Test
+	void testDNumberIsValidUtvidelse2021() {
 		assertTrue(FodselsnummerValidator.isValid("41014061078"));
 		assertTrue(FodselsnummerValidator.isValid("41010021861"));
-  }
+	}
 
-  @Test
+	@Test
 	public void testGetDNumber() {
 		FodselsnummerValidator.getFodselsnummer("47086303651");
 	}

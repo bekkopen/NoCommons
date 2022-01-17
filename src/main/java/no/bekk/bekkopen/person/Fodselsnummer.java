@@ -58,27 +58,27 @@ public class Fodselsnummer extends StringNumber {
 		int individnummerInt = Integer.parseInt(getIndividnummer());
 		int birthYear = Integer.parseInt(get2DigitBirthYear());
 
-		if(isDNumber(this.getValue())){
-		  if(individnummerInt >= 500 && individnummerInt <= 599){
-		    result = "18";
-      } else if (individnummerInt <= 199 && birthYear < 40){
-		    result = "19";
-      } else if ((individnummerInt <= 499 || (individnummerInt >= 600 && individnummerInt <= 999)) && birthYear >= 40){
-		    result = "19";
-      } else if (individnummerInt >= 200 && individnummerInt <= 999 && birthYear < 40) {
-        result = "20";
-      }
-    } else {
-      if (individnummerInt <= 499) {
-        result = "19";
-      } else if (individnummerInt >= 500 && birthYear < 40) {
-        result = "20";
-      } else if (individnummerInt >= 500 && individnummerInt <= 749 && birthYear >= 54) {
-        result = "18";
-      } else if (individnummerInt >= 900 && birthYear > 39) {
-        result = "19";
-      }
-    }
+		if (isDNumber(this.getValue())) {
+			if (individnummerInt >= 500 && individnummerInt <= 599) {
+				result = "18";
+			} else if (individnummerInt <= 199 && birthYear < 40) {
+				result = "19";
+			} else if ((individnummerInt <= 499 || (individnummerInt >= 600 && individnummerInt <= 999)) && birthYear >= 40) {
+				result = "19";
+			} else if (individnummerInt >= 200 && individnummerInt <= 999 && birthYear < 40) {
+				result = "20";
+			}
+		} else {
+			if (individnummerInt <= 499) {
+				result = "19";
+			} else if (individnummerInt >= 500 && birthYear < 40) {
+				result = "20";
+			} else if (individnummerInt >= 500 && individnummerInt <= 749 && birthYear >= 54) {
+				result = "18";
+			} else if (individnummerInt >= 900 && birthYear > 39) {
+				result = "19";
+			}
+		}
 
 		return result;
 	}
@@ -169,15 +169,15 @@ public class Fodselsnummer extends StringNumber {
 		return !isMale();
 	}
 
-  static String parseSynthenticNumber(String fodselsnummer) {
-    if (!isSynthetic(fodselsnummer)) {
-      return fodselsnummer;
-    } else {
-      return fodselsnummer.substring(0, 2) + (getThirdDigit(fodselsnummer) - 8) + fodselsnummer.substring(3);
-    }
-  }
+	static String parseSynthenticNumber(String fodselsnummer) {
+		if (!isSynthetic(fodselsnummer)) {
+			return fodselsnummer;
+		} else {
+			return fodselsnummer.substring(0, 2) + (getThirdDigit(fodselsnummer) - 8) + fodselsnummer.substring(3);
+		}
+	}
 
-  static boolean isSynthetic(String fodselsnummer) {
+	static boolean isSynthetic(String fodselsnummer) {
 		try {
 			int thirdDigit = getThirdDigit(fodselsnummer);
 			if (thirdDigit == 8 || thirdDigit == 9) {
@@ -189,17 +189,17 @@ public class Fodselsnummer extends StringNumber {
 		return false;
 	}
 
-  static boolean isDNumber(String fodselsnummer) {
-    try {
-      int firstDigit = getFirstDigit(fodselsnummer);
-      if (firstDigit > 3 && firstDigit < 8) {
-        return true;
-      }
-    } catch (IllegalArgumentException e) {
-      // ignore
-    }
-    return false;
-  }
+	static boolean isDNumber(String fodselsnummer) {
+		try {
+			int firstDigit = getFirstDigit(fodselsnummer);
+			if (firstDigit > 3 && firstDigit < 8) {
+				return true;
+			}
+		} catch (IllegalArgumentException e) {
+			// ignore
+		}
+		return false;
+	}
 
 	static String parseDNumber(String fodselsnummer) {
 		if (!isDNumber(fodselsnummer)) {
@@ -226,7 +226,7 @@ public class Fodselsnummer extends StringNumber {
 	}
 
 	@Override
-	public String toString(){
+	public String toString() {
 		return super.getValue();
 	}
 }
