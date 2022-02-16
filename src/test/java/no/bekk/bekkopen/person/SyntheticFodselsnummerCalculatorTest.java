@@ -13,38 +13,38 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SyntheticFodselsnummerCalculatorTest {
 
-  private Date date = null;
+	private Date date = null;
 
-  @BeforeAll
-  public static void setup() {
-    FodselsnummerValidator.ALLOW_SYNTHETIC_NUMBERS = true;
-  }
+	@BeforeAll
+	public static void setup() {
+		FodselsnummerValidator.ALLOW_SYNTHETIC_NUMBERS = true;
+	}
 
-  @AfterAll
-  public static void taredown() {
-    FodselsnummerValidator.ALLOW_SYNTHETIC_NUMBERS = false;
-  }
+	@AfterAll
+	public static void taredown() {
+		FodselsnummerValidator.ALLOW_SYNTHETIC_NUMBERS = false;
+	}
 
-  @BeforeEach
-  public void setUpDate() throws Exception {
-    DateFormat df = new SimpleDateFormat("ddMMyyyy");
-    date = df.parse("09062006");
-  }
+	@BeforeEach
+	public void setUpDate() throws Exception {
+		DateFormat df = new SimpleDateFormat("ddMMyyyy");
+		date = df.parse("09062006");
+	}
 
-  @Test
-  public void testThatAllGeneratedSyntheticDNumbersAreValid() {
-    for (Fodselsnummer fnr : FodselsnummerCalculator.getManySynteticDNumberFodselsnummerForDate(date)) {
-      assertTrue(FodselsnummerValidator.isValid(fnr.toString()), "Ugyldig fødselsnummer: " + fnr);
-    }
-  }
+	@Test
+	public void testThatAllGeneratedSyntheticDNumbersAreValid() {
+		for (Fodselsnummer fnr : FodselsnummerCalculator.getManySynteticDNumberFodselsnummerForDate(date)) {
+			assertTrue(FodselsnummerValidator.isValid(fnr.toString()), "Ugyldig fødselsnummer: " + fnr);
+		}
+	}
 
-  @Test
-  public void testThatAtLeastOneSynteticNumberIsGenerated() {
-    assertTrue(FodselsnummerCalculator.getManySynteticFodselsnummerForDate(date).size() >= 1);
-  }
+	@Test
+	public void testThatAtLeastOneSynteticNumberIsGenerated() {
+		assertTrue(FodselsnummerCalculator.getManySynteticFodselsnummerForDate(date).size() >= 1);
+	}
 
-  @Test
-  public void testThatAtLeastOneSynteticDNumberIsGenerated() {
-    assertTrue(FodselsnummerCalculator.getManySynteticDNumberFodselsnummerForDate(date).size() >= 1);
-  }
+	@Test
+	public void testThatAtLeastOneSynteticDNumberIsGenerated() {
+		assertTrue(FodselsnummerCalculator.getManySynteticDNumberFodselsnummerForDate(date).size() >= 1);
+	}
 }

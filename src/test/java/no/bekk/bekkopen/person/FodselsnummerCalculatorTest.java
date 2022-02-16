@@ -20,7 +20,7 @@ public class FodselsnummerCalculatorTest {
 
 	@BeforeEach
 	public void setUpDate() throws Exception {
-		df = new SimpleDateFormat("ddMMyyyy");
+		df   = new SimpleDateFormat("ddMMyyyy");
 		date = df.parse("09062006");
 	}
 
@@ -38,15 +38,15 @@ public class FodselsnummerCalculatorTest {
 
 	@Test
 	public void testThatAllGeneratedNumbersAreValid() {
-		for(Fodselsnummer fnr : FodselsnummerCalculator.getManyFodselsnummerForDate(date)) {
+		for (Fodselsnummer fnr : FodselsnummerCalculator.getManyFodselsnummerForDate(date)) {
 			assertTrue(FodselsnummerValidator.isValid(fnr.toString()), "Ugyldig fødselsnummer: " + fnr);
 		}
 	}
 
 	@Test
 	public void testThatAllGeneratedNumbersAreNotDNumbers() {
-		for(Fodselsnummer fnr : FodselsnummerCalculator.getManyFodselsnummerForDate(date)) {
-      assertFalse(Fodselsnummer.isDNumber(fnr.toString()), "Ugyldig fødselsnummer: " + fnr);
+		for (Fodselsnummer fnr : FodselsnummerCalculator.getManyFodselsnummerForDate(date)) {
+			assertFalse(Fodselsnummer.isDNumber(fnr.toString()), "Ugyldig fødselsnummer: " + fnr);
 		}
 	}
 
@@ -61,16 +61,22 @@ public class FodselsnummerCalculatorTest {
 	}
 
 	@Test
+	public void testThatAtLeastOneDNumberIsGeneratedsas() throws ParseException {
+		assertEquals(82, FodselsnummerCalculator.getManyDNumberFodselsnummerForDate(df.parse("06061878")).size());
+		assertEquals(164, FodselsnummerCalculator.getManyDNumberFodselsnummerForDate(df.parse("12101921")).size());
+	}
+
+	@Test
 	public void testThatAllGeneratedDNumbersAreValid() {
-		for(Fodselsnummer dnr : FodselsnummerCalculator.getManyDNumberFodselsnummerForDate(date)) {
+		for (Fodselsnummer dnr : FodselsnummerCalculator.getManyDNumberFodselsnummerForDate(date)) {
 			assertTrue(FodselsnummerValidator.isValid(dnr.toString()), "Ugyldig D-nummer: " + dnr);
 		}
 	}
 
 	@Test
 	public void testThatAllGeneratedDNumbersAreDNumbers() {
-		for(Fodselsnummer dnr : FodselsnummerCalculator.getManyDNumberFodselsnummerForDate(date)) {
-      assertTrue(Fodselsnummer.isDNumber(dnr.toString()), "Ugyldig D-nummer: " + dnr);
+		for (Fodselsnummer dnr : FodselsnummerCalculator.getManyDNumberFodselsnummerForDate(date)) {
+			assertTrue(Fodselsnummer.isDNumber(dnr.toString()), "Ugyldig D-nummer: " + dnr);
 		}
 	}
 
@@ -89,7 +95,7 @@ public class FodselsnummerCalculatorTest {
 	}
 
 	@Test
-	public void testOneFodselsnummer() throws ParseException{
+	public void testOneFodselsnummer() throws ParseException {
 		date = df.parse("01121980");
 		Fodselsnummer fodselsnummer = FodselsnummerCalculator.getFodselsnummerForDate(date);
 		assertTrue(FodselsnummerValidator.isValid(fodselsnummer.toString()));
