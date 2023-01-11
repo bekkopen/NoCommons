@@ -13,8 +13,8 @@
 
 	<licenses>
 		<license>
-			<name>The Apache Software License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<name>MIT License</name>
+            <url>https://opensource.org/licenses/mit-license.php</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
@@ -27,8 +27,9 @@
 
 	<organization>
 		<name>BEKK open source</name>
-		<url>http://github.com/bekkopen</url>
+		<url>https://github.com/bekkopen</url>
 	</organization>
+	<inceptionYear>2014</inceptionYear>
 
 	<developers>
 		<developer>
