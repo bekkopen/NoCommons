@@ -11,8 +11,7 @@ APIet er kjapt, standalone, offline og uten masse dependencies.
 * Personnummer
   * validering
   * generering
-* Organisasjonsnummer
-  * [http://www.brreg.no/samordning/organisasjonsnummer.html](http://www.brreg.no/samordning/organisasjonsnummer.html)
+* [Organisasjonsnummer](https://www.brreg.no/om-oss/oppgavene-vare/alle-registrene-vare/om-enhetsregisteret/organisasjonsnummeret/)
   * validering
   * generering
 * Postnummer
@@ -21,6 +20,8 @@ APIet er kjapt, standalone, offline og uten masse dependencies.
 * Kommunenummer / kommunenavn
   * oppslag
   * validering
+* Fylkesnummer
+  * oppslag
 * Bank
   * Kontonummer validering og generering
   * KID generering
@@ -33,17 +34,9 @@ APIet er kjapt, standalone, offline og uten masse dependencies.
   * Sjekk om dato er arbeidsdag (dvs. ikke helligdag eller helg)
   * Legg til x antall arbeidsdager til en gitt dato
   * Liste ut alle helligdager
-
-## Features som ikke er implementert, men som kan passe inn  
-* Fylkesnummer
-  * Finn fylkesnummer for fylke
-  * Finn fylke for fylkesnummer
-  * Validere fylke og / eller fylkesnummer
 * Registreringsnummer
-  * Validering av regnummer
-  * Finn trafikkstasjon for bilnummer
-  * Finn lenke på nettet til infoside
+  * validering
+  * oppslag
 * Telefonnummer
-  * Gyldig nummer (mange er reserverte)
-  * "Korrekte" skrivemåter
-  * Diverse logikk rundt nummerserier - finn leverandør, fylke etc
+  * validering
+  * oppslag

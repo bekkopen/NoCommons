@@ -102,6 +102,17 @@
 			<organization>BEKK</organization>
 			<timezone>+1</timezone>
 		</developer>
+    <developer>
+      <id>storbukas</id>
+      <name>Lars Erik Storbukås</name>
+      <email>larserik.storbukas@gmail.com</email>
+      <roles>
+        <role>Developer</role>
+        <role>Contributor</role>
+      </roles>
+      <organization>Skatteetaten</organization>
+      <timezone>+1</timezone>
+    </developer>
 	</developers>
 
   <dependencies>
@@ -116,6 +127,12 @@
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
       <version>5.8.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>5.7.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
