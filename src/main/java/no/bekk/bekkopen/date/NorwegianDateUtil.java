@@ -111,7 +111,7 @@ public class NorwegianDateUtil {
 			// Sunday before easter.
 			yearSet.add(rollGetDate(easterDay, -7));
 
-			// Thurday before easter.
+			// Thursday before easter.
 			yearSet.add(rollGetDate(easterDay, -3));
 
 			// Friday before easter.
