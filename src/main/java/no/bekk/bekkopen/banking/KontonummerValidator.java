@@ -28,8 +28,8 @@ package no.bekk.bekkopen.banking;
 
 import no.bekk.bekkopen.common.StringNumberValidator;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 import static no.bekk.bekkopen.common.Checksums.ERROR_INVALID_CHECKSUM;
 import static no.bekk.bekkopen.common.Checksums.calculateMod11CheckSum;

@@ -107,16 +107,16 @@
 
   <dependencies>
     <dependency>
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
-      <version>2.0.1.Final</version>
-    </dependency>
-
+		<groupId>jakarta.validation</groupId>
+		<artifactId>jakarta.validation-api</artifactId>
+		<version>3.0.2</version>
+	</dependency>
+	  
     <!-- Test -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-      <version>5.8.2</version>
+      <version>5.9.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -128,21 +128,21 @@
     <dependency>
       <groupId>org.hibernate.validator</groupId>
       <artifactId>hibernate-validator</artifactId>
-      <version>6.2.2.Final</version>
+      <version>7.0.5.Final</version>
       <scope>test</scope>
     </dependency>
+	  <dependency>
+		<groupId>jakarta.el</groupId>
+		<artifactId>jakarta.el-api</artifactId>
+		<version>4.0.0</version>
+		<scope>test</scope>
+	</dependency>
     <dependency>
-      <groupId>javax.el</groupId>
-      <artifactId>javax.el-api</artifactId>
-      <version>3.0.0</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.glassfish.web</groupId>
-      <artifactId>javax.el</artifactId>
-      <version>2.2.6</version>
-      <scope>test</scope>
-    </dependency>
+		<groupId>org.glassfish</groupId>
+		<artifactId>jakarta.el</artifactId>
+		<version>4.0.2</version>
+		<scope>test</scope>
+	</dependency>
   </dependencies>
 
   <build>
@@ -245,6 +245,7 @@
     <!-- Dependency version -->
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.release>1.8</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 

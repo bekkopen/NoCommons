@@ -26,11 +26,10 @@ package no.bekk.bekkopen.mail.validator;
  * #L%
  */
 
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import no.bekk.bekkopen.mail.MailValidator;
 import no.bekk.bekkopen.mail.annotation.Postnummer;
-
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
 
 /**
  * Validator av postnummer
