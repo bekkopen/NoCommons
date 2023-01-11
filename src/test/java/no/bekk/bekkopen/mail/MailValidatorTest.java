@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -22,7 +21,7 @@ import no.bekk.bekkopen.mail.model.Poststed;
 public class MailValidatorTest {
     private static final Poststed HAMAR = new Poststed("Hamar");
 
-    private static final List<PostInfo> postInfo = Arrays.asList(
+    private static final List<PostInfo> postInfo = List.of(
         new PostInfo(
             new Postnummer("4633"),
             new Poststed("KRISTIANSAND S"),
