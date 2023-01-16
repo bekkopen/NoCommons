@@ -28,8 +28,8 @@ package no.bekk.bekkopen.person;
 
 import no.bekk.bekkopen.common.StringNumberValidator;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
