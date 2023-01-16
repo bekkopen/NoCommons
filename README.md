@@ -47,3 +47,7 @@ APIet er kjapt, standalone, offline og uten masse dependencies.
   * Gyldig nummer (mange er reserverte)
   * "Korrekte" skrivemåter
   * Diverse logikk rundt nummerserier - finn leverandør, fylke etc
+
+###
+
+Update licence header for files with `mvn license:update-file-header -Dlicense.licenseName=mit`
