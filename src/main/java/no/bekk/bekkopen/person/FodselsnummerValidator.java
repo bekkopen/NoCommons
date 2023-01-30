@@ -46,7 +46,7 @@ import static no.bekk.bekkopen.common.Checksums.calculateMod11CheckSum;
  * Birth date is modified by adding 4 on the first digit
  *
  * The Norwegian registry Det Norske Folkeregister has decided
- * that it will create syntetic ssn for its testpopulation.
+ * that it will create synthetic ssn for its test population.
  * This validator will can now validate true for Fodselsnummer that has month +80
  * for synthetic fnr/dnr
  */
@@ -66,10 +66,9 @@ public class FodselsnummerValidator extends StringNumberValidator implements Con
   /**
    * Truthy validation of synthetic fnr/dnr is true. You are adviced to
    * set til value to true in test environments where you expect
-   * syntetic fnr/dnr to appair.
+   * synthetic fnr/dnr to appear.
    */
 	public static boolean ALLOW_SYNTHETIC_NUMBERS = false;
-
   static {
     final URL flag = FodselsnummerValidator.class.getResource("/no.bekk.bekkopen.person.allow_synthetic_numbers.flag");
     if (flag != null) {
@@ -97,7 +96,7 @@ public class FodselsnummerValidator extends StringNumberValidator implements Con
 
   private static void validateSynthetic(String fodselsnummer) {
     if (Fodselsnummer.isSynthetic(fodselsnummer) && !ALLOW_SYNTHETIC_NUMBERS) {
-      throw new IllegalArgumentException("Syntetic fødselsnummer is not allowd" + fodselsnummer);
+      throw new IllegalArgumentException("Synthetic fødselsnummer is not allowd" + fodselsnummer);
     }
   }
 

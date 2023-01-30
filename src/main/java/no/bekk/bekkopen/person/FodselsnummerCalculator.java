@@ -95,7 +95,7 @@ public class FodselsnummerCalculator {
 	 * @return A List with Fodelsnummer instances
 	 */
 
-	public static List<Fodselsnummer> getManySynteticFodselsnummerForDate(Date date) {
+	public static List<Fodselsnummer> getManySyntheticFodselsnummerForDate(Date date) {
 		if (date == null) {
 			throw new IllegalArgumentException();
 		}
@@ -115,7 +115,7 @@ public class FodselsnummerCalculator {
 	 * @return A List with Fodelsnummer instances
 	 */
 
-	public static List<Fodselsnummer> getManySynteticDNumberFodselsnummerForDate(Date date) {
+	public static List<Fodselsnummer> getManySyntheticDNumberFodselsnummerForDate(Date date) {
 		if (date == null) {
 			throw new IllegalArgumentException();
 		}

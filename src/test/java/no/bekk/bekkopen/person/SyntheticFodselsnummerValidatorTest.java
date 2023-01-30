@@ -30,6 +30,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SyntheticFodselsnummerValidatorTest {
@@ -45,12 +46,15 @@ public class SyntheticFodselsnummerValidatorTest {
   }
 
   @Test
-  public void testSynteticDNumberIsValid() {
+  public void testSyntheticDNumberIsValid() {
     assertTrue(FodselsnummerValidator.isValid("49860699787"));
+    assertTrue(FodselsnummerValidator.isValid("49910690514"));
+    assertTrue(FodselsnummerValidator.isValid("49710697182"));
+    assertTrue(FodselsnummerValidator.isValid("49680699185"));
   }
 
   @Test
-  void testSynteticDNumberIsValidUtvidelse2021() {
+  void testSyntheticDNumberIsValidUtvidelse2021() {
 		assertTrue(FodselsnummerValidator.isValid("41814061033"));
 		assertTrue(FodselsnummerValidator.isValid("41814065640"));
 		assertTrue(FodselsnummerValidator.isValid("41814075603"));
@@ -58,5 +62,22 @@ public class SyntheticFodselsnummerValidatorTest {
 		assertTrue(FodselsnummerValidator.isValid("41810021827"));
 		assertTrue(FodselsnummerValidator.isValid("41810025091"));
 		assertTrue(FodselsnummerValidator.isValid("41810034422"));
+  }
+
+  @Test
+  void testSyntheticDNumberIsWithinValidRange() {
+	  //+80 (81-92)
+	  assertTrue(FodselsnummerValidator.isValid("41814061033"));
+	  assertFalse(FodselsnummerValidator.isValid("41804061033"));
+
+	  assertTrue(FodselsnummerValidator.isValid("41924061586"));
+	  assertFalse(FodselsnummerValidator.isValid("41934063587"));
+
+	  //+65 (66-77)
+	  assertTrue(FodselsnummerValidator.isValid("41664061188"));
+	  assertFalse(FodselsnummerValidator.isValid("41654061783"));
+
+	  assertTrue(FodselsnummerValidator.isValid("41774061388"));
+	  assertFalse(FodselsnummerValidator.isValid("41784061882"));
   }
 }

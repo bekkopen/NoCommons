@@ -163,14 +163,28 @@ public class FodselsnummerTest {
 	}
 
 	@Test
-	public void testParseSynteticNumber() {
-		assertEquals("07086303651", Fodselsnummer.parseSynthenticNumber("07886303651"));
+	public void testParseSyntheticNumber() {
+
+		//+80 on birth month 1-12
+		assertEquals("07086303651", Fodselsnummer.parseSyntheticNumber("07886303651"));
+
+		//+65 on birth month 1-4
+		assertEquals("07026303651", Fodselsnummer.parseSyntheticNumber("07676303651"));
+
+		//+65 on birth month 5-9
+		assertEquals("07056303651", Fodselsnummer.parseSyntheticNumber("07706303651"));
+
+		//+65 on birth month 10-12
+		assertEquals("07116303651", Fodselsnummer.parseSyntheticNumber("07766303651"));
 	}
 
 	@Test
-	public void testIsSynteticNumber() {
+	public void testIsSyntheticNumber() {
 		assertFalse(Fodselsnummer.isSynthetic("01010101006"));
 		assertFalse(Fodselsnummer.isSynthetic("80000000000"));
 		assertTrue(Fodselsnummer.isSynthetic("07886303651"));
+		assertTrue(Fodselsnummer.isSynthetic("07916303651"));
+		assertTrue(Fodselsnummer.isSynthetic("07666303651"));
+		assertTrue(Fodselsnummer.isSynthetic("07766303651"));
 	}
 }
