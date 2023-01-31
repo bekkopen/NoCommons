@@ -47,7 +47,7 @@ public class Fodselsnummer extends StringNumber {
 	 * @return A String containing the date and month of birth.
 	 */
 	public String getDateAndMonth() {
-		return parseSynthenticNumber(parseDNumber(getValue())).substring(0, 4);
+		return parseSyntheticNumber(parseDNumber(getValue())).substring(0, 4);
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class Fodselsnummer extends StringNumber {
 	 * @return A String containing the date of birth
 	 */
 	public String getDayInMonth() {
-		return parseSynthenticNumber(parseDNumber(getValue())).substring(0, 2);
+		return parseSyntheticNumber(parseDNumber(getValue())).substring(0, 2);
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class Fodselsnummer extends StringNumber {
 	 * @return A String containing the date of birth
 	 */
 	public String getMonth() {
-		return parseSynthenticNumber(parseDNumber(getValue())).substring(2, 4);
+		return parseSyntheticNumber(parseDNumber(getValue())).substring(2, 4);
 	}
 
 	/**
@@ -126,7 +126,7 @@ public class Fodselsnummer extends StringNumber {
 	 * @return A String containing the date and month of birth.
 	 */
 	public String getDateOfBirth() {
-		return parseSynthenticNumber(parseDNumber(getValue())).substring(0, 6);
+		return parseSyntheticNumber(parseDNumber(getValue())).substring(0, 6);
 	}
 
 	/**
@@ -195,18 +195,36 @@ public class Fodselsnummer extends StringNumber {
 		return !isMale();
 	}
 
-	static String parseSynthenticNumber(String fodselsnummer) {
+	static String parseSyntheticNumber(String fodselsnummer) {
 		if (!isSynthetic(fodselsnummer)) {
 			return fodselsnummer;
 		} else {
-			return fodselsnummer.substring(0, 2) + (getThirdDigit(fodselsnummer) - 8) + fodselsnummer.substring(3);
+
+			int monthNumber = Integer.parseInt(fodselsnummer.substring(2, 4));
+
+			//Skatteetaten - synthetic numbers
+			if (monthNumber >= 81 && monthNumber <= 92){
+
+				return fodselsnummer.substring(0, 2) + (getThirdDigit(fodselsnummer) - 8) + fodselsnummer.substring(3);
+			}
+
+			//Norsk helsenett - synthetic numbers
+			if (monthNumber >= 66 && monthNumber <= 77 ) {
+				String month = Integer.toString(monthNumber - 65);
+				if (month.length() == 1){
+					month = "0" + month;
+				}
+				return fodselsnummer.substring(0, 2) + month + fodselsnummer.substring(4);
+			}
+
+			throw new IllegalArgumentException(fodselsnummer + " is not a valid synthethic number");
 		}
 	}
 
 	static boolean isSynthetic(String fodselsnummer) {
 		try {
-			int thirdDigit = getThirdDigit(fodselsnummer);
-			if (thirdDigit == 8 || thirdDigit == 9) {
+			int monthNumber = Integer.parseInt(fodselsnummer.substring(2, 4));
+			if ((monthNumber >= 81 && monthNumber <= 92) || (monthNumber >= 66 && monthNumber <= 77)) {
 				return true;
 			}
 		} catch (IllegalArgumentException e) {

@@ -47,7 +47,7 @@ public class SyntheticFodselsnummerCalculatorTest {
 	}
 
 	@AfterAll
-	public static void taredown() {
+	public static void teardown() {
 		FodselsnummerValidator.ALLOW_SYNTHETIC_NUMBERS = false;
 	}
 
@@ -59,18 +59,18 @@ public class SyntheticFodselsnummerCalculatorTest {
 
 	@Test
 	public void testThatAllGeneratedSyntheticDNumbersAreValid() {
-		for (Fodselsnummer fnr : FodselsnummerCalculator.getManySynteticDNumberFodselsnummerForDate(date)) {
+		for (Fodselsnummer fnr : FodselsnummerCalculator.getManySyntheticDNumberFodselsnummerForDate(date)) {
 			assertTrue(FodselsnummerValidator.isValid(fnr.toString()), "Ugyldig fødselsnummer: " + fnr);
 		}
 	}
 
 	@Test
-	public void testThatAtLeastOneSynteticNumberIsGenerated() {
-		assertTrue(FodselsnummerCalculator.getManySynteticFodselsnummerForDate(date).size() >= 1);
+	public void testThatAtLeastOneSyntheticNumberIsGenerated() {
+		assertTrue(FodselsnummerCalculator.getManySyntheticFodselsnummerForDate(date).size() >= 1);
 	}
 
 	@Test
-	public void testThatAtLeastOneSynteticDNumberIsGenerated() {
-		assertTrue(FodselsnummerCalculator.getManySynteticDNumberFodselsnummerForDate(date).size() >= 1);
+	public void testThatAtLeastOneSyntheticDNumberIsGenerated() {
+		assertTrue(FodselsnummerCalculator.getManySyntheticDNumberFodselsnummerForDate(date).size() >= 1);
 	}
 }
