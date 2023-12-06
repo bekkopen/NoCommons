@@ -199,22 +199,25 @@ public class Fodselsnummer extends StringNumber {
 		if (!isSynthetic(fodselsnummer)) {
 			return fodselsnummer;
 		} else {
-
 			int monthNumber = Integer.parseInt(fodselsnummer.substring(2, 4));
 
 			//Skatteetaten - synthetic numbers
-			if (monthNumber >= 81 && monthNumber <= 92){
-
+			if (monthNumber >= 81 && monthNumber <= 92) {
 				return fodselsnummer.substring(0, 2) + (getThirdDigit(fodselsnummer) - 8) + fodselsnummer.substring(3);
 			}
 
 			//Norsk helsenett - synthetic numbers
-			if (monthNumber >= 66 && monthNumber <= 77 ) {
+			if (monthNumber >= 66 && monthNumber <= 77) {
 				String month = Integer.toString(monthNumber - 65);
-				if (month.length() == 1){
+				if (month.length() == 1) {
 					month = "0" + month;
 				}
 				return fodselsnummer.substring(0, 2) + month + fodselsnummer.substring(4);
+			}
+
+			//Norwegian Labour and Welfare Administration (NAV) - synthetic numbers
+			if (monthNumber >= 41 && monthNumber <= 52) {
+				return fodselsnummer.substring(0, 2) + (getThirdDigit(fodselsnummer) - 4) + fodselsnummer.substring(3);
 			}
 
 			throw new IllegalArgumentException(fodselsnummer + " is not a valid synthethic number");
@@ -224,7 +227,7 @@ public class Fodselsnummer extends StringNumber {
 	static boolean isSynthetic(String fodselsnummer) {
 		try {
 			int monthNumber = Integer.parseInt(fodselsnummer.substring(2, 4));
-			if ((monthNumber >= 81 && monthNumber <= 92) || (monthNumber >= 66 && monthNumber <= 77)) {
+			if ((monthNumber >= 81 && monthNumber <= 92) || (monthNumber >= 66 && monthNumber <= 77) || (monthNumber >= 41 && monthNumber <= 52)) {
 				return true;
 			}
 		} catch (IllegalArgumentException e) {

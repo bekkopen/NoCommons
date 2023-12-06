@@ -79,5 +79,12 @@ public class SyntheticFodselsnummerValidatorTest {
 
 	  assertTrue(FodselsnummerValidator.isValid("41774061388"));
 	  assertFalse(FodselsnummerValidator.isValid("41784061882"));
+
+	  //+40 (41-52)
+	  assertTrue(FodselsnummerValidator.isValid("24417138435"));
+	  assertFalse(FodselsnummerValidator.isValid("15407300685"));
+
+	  assertTrue(FodselsnummerValidator.isValid("04452305157"));
+	  assertFalse(FodselsnummerValidator.isValid("18535547706"));
   }
 }
