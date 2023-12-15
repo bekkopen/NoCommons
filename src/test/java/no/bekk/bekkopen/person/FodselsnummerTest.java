@@ -176,6 +176,9 @@ public class FodselsnummerTest {
 
 		//+65 on birth month 10-12
 		assertEquals("07116303651", Fodselsnummer.parseSyntheticNumber("07766303651"));
+
+		//+40 on birth month 1-12
+		assertEquals("10119120173", Fodselsnummer.parseSyntheticNumber("10519120173"));
 	}
 
 	@Test
@@ -186,5 +189,6 @@ public class FodselsnummerTest {
 		assertTrue(Fodselsnummer.isSynthetic("07916303651"));
 		assertTrue(Fodselsnummer.isSynthetic("07666303651"));
 		assertTrue(Fodselsnummer.isSynthetic("07766303651"));
+		assertTrue(Fodselsnummer.isSynthetic("16499923264"));
 	}
 }
