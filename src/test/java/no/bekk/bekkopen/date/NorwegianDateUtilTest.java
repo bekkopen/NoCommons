@@ -26,139 +26,164 @@ package no.bekk.bekkopen.date;
  * #L%
  */
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.ZonedDateTime;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.NavigableSet;
 
+import static no.bekk.bekkopen.date.NorwegianDateUtil.ZONE_NORWAY;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static uk.co.probablyfine.matchers.Java8Matchers.where;
 
 public class NorwegianDateUtilTest {
-	private static DateFormat FORMAT(){
-	    return new SimpleDateFormat("dd.MM.yyyy");
-    }
+	
 
-	@BeforeEach
-	public void setLocale() {
-		Locale.setDefault(new Locale("no", "NO"));
+	@Test
+	public void testAdd2DaysWithinSameWeek() {
+		ZonedDateTime zonedDateTime = LocalDate.of(2024, 9, 18).atStartOfDay(ZONE_NORWAY);
+
+		ZonedDateTime ny = NorwegianDateUtil.addWorkingDaysToDate(zonedDateTime, 2);
+
+		assertEquals(20, ny.getDayOfMonth());
+	}
+
+
+	@Test
+	public void testAdd2DaysBeforeWeekend() {
+		ZonedDateTime zonedDateTime = LocalDate.of(2024, 9, 20).atStartOfDay(ZONE_NORWAY);
+
+		ZonedDateTime ny = NorwegianDateUtil.addWorkingDaysToDate(zonedDateTime, 2);
+
+		assertEquals(24, ny.getDayOfMonth());
+	}
+
+
+	@Test
+	void testAdd2DaysToLastDayOfMonth() {
+		ZonedDateTime zonedDateTime = LocalDate.of(2024, 9, 30).atStartOfDay(ZONE_NORWAY);
+
+		ZonedDateTime ny = NorwegianDateUtil.addWorkingDaysToDate(zonedDateTime, 2);
+
+		assertEquals(2, ny.getDayOfMonth());
+		assertEquals(Month.OCTOBER, ny.getMonth());
 	}
 
 	@Test
-	public void testAdd2DaysWithinSameWeek() throws Exception {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(NorwegianDateUtil.addWorkingDaysToDate(FORMAT().parse("21.03.2007"), 2));
+	void testAdd5DaysWithNoHolidays() {
+		ZonedDateTime zonedDateTime = LocalDate.of(2024, 9, 30).atStartOfDay(ZONE_NORWAY);
 
-		assertEquals(23, cal.get(Calendar.DATE));
+		ZonedDateTime ny = NorwegianDateUtil.addWorkingDaysToDate(zonedDateTime, 5);
+
+		assertEquals(7, ny.getDayOfMonth());
+		assertEquals(Month.OCTOBER, ny.getMonth());
 	}
 
 	@Test
-	public void testAdd2DaysToLastDayOfMonth() throws Exception {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(NorwegianDateUtil.addWorkingDaysToDate(FORMAT().parse("28.02.2007"), 2));
+	void testAdd5DaysBeforeEasterHoliday() {
+		ZonedDateTime zonedDateTime = LocalDate.of(2025, 4, 11).atStartOfDay(ZONE_NORWAY);
 
-		assertEquals(2, cal.get(Calendar.DATE));
-		assertEquals(Calendar.MARCH, cal.get(Calendar.MONTH));
+		ZonedDateTime ny = NorwegianDateUtil.addWorkingDaysToDate(zonedDateTime, 5);
+
+		assertEquals(23, ny.getDayOfMonth());
+		assertEquals(Month.APRIL, ny.getMonth());
 	}
 
 	@Test
-	public void testAdd5DaysWithNoHolidays() throws Exception {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(NorwegianDateUtil.addWorkingDaysToDate(FORMAT().parse("21.03.2007"), 5));
+	void testAdd5DaysBeforeNationalDay() {
+		ZonedDateTime zonedDateTime = LocalDate.of(2007, 5, 16).atStartOfDay(ZONE_NORWAY);
 
-		assertEquals(28, cal.get(Calendar.DATE));
+		ZonedDateTime ny = NorwegianDateUtil.addWorkingDaysToDate(zonedDateTime, 5);
+
+		assertEquals(24, ny.getDayOfMonth());
+		assertEquals(Month.MAY, ny.getMonth());
 	}
 
 	@Test
-	public void testAdd5DaysBeforeEasterHoliday() throws Exception {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(NorwegianDateUtil.addWorkingDaysToDate(FORMAT().parse("04.04.2007"), 5));
+	void testAdd5DaysBeforeChristmas() {
+		ZonedDateTime zonedDateTime = LocalDate.of(2024, 12, 20).atStartOfDay(ZONE_NORWAY);
 
-		assertEquals(16, cal.get(Calendar.DATE));
+		ZonedDateTime ny = NorwegianDateUtil.addWorkingDaysToDate(zonedDateTime, 6);
+
+		assertEquals(2, ny.getDayOfMonth());
+		assertEquals(Month.JANUARY, ny.getMonth());
+		assertEquals(2025, ny.getYear());
 	}
 
 	@Test
-	public void testAdd5DaysBeforeNationalDay() throws Exception {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(NorwegianDateUtil.addWorkingDaysToDate(FORMAT().parse("16.05.2007"), 5));
-
-		assertEquals(24, cal.get(Calendar.DATE));
+	public void testWorkingDays() {
+		assertFalse(NorwegianDateUtil.isWorkingDay(LocalDate.of(2024, 9, 22).atStartOfDay(ZONE_NORWAY)), "Sunday not working day");
+		assertTrue(NorwegianDateUtil.isWorkingDay(LocalDate.of(2024, 9, 16).atStartOfDay(ZONE_NORWAY)), "Monday is working day");
+		assertFalse(NorwegianDateUtil.isWorkingDay(LocalDate.of(2025, 1, 1).atStartOfDay(ZONE_NORWAY)), "New years day not working day");
+		assertFalse(NorwegianDateUtil.isWorkingDay(LocalDate.of(2007, 4, 8).atStartOfDay(ZONE_NORWAY)), "Easter day not working day");
 	}
 
-	@Test
-	public void testAdd5DaysBeforeChristmas() throws Exception {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(NorwegianDateUtil.addWorkingDaysToDate(FORMAT().parse("21.12.2007"), 5));
-
-		assertEquals(2, cal.get(Calendar.DATE));
-		assertEquals(Calendar.JANUARY, cal.get(Calendar.MONTH));
-		assertEquals(2008, cal.get(Calendar.YEAR));
-	}
 
 	@Test
-	public void testWorkingDays() throws Exception {
-		assertFalse(NorwegianDateUtil.isWorkingDay(FORMAT().parse("25.03.2007")), "Sunday not working day");
-		assertTrue(NorwegianDateUtil.isWorkingDay(FORMAT().parse("26.03.2007")), "Monday is working day");
-		assertFalse(NorwegianDateUtil.isWorkingDay(FORMAT().parse("01.01.2007")), "New years day not working day");
-		assertFalse(NorwegianDateUtil.isWorkingDay(FORMAT().parse("08.04.2007")), "Easter day not working day");
-	}
-
-	@Test
-	public void testVariousNorwegianHolidays() throws Exception {
+	public void testVariousNorwegianHolidays() {
 		// Set dates
-		checkHoliday("01.01.2007");
-		checkHoliday("01.05.2007");
-		checkHoliday("17.05.2007");
-		checkHoliday("25.12.2007");
-		checkHoliday("26.12.2007");
+		checkHoliday(LocalDate.of(2007, 1, 1));
+		checkHoliday(LocalDate.of(2007, 5, 1));
+		checkHoliday(LocalDate.of(2007, 5, 17));
+		checkHoliday(LocalDate.of(2007, 12, 25));
+		checkHoliday(LocalDate.of(2007, 12, 26));
 
-		// Movable dates 2007
-		checkHoliday("01.04.2007");
-		checkHoliday("05.04.2007");
-		checkHoliday("06.04.2007");
-		checkHoliday("08.04.2007");
-		checkHoliday("09.04.2007");
-		checkHoliday("17.05.2007");
-		checkHoliday("27.05.2007");
-		checkHoliday("28.05.2007");
+		// Movable daLocalDate.of(2, 2, 2);tes 2007
+		checkHoliday(LocalDate.of(2007, 4, 1));
+		checkHoliday(LocalDate.of(2007, 4, 5));
+		checkHoliday(LocalDate.of(2007, 4, 6));
+		checkHoliday(LocalDate.of(2007, 4, 8));
+		checkHoliday(LocalDate.of(2007, 4, 8));
+		checkHoliday(LocalDate.of(2007, 5, 17));
+		checkHoliday(LocalDate.of(2007, 5, 27));
+		checkHoliday(LocalDate.of(2007, 5, 28));
 
-		// Movable dates 2008
-		checkHoliday("16.03.2008");
-		checkHoliday("20.03.2008");
-		checkHoliday("21.03.2008");
-		checkHoliday("23.03.2008");
-		checkHoliday("24.03.2008");
-		checkHoliday("01.05.2008");
-		checkHoliday("11.05.2008");
-		checkHoliday("12.05.2008");
+		// Movable daLocalDate.of(2, 2, 2);tes 2008
+		checkHoliday(LocalDate.of(2008, 3, 16));
+		checkHoliday(LocalDate.of(2008, 3, 20));
+		checkHoliday(LocalDate.of(2008, 3, 21));
+		checkHoliday(LocalDate.of(2008, 3, 23));
+		checkHoliday(LocalDate.of(2008, 3, 24));
+		checkHoliday(LocalDate.of(2008, 5, 1));
+		checkHoliday(LocalDate.of(2008, 5, 11));
+		checkHoliday(LocalDate.of(2008, 5, 12));
 	}
+
 
 	@Test
 	public void testGetAllNorwegianHolidaysForYear() {
-		Date[] holidays = NorwegianDateUtil.getHolidays(2009);
-		assertEquals(13, holidays.length);
-		assertEquals("01.01.2009", FORMAT().format(holidays[0]));
-		assertEquals("05.04.2009", FORMAT().format(holidays[1]));
-		assertEquals("09.04.2009", FORMAT().format(holidays[2]));
-		assertEquals("10.04.2009", FORMAT().format(holidays[3]));
-		assertEquals("12.04.2009", FORMAT().format(holidays[4]));
-		assertEquals("13.04.2009", FORMAT().format(holidays[5]));
-		assertEquals("01.05.2009", FORMAT().format(holidays[6]));
-		assertEquals("17.05.2009", FORMAT().format(holidays[7]));
-		assertEquals("21.05.2009", FORMAT().format(holidays[8]));
-		assertEquals("31.05.2009", FORMAT().format(holidays[9]));
-		assertEquals("01.06.2009", FORMAT().format(holidays[10]));
-		assertEquals("25.12.2009", FORMAT().format(holidays[11]));
-		assertEquals("26.12.2009", FORMAT().format(holidays[12]));
+		NavigableSet<LocalDate> holidays = NorwegianDateUtil.getHolidays(2009);
+
+		assertEquals(13, holidays.size());
+
+		LinkedHashSet<LocalDate> fasit = new LinkedHashSet<>(Arrays.asList(
+			LocalDate.of(2009, 1, 1),
+			LocalDate.of(2009, 4, 5),
+			LocalDate.of(2009, 4, 9),
+			LocalDate.of(2009, 4, 10),
+			LocalDate.of(2009, 4, 12),
+			LocalDate.of(2009, 4, 13),
+			LocalDate.of(2009, 5, 1),
+			LocalDate.of(2009, 5, 17),
+			LocalDate.of(2009, 5, 21),
+			LocalDate.of(2009, 5, 31),
+			LocalDate.of(2009, 6, 1),
+			LocalDate.of(2009, 12, 25),
+			LocalDate.of(2009, 12, 26)
+		));
+
+		assertEquals(fasit, holidays);
+
+
 	}
 
-	private void checkHoliday(String date) throws ParseException {
-		assertTrue(NorwegianDateUtil.isHoliday(FORMAT().parse(date)), date);
+	private void checkHoliday(LocalDate date) {
+		assertThat(date.atStartOfDay(ZONE_NORWAY), where(NorwegianDateUtil::isHoliday));
 	}
 }

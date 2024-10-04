@@ -125,6 +125,12 @@
       <version>2.2</version>
       <scope>test</scope>
     </dependency>
+	<dependency>
+      <groupId>uk.co.probablyfine</groupId>
+      <artifactId>java-8-matchers</artifactId>
+      <version>1.9</version>
+	  <scope>test</scope>
+	</dependency>
     <dependency>
       <groupId>org.hibernate.validator</groupId>
       <artifactId>hibernate-validator</artifactId>
