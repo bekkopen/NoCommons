@@ -29,6 +29,7 @@ package no.bekk.bekkopen.date;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -42,6 +43,9 @@ import java.util.stream.Stream;
  * Utility class for Norwegian dates.
  */
 public class NorwegianDateUtil {
+
+	public static final String ZONEID_EUROPE_OSLO = "Europe/Oslo";
+	public static final ZoneId ZONE_NORWAY = ZoneId.of(ZONEID_EUROPE_OSLO);
 	
 	private final static Map<Integer, NavigableSet<LocalDate>> holidays = new HashMap<>();
 

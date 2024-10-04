@@ -30,12 +30,12 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.NavigableSet;
 
+import static no.bekk.bekkopen.date.NorwegianDateUtil.ZONE_NORWAY;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -44,11 +44,10 @@ import static uk.co.probablyfine.matchers.Java8Matchers.where;
 
 public class NorwegianDateUtilTest {
 	
-	public static ZoneId NORGESONE = ZoneId.of("Europe/Oslo");
 
 	@Test
 	public void testAdd2DaysWithinSameWeek() {
-		ZonedDateTime zonedDateTime = LocalDate.of(2024, 9, 18).atStartOfDay(NORGESONE);
+		ZonedDateTime zonedDateTime = LocalDate.of(2024, 9, 18).atStartOfDay(ZONE_NORWAY);
 
 		ZonedDateTime ny = NorwegianDateUtil.addWorkingDaysToDate(zonedDateTime, 2);
 
@@ -58,7 +57,7 @@ public class NorwegianDateUtilTest {
 
 	@Test
 	public void testAdd2DaysBeforeWeekend() {
-		ZonedDateTime zonedDateTime = LocalDate.of(2024, 9, 20).atStartOfDay(NORGESONE);
+		ZonedDateTime zonedDateTime = LocalDate.of(2024, 9, 20).atStartOfDay(ZONE_NORWAY);
 
 		ZonedDateTime ny = NorwegianDateUtil.addWorkingDaysToDate(zonedDateTime, 2);
 
@@ -68,7 +67,7 @@ public class NorwegianDateUtilTest {
 
 	@Test
 	void testAdd2DaysToLastDayOfMonth() {
-		ZonedDateTime zonedDateTime = LocalDate.of(2024, 9, 30).atStartOfDay(NORGESONE);
+		ZonedDateTime zonedDateTime = LocalDate.of(2024, 9, 30).atStartOfDay(ZONE_NORWAY);
 
 		ZonedDateTime ny = NorwegianDateUtil.addWorkingDaysToDate(zonedDateTime, 2);
 
@@ -78,7 +77,7 @@ public class NorwegianDateUtilTest {
 
 	@Test
 	void testAdd5DaysWithNoHolidays() {
-		ZonedDateTime zonedDateTime = LocalDate.of(2024, 9, 30).atStartOfDay(NORGESONE);
+		ZonedDateTime zonedDateTime = LocalDate.of(2024, 9, 30).atStartOfDay(ZONE_NORWAY);
 
 		ZonedDateTime ny = NorwegianDateUtil.addWorkingDaysToDate(zonedDateTime, 5);
 
@@ -88,7 +87,7 @@ public class NorwegianDateUtilTest {
 
 	@Test
 	void testAdd5DaysBeforeEasterHoliday() {
-		ZonedDateTime zonedDateTime = LocalDate.of(2025, 4, 11).atStartOfDay(NORGESONE);
+		ZonedDateTime zonedDateTime = LocalDate.of(2025, 4, 11).atStartOfDay(ZONE_NORWAY);
 
 		ZonedDateTime ny = NorwegianDateUtil.addWorkingDaysToDate(zonedDateTime, 5);
 
@@ -98,7 +97,7 @@ public class NorwegianDateUtilTest {
 
 	@Test
 	void testAdd5DaysBeforeNationalDay() {
-		ZonedDateTime zonedDateTime = LocalDate.of(2007, 5, 16).atStartOfDay(NORGESONE);
+		ZonedDateTime zonedDateTime = LocalDate.of(2007, 5, 16).atStartOfDay(ZONE_NORWAY);
 
 		ZonedDateTime ny = NorwegianDateUtil.addWorkingDaysToDate(zonedDateTime, 5);
 
@@ -108,7 +107,7 @@ public class NorwegianDateUtilTest {
 
 	@Test
 	void testAdd5DaysBeforeChristmas() {
-		ZonedDateTime zonedDateTime = LocalDate.of(2024, 12, 20).atStartOfDay(NORGESONE);
+		ZonedDateTime zonedDateTime = LocalDate.of(2024, 12, 20).atStartOfDay(ZONE_NORWAY);
 
 		ZonedDateTime ny = NorwegianDateUtil.addWorkingDaysToDate(zonedDateTime, 6);
 
@@ -119,10 +118,10 @@ public class NorwegianDateUtilTest {
 
 	@Test
 	public void testWorkingDays() {
-		assertFalse(NorwegianDateUtil.isWorkingDay(LocalDate.of(2024, 9, 22).atStartOfDay(NORGESONE)), "Sunday not working day");
-		assertTrue(NorwegianDateUtil.isWorkingDay(LocalDate.of(2024, 9, 16).atStartOfDay(NORGESONE)), "Monday is working day");
-		assertFalse(NorwegianDateUtil.isWorkingDay(LocalDate.of(2025, 1, 1).atStartOfDay(NORGESONE)), "New years day not working day");
-		assertFalse(NorwegianDateUtil.isWorkingDay(LocalDate.of(2007, 4, 8).atStartOfDay(NORGESONE)), "Easter day not working day");
+		assertFalse(NorwegianDateUtil.isWorkingDay(LocalDate.of(2024, 9, 22).atStartOfDay(ZONE_NORWAY)), "Sunday not working day");
+		assertTrue(NorwegianDateUtil.isWorkingDay(LocalDate.of(2024, 9, 16).atStartOfDay(ZONE_NORWAY)), "Monday is working day");
+		assertFalse(NorwegianDateUtil.isWorkingDay(LocalDate.of(2025, 1, 1).atStartOfDay(ZONE_NORWAY)), "New years day not working day");
+		assertFalse(NorwegianDateUtil.isWorkingDay(LocalDate.of(2007, 4, 8).atStartOfDay(ZONE_NORWAY)), "Easter day not working day");
 	}
 
 
@@ -185,6 +184,6 @@ public class NorwegianDateUtilTest {
 	}
 
 	private void checkHoliday(LocalDate date) {
-		assertThat(date.atStartOfDay(NORGESONE), where(NorwegianDateUtil::isHoliday));
+		assertThat(date.atStartOfDay(ZONE_NORWAY), where(NorwegianDateUtil::isHoliday));
 	}
 }
