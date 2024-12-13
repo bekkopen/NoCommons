@@ -26,6 +26,11 @@ package no.bekk.bekkopen.person;
  * #L%
  */
 
+/**
+ * @deprecated For removal - Gender will stop working after 1.1.2032
+ * <a href="https://skatteetaten.github.io/folkeregisteret-api-dokumentasjon/nytt-fodselsnummer-fra-2032/">Nytt fødselsnummer fra 2032</a>
+ */
+@Deprecated
 public enum KJONN {
 
 	MANN, KVINNE, BEGGE;

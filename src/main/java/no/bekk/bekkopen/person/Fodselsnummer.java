@@ -73,12 +73,30 @@ public class Fodselsnummer extends StringNumber {
 	/**
 	 * Returns the birthyear of the Fodselsnummer
 	 *
-	 * @return A String containing the year of birth.
+	 * @return a String containg the year of birth represented by 2 (two) digits. Century is not included.
 	 */
+	public String getYear() {
+		return get2DigitBirthYear();
+	}
+
+	/**
+	 * Returns the birthyear of the Fodselsnummer
+	 *
+	 * @return A String containing the year of birth represented by 4 (four) digits. Century is included.
+	 * @deprecated For removal - After 1.1.2032 we cannot reliably conclude correct century anymore.
+	 * <a href="https://skatteetaten.github.io/folkeregisteret-api-dokumentasjon/nytt-fodselsnummer-fra-2032/">Nytt fødselsnummer fra 2032</a>
+	 * replaced by {@link #getYear()}
+	 */
+	@Deprecated
 	public String getBirthYear() {
 		return getCentury() + get2DigitBirthYear();
 	}
 
+	/**
+     * @deprecated For removal - After 1.1.2032 we cannot reliably conclude correct century anymore.
+     * 	<a href="https://skatteetaten.github.io/folkeregisteret-api-dokumentasjon/nytt-fodselsnummer-fra-2032/">Nytt fødselsnummer fra 2032</a>
+	 */
+	@Deprecated
 	String getCentury() {
 		String result = null;
 		int individnummerInt = Integer.parseInt(getIndividnummer());
@@ -152,9 +170,12 @@ public class Fodselsnummer extends StringNumber {
 
 	/**
 	 * Returns the digit that decides the gender - the 9th in the Fodselsnummer.
-	 *
+	 * 
+	 * @deprecated For removal - Gender will stop working after 1.1.2032
+     * 	<a href="https://skatteetaten.github.io/folkeregisteret-api-dokumentasjon/nytt-fodselsnummer-fra-2032/">Nytt fødselsnummer fra 2032</a>
 	 * @return The digit.
 	 */
+	@Deprecated
 	public int getGenderDigit() {
 		return getAt(8);
 	}
@@ -179,18 +200,24 @@ public class Fodselsnummer extends StringNumber {
 
 	/**
 	 * Returns true if the Fodselsnummer represents a man.
-	 *
+	 * 
+	 * @deprecated For removal - Gender will stop working after 1.1.2032
+     * 	<a href="https://skatteetaten.github.io/folkeregisteret-api-dokumentasjon/nytt-fodselsnummer-fra-2032/">Nytt fødselsnummer fra 2032</a>
 	 * @return true or false.
 	 */
+	@Deprecated
 	public boolean isMale() {
 		return getGenderDigit() % 2 != 0;
 	}
 
 	/**
 	 * Returns true if the Fodselsnummer represents a woman.
-	 *
+	 * 
+	 * @deprecated For removal - Gender will stop working after 1.1.2032
+     * 	<a href="https://skatteetaten.github.io/folkeregisteret-api-dokumentasjon/nytt-fodselsnummer-fra-2032/">Nytt fødselsnummer fra 2032</a>
 	 * @return true or false.
 	 */
+	@Deprecated
 	public boolean isFemale() {
 		return !isMale();
 	}
@@ -264,6 +291,11 @@ public class Fodselsnummer extends StringNumber {
 		return Integer.parseInt(fodselsnummer.substring(2, 3));
 	}
 
+	/**
+	 * @deprecated For removal - Gender will stop working after 1.1.2032
+     * 	<a href="https://skatteetaten.github.io/folkeregisteret-api-dokumentasjon/nytt-fodselsnummer-fra-2032/">Nytt fødselsnummer fra 2032</a>
+	 */
+	@Deprecated
 	public KJONN getKjonn() {
 		if (isFemale()) {
 			return KJONN.KVINNE;
