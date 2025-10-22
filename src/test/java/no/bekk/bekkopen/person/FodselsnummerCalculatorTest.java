@@ -26,13 +26,12 @@ package no.bekk.bekkopen.person;
  * #L%
  */
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -41,14 +40,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FodselsnummerCalculatorTest {
 
-	private DateFormat df = null;
-	private Date date = null;
-
-	@BeforeEach
-	public void setUpDate() throws Exception {
-		df   = new SimpleDateFormat("ddMMyyyy");
-		date = df.parse("09062006");
-	}
+	private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy");
+	private LocalDate date = LocalDate.of(2006, Month.JUNE, 9);
 
 	@Test
 	public void testGetFodselsnummerForDate() {
@@ -87,9 +80,9 @@ public class FodselsnummerCalculatorTest {
 	}
 
 	@Test
-	public void testThatAtLeastOneDNumberIsGeneratedsas() throws ParseException {
-		assertEquals(82, FodselsnummerCalculator.getManyDNumberFodselsnummerForDate(df.parse("06061878")).size());
-		assertEquals(164, FodselsnummerCalculator.getManyDNumberFodselsnummerForDate(df.parse("12101921")).size());
+	public void testThatAtLeastOneDNumberIsGeneratedsas() {
+		assertEquals(82, FodselsnummerCalculator.getManyDNumberFodselsnummerForDate(LocalDate.parse("06061878", dtf)).size());
+		assertEquals(164, FodselsnummerCalculator.getManyDNumberFodselsnummerForDate(LocalDate.parse("12101921", dtf)).size());
 	}
 
 	@Test
@@ -107,22 +100,22 @@ public class FodselsnummerCalculatorTest {
 	}
 
 	@Test
-	public void testInvalidDateTooEarly() throws ParseException {
-		date = df.parse("09091853");
+	public void testInvalidDateTooEarly() {
+		date = LocalDate.parse("09091853", dtf);
 		List<Fodselsnummer> options = FodselsnummerCalculator.getManyFodselsnummerForDate(date);
 		assertEquals(0, options.size());
 	}
 
 	@Test
-	public void testInvalidDateTooLate() throws ParseException {
-		date = df.parse("09092040");
+	public void testInvalidDateTooLate() {
+		date = LocalDate.parse("09092040", dtf);
 		List<Fodselsnummer> options = FodselsnummerCalculator.getManyFodselsnummerForDate(date);
 		assertEquals(0, options.size());
 	}
 
 	@Test
 	public void testOneFodselsnummer() throws ParseException {
-		date = df.parse("01121980");
+		date = LocalDate.parse("01121980", dtf);
 		Fodselsnummer fodselsnummer = FodselsnummerCalculator.getFodselsnummerForDate(date);
 		assertTrue(FodselsnummerValidator.isValid(fodselsnummer.toString()));
 	}
