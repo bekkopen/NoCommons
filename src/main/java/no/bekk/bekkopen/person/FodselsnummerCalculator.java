@@ -26,12 +26,10 @@ package no.bekk.bekkopen.person;
  * #L%
  */
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -51,8 +49,7 @@ public class FodselsnummerCalculator {
    * @param kjonn kjønn
    * @return liste med fødselsnummer
    */
-
-	public static List<Fodselsnummer> getFodselsnummerForDateAndGender(Date date, KJONN kjonn) {
+	public static List<Fodselsnummer> getFodselsnummerForDateAndGender(LocalDate date, KJONN kjonn) {
 		List<Fodselsnummer> result = getManyFodselsnummerForDate(date);
 		splitByGender(kjonn, result);
 		return result;
@@ -63,7 +60,7 @@ public class FodselsnummerCalculator {
    * @param date en dato
    * @return et fødselsnummer
    */
-	public static Fodselsnummer getFodselsnummerForDate(Date date){
+	public static Fodselsnummer getFodselsnummerForDate(LocalDate date) {
 		List<Fodselsnummer> fodselsnummerList = getManyFodselsnummerForDate(date);
 		Collections.shuffle(fodselsnummerList);
 		return fodselsnummerList.get(0);
@@ -75,14 +72,13 @@ public class FodselsnummerCalculator {
 	 * @param date The Date instance
 	 * @return A List with Fodelsnummer instances
 	 */
-
-	public static List<Fodselsnummer> getManyDNumberFodselsnummerForDate(Date date) {
+	public static List<Fodselsnummer> getManyDNumberFodselsnummerForDate(LocalDate date) {
 		if (date == null) {
 			throw new IllegalArgumentException();
 		}
-		DateFormat df = new SimpleDateFormat("ddMMyy");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyy");
 		String centuryString = getCentury(date);
-		String dateString = df.format(date);
+		String dateString = dtf.format(date);
 		dateString = Character.toChars(dateString.charAt(0) + 4)[0] +
       dateString.substring(1);
 		return generateFodselsnummerForDate(dateString, centuryString);
@@ -94,14 +90,13 @@ public class FodselsnummerCalculator {
 	 * @param date The Date instance
 	 * @return A List with Fodelsnummer instances
 	 */
-
-	public static List<Fodselsnummer> getManySyntheticFodselsnummerForDate(Date date) {
+	public static List<Fodselsnummer> getManySyntheticFodselsnummerForDate(LocalDate date) {
 		if (date == null) {
 			throw new IllegalArgumentException();
 		}
-		DateFormat df = new SimpleDateFormat("ddMMyy");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyy");
 		String centuryString = getCentury(date);
-		String dateString = df.format(date);
+		String dateString = dtf.format(date);
 		dateString = dateString.substring(0, 2) +
       Character.toChars(dateString.charAt(2) + 8)[0] +
       dateString.substring(3);
@@ -114,14 +109,13 @@ public class FodselsnummerCalculator {
 	 * @param date The Date instance
 	 * @return A List with Fodelsnummer instances
 	 */
-
-	public static List<Fodselsnummer> getManySyntheticDNumberFodselsnummerForDate(Date date) {
+	public static List<Fodselsnummer> getManySyntheticDNumberFodselsnummerForDate(LocalDate date) {
 		if (date == null) {
 			throw new IllegalArgumentException();
 		}
-		DateFormat df = new SimpleDateFormat("ddMMyy");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyy");
 		String centuryString = getCentury(date);
-		String dateString = df.format(date);
+		String dateString = dtf.format(date);
 		dateString = Character.toChars(dateString.charAt(0) + 4)[0] +
       dateString.substring(1, 2) +
       Character.toChars(dateString.charAt(2) + 8)[0] +
@@ -135,14 +129,13 @@ public class FodselsnummerCalculator {
 	 * @param date The Date instance
 	 * @return A List with Fodelsnummer instances
 	 */
-
-	public static List<Fodselsnummer> getManyFodselsnummerForDate(Date date) {
+	public static List<Fodselsnummer> getManyFodselsnummerForDate(LocalDate date) {
 		if (date == null) {
 			throw new IllegalArgumentException();
 		}
-		DateFormat df = new SimpleDateFormat("ddMMyy");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyy");
 		String centuryString = getCentury(date);
-		String dateString = df.format(date);
+		String dateString = dtf.format(date);
 		return generateFodselsnummerForDate(dateString, centuryString);
 	}
 
@@ -175,11 +168,8 @@ public class FodselsnummerCalculator {
 		return result;
 	}
 
-	private static String getCentury(Date date) {
-		Calendar c = Calendar.getInstance();
-		c.setTime(date);
-		int year = c.get(Calendar.YEAR);
-		return Integer.toString(year).substring(0, 2);
+	private static String getCentury(LocalDate date) {
+		return Integer.toString(date.getYear()).substring(0, 2);
 	}
 
 	private static void splitByGender(KJONN kjonn, List<Fodselsnummer> result) {

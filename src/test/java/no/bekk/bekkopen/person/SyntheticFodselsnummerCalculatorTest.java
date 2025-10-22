@@ -28,18 +28,16 @@ package no.bekk.bekkopen.person;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SyntheticFodselsnummerCalculatorTest {
 
-	private Date date = null;
+	private LocalDate date = LocalDate.of(2006, Month.JUNE, 9);
 
 	@BeforeAll
 	public static void setup() {
@@ -49,12 +47,6 @@ public class SyntheticFodselsnummerCalculatorTest {
 	@AfterAll
 	public static void teardown() {
 		FodselsnummerValidator.ALLOW_SYNTHETIC_NUMBERS = false;
-	}
-
-	@BeforeEach
-	public void setUpDate() throws Exception {
-		DateFormat df = new SimpleDateFormat("ddMMyyyy");
-		date = df.parse("09062006");
 	}
 
 	@Test

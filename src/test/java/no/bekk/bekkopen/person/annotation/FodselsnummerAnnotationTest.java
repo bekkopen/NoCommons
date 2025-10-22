@@ -34,7 +34,8 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
-import java.util.Date;
+
+import java.time.LocalDate;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -69,7 +70,7 @@ public class FodselsnummerAnnotationTest {
 
     @Test
     public void should_validate_valid_fodselsnummer(){
-        Person k = new Person(FodselsnummerCalculator.getFodselsnummerForDate(new Date()).toString());
+        Person k = new Person(FodselsnummerCalculator.getFodselsnummerForDate(LocalDate.now()).toString());
 
         Set<ConstraintViolation<Person>> violations = validator.validate(k);
 
