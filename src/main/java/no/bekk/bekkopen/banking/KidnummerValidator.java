@@ -92,7 +92,8 @@ public class KidnummerValidator extends StringNumberValidator implements Constra
             return;
         }
         String kMod11 = calculateMod11CheckSumAllowDash(getMod11Weights(k), k);
-        if ("-".equals(kMod11) || Integer.parseInt(kMod11) == k.getChecksumDigit()) {
+        String lastChar = kidnummer.substring(kidnummer.length() - 1);
+        if (kMod11.equals(lastChar)) {
             return;
         }
         throw new IllegalArgumentException(ERROR_INVALID_CHECKSUM + kidnummer);
