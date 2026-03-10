@@ -47,11 +47,14 @@ public class FodselsnummerCalculator {
   /**
    * Returns a List with valid Fodselsnummer instances for a given Date and gender.
    *
+   * @deprecated For removal - Gender will stop working after 1.1.2032
+   * 	<a href="https://skatteetaten.github.io/folkeregisteret-api-dokumentasjon/nytt-fodselsnummer-fra-2032/">Nytt fødselsnummer fra 2032</a>
+   *
    * @param date en dato
    * @param kjonn kjønn
    * @return liste med fødselsnummer
    */
-
+	@Deprecated
 	public static List<Fodselsnummer> getFodselsnummerForDateAndGender(Date date, KJONN kjonn) {
 		List<Fodselsnummer> result = getManyFodselsnummerForDate(date);
 		splitByGender(kjonn, result);
