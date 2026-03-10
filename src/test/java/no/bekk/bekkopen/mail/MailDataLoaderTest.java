@@ -58,17 +58,17 @@ public class MailDataLoaderTest {
 
     @Test
     public void testAntallPoststed() {
-        assertEquals(1828, MailValidator.getAntallPoststed());
+        assertEquals(1838, MailValidator.getAntallPoststed());
     }
 
     @Test
     public void testAntallPostnummer() {
-        assertEquals(5133, MailValidator.getAntallPostnummer());
+        assertEquals(5146, MailValidator.getAntallPostnummer());
     }
 
     @Test
     public void testAntallKommunenummer() {
-        assertEquals(358, MailValidator.getAntallKommunenummer());
+        assertEquals(359, MailValidator.getAntallKommunenummer());
     }
 
     @Test
