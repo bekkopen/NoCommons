@@ -72,13 +72,4 @@ public class Person {
 	public String getPersonnummer() {
 		return this.fodselsnummer.getPersonnummer();
 	}
-
-	public boolean erKvinne() {
-		return fodselsnummer.isFemale();
-	}
-
-	public boolean erMann() {
-		return fodselsnummer.isMale();
-	}
-
 }

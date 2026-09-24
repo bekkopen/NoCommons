@@ -34,23 +34,18 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class PersonTest {
 
 	@Test
-	public void lagMann() {
+	public void lagPerson() {
 		LocalDate fodselsdato = LocalDate.of(1973, Month.DECEMBER, 10);
-		List<Fodselsnummer> fodselsnumre = FodselsnummerCalculator.getFodselsnummerForDateAndGender(fodselsdato,
-				KJONN.MANN);
+		List<Fodselsnummer> fodselsnumre = FodselsnummerCalculator.getManyFodselsnummerForDate(fodselsdato);
 		Fodselsnummer fodselsnummer = fodselsnumre.get(0);
 		Navn navn = NavnGenerator.genererMannsnavn();
 		Person person = new Person(navn, fodselsnummer);
-
-		assertTrue(person.erMann());
-		assertFalse(person.erKvinne());
 
 		String pFornavn = person.getFornavn();
 		assertTrue(pFornavn.matches(NavnGeneratorTest.NAVN_PATTERN),

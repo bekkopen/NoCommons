@@ -177,24 +177,6 @@ public class Fodselsnummer extends StringNumber {
 		return getAt(10);
 	}
 
-	/**
-	 * Returns true if the Fodselsnummer represents a man.
-	 *
-	 * @return true or false.
-	 */
-	public boolean isMale() {
-		return getGenderDigit() % 2 != 0;
-	}
-
-	/**
-	 * Returns true if the Fodselsnummer represents a woman.
-	 *
-	 * @return true or false.
-	 */
-	public boolean isFemale() {
-		return !isMale();
-	}
-
 	static String parseSyntheticNumber(String fodselsnummer) {
 		if (!isSynthetic(fodselsnummer)) {
 			return fodselsnummer;
@@ -262,14 +244,6 @@ public class Fodselsnummer extends StringNumber {
 
 	private static int getThirdDigit(String fodselsnummer) {
 		return Integer.parseInt(fodselsnummer.substring(2, 3));
-	}
-
-	public KJONN getKjonn() {
-		if (isFemale()) {
-			return KJONN.KVINNE;
-		} else {
-			return KJONN.MANN;
-		}
 	}
 
 	@Override

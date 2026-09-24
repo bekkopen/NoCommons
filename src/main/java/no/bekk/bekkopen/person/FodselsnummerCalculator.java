@@ -30,7 +30,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -40,19 +39,6 @@ public class FodselsnummerCalculator {
 
 	private FodselsnummerCalculator() {
 		super();
-	}
-
-  /**
-   * Returns a List with valid Fodselsnummer instances for a given Date and gender.
-   *
-   * @param date en dato
-   * @param kjonn kjønn
-   * @return liste med fødselsnummer
-   */
-	public static List<Fodselsnummer> getFodselsnummerForDateAndGender(LocalDate date, KJONN kjonn) {
-		List<Fodselsnummer> result = getManyFodselsnummerForDate(date);
-		splitByGender(kjonn, result);
-		return result;
 	}
 
   /**
@@ -171,15 +157,4 @@ public class FodselsnummerCalculator {
 	private static String getCentury(LocalDate date) {
 		return Integer.toString(date.getYear()).substring(0, 2);
 	}
-
-	private static void splitByGender(KJONN kjonn, List<Fodselsnummer> result) {
-		Iterator<Fodselsnummer> iter = result.iterator();
-		while (iter.hasNext()) {
-			Fodselsnummer f = iter.next();
-			if (f.getKjonn() != kjonn) {
-				iter.remove();
-			}
-		}
-	}
-
 }
