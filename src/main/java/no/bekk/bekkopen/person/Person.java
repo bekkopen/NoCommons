@@ -26,14 +26,12 @@ package no.bekk.bekkopen.person;
  * #L%
  */
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Person {
 
-	private final static DateFormat fDatoFormat = new SimpleDateFormat("ddMMyy");
+	private static final DateTimeFormatter fDatoFormat = DateTimeFormatter.ofPattern("ddMMyyyy");
 	private final Navn navn;
 	private final Fodselsnummer fodselsnummer;
 
@@ -67,8 +65,8 @@ public class Person {
 		return this.fodselsnummer.getDateOfBirth();
 	}
 
-	public Date getFodselsdato() throws ParseException {
-      return fDatoFormat.parse(this.fodselsnummer.getDateOfBirth());
+	public LocalDate getFodselsdato() {
+        return LocalDate.parse(this.fodselsnummer.getDateAndMonth() + this.fodselsnummer.getBirthYear(), fDatoFormat);
 	}
 
 	public String getPersonnummer() {

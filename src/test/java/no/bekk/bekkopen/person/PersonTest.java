@@ -26,15 +26,12 @@ package no.bekk.bekkopen.person;
  * #L%
  */
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -43,17 +40,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PersonTest {
 
-	private Calendar kalender;
-
-	@BeforeEach
-	public void initialiserKalender() {
-		kalender = Calendar.getInstance();
-	}
-
 	@Test
-	public void lagMann() throws ParseException {
-		kalender.set(1973, Calendar.DECEMBER, 10);
-		Date fodselsdato = kalender.getTime();
+	public void lagMann() {
+		LocalDate fodselsdato = LocalDate.of(1973, Month.DECEMBER, 10);
 		List<Fodselsnummer> fodselsnumre = FodselsnummerCalculator.getFodselsnummerForDateAndGender(fodselsdato,
 				KJONN.MANN);
 		Fodselsnummer fodselsnummer = fodselsnumre.get(0);
@@ -80,9 +69,9 @@ public class PersonTest {
 		Navn pNavn = person.getNavn();
 		NavnGeneratorTest.assertGyldigNavn(pNavn);
 
-		Date pFodselsdato = person.getFodselsdato();
-		DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, new Locale("no", "NO"));
-		assertEquals(df.format(fodselsdato), df.format(pFodselsdato));
+		LocalDate pFodselsdato = person.getFodselsdato();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+		assertEquals(dtf.format(fodselsdato), dtf.format(pFodselsdato));
 
 		String pFodselsdatoString = person.getFodselsdatoAsString();
 		assertEquals("101273", pFodselsdatoString);
