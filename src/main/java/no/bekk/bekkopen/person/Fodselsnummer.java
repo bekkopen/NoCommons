@@ -169,15 +169,6 @@ public class Fodselsnummer extends StringNumber {
 	}
 
 	/**
-	 * Returns the digit that decides the gender - the 9th in the Fodselsnummer.
-	 *
-	 * @return The digit.
-	 */
-	public int getGenderDigit() {
-		return getAt(8);
-	}
-
-	/**
 	 * Returns the first checksum digit - the 10th in the Fodselsnummer.
 	 *
 	 * @return The digit.

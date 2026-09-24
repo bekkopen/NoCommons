@@ -140,11 +140,6 @@ public class FodselsnummerTest {
 	}
 
 	@Test
-	public void testGetGenderDigit() {
-		assertEquals(4, sut.getGenderDigit());
-	}
-
-	@Test
 	public void testGetChecksumDigits() {
 		assertEquals(7, sut.getChecksumDigit1());
 		assertEquals(6, sut.getChecksumDigit2());
