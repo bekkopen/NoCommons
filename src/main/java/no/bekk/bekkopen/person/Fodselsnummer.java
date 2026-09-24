@@ -169,18 +169,6 @@ public class Fodselsnummer extends StringNumber {
 	}
 
 	/**
-	 * Returns the digit that decides the gender - the 9th in the Fodselsnummer.
-	 * 
-	 * @deprecated For removal - Gender will stop working after 1.1.2032
-     * 	<a href="https://skatteetaten.github.io/folkeregisteret-api-dokumentasjon/nytt-fodselsnummer-fra-2032/">Nytt fødselsnummer fra 2032</a>
-	 * @return The digit.
-	 */
-	@Deprecated
-	public int getGenderDigit() {
-		return getAt(8);
-	}
-
-	/**
 	 * Returns the first checksum digit - the 10th in the Fodselsnummer.
 	 *
 	 * @return The digit.
@@ -196,30 +184,6 @@ public class Fodselsnummer extends StringNumber {
 	 */
 	public int getChecksumDigit2() {
 		return getAt(10);
-	}
-
-	/**
-	 * Returns true if the Fodselsnummer represents a man.
-	 * 
-	 * @deprecated For removal - Gender will stop working after 1.1.2032
-     * 	<a href="https://skatteetaten.github.io/folkeregisteret-api-dokumentasjon/nytt-fodselsnummer-fra-2032/">Nytt fødselsnummer fra 2032</a>
-	 * @return true or false.
-	 */
-	@Deprecated
-	public boolean isMale() {
-		return getGenderDigit() % 2 != 0;
-	}
-
-	/**
-	 * Returns true if the Fodselsnummer represents a woman.
-	 * 
-	 * @deprecated For removal - Gender will stop working after 1.1.2032
-     * 	<a href="https://skatteetaten.github.io/folkeregisteret-api-dokumentasjon/nytt-fodselsnummer-fra-2032/">Nytt fødselsnummer fra 2032</a>
-	 * @return true or false.
-	 */
-	@Deprecated
-	public boolean isFemale() {
-		return !isMale();
 	}
 
 	static String parseSyntheticNumber(String fodselsnummer) {
@@ -289,19 +253,6 @@ public class Fodselsnummer extends StringNumber {
 
 	private static int getThirdDigit(String fodselsnummer) {
 		return Integer.parseInt(fodselsnummer.substring(2, 3));
-	}
-
-	/**
-	 * @deprecated For removal - Gender will stop working after 1.1.2032
-     * 	<a href="https://skatteetaten.github.io/folkeregisteret-api-dokumentasjon/nytt-fodselsnummer-fra-2032/">Nytt fødselsnummer fra 2032</a>
-	 */
-	@Deprecated
-	public KJONN getKjonn() {
-		if (isFemale()) {
-			return KJONN.KVINNE;
-		} else {
-			return KJONN.MANN;
-		}
 	}
 
 	@Override

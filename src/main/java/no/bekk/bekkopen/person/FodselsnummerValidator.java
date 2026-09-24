@@ -31,9 +31,10 @@ import no.bekk.bekkopen.common.StringNumberValidator;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 import static no.bekk.bekkopen.common.Checksums.ERROR_INVALID_CHECKSUM;
 import static no.bekk.bekkopen.common.Checksums.calculateMod11CheckSum;
@@ -54,7 +55,7 @@ public class FodselsnummerValidator extends StringNumberValidator implements Con
 
 	private static final int LENGTH = 11;
 
-	private static final String DATE_FORMAT = "ddMMyyyy";
+	private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("ddMMuuuu").withResolverStyle(ResolverStyle.STRICT);
 
 	private static final int[] K1_WEIGHTS = new int[] { 2, 5, 4, 9, 8, 1, 6, 7, 3 };
 	private static final int[] K2_WEIGHTS = new int[] { 2, 3, 4, 5, 6, 7, 2, 3, 4, 5 };
@@ -131,10 +132,8 @@ public class FodselsnummerValidator extends StringNumberValidator implements Con
 		no.bekk.bekkopen.person.Fodselsnummer fnr = new no.bekk.bekkopen.person.Fodselsnummer(fodselsnummer);
 		try {
 			String dateString = fnr.getDateAndMonth() + fnr.getCentury() + fnr.get2DigitBirthYear();
-			DateFormat df = new SimpleDateFormat(DATE_FORMAT);
-			df.setLenient(false);
-			df.parse(dateString);
-		} catch (ParseException e) {
+			LocalDate.parse(dateString, DATE_FORMATTER);
+		} catch (DateTimeParseException e) {
 			throw new IllegalArgumentException(ERROR_INVALID_DATE + fodselsnummer);
 		}
 	}
